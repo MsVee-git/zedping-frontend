@@ -225,7 +225,7 @@ export default function Landing() {
         {/* Grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`, backgroundSize: "64px 64px" }} />
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "20px 24px 60px", position: "relative", display: "flex", alignItems: "center", gap: 64, flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "20px 24px 80px", position: "relative", display: "flex", alignItems: "center", gap: 64, flexWrap: "wrap" }}>
           {/* Left */}
           <div style={{ flex: "1 1 480px" }}>
             <FadeIn>
