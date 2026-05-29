@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const BG      = "#0B1020";
@@ -130,7 +129,7 @@ function FadeIn({ children, delay = 0, style = {} }) {
 const FEATURES = [
   { icon: "⚡", label: "Broadcasts", title: "One click. Your entire list.", desc: "Personalised WhatsApp messages to every contact simultaneously. 300 parents receive their name in under 5 seconds." },
   { icon: "🤖", label: "Chatbot", title: "Instant keyword replies.", desc: "Customers type QUOTE, HOURS, or BOOK and get an instant, accurate reply. No human. No delay. No missed leads." },
-  { icon: "🧠", label: "AI Agent", title: "Conversations that close.", desc: "A GPT-powered assistant that holds full natural conversations, handles objections, and completes sales -- 24/7." },
+  { icon: "🧠", label: "AI Agent", title: "Conversations that close.", desc: "A GPT-powered assistant that holds full natural conversations, handles objections, and completes sales — 24/7." },
   { icon: "📅", label: "Scheduler", title: "Set it. Forget it.", desc: "Schedule broadcasts days in advance. The right message goes out at exactly the right time, every time." },
   { icon: "🔗", label: "Integrations", title: "Your tools, connected.", desc: "Airtable, Google Sheets, POS systems. New booking? Automatic WhatsApp confirmation. Zero manual work." },
   { icon: "📊", label: "Analytics", title: "Every message, logged.", desc: "Full message history across all contacts. See what customers ask, what converts, and what to improve." },
@@ -212,7 +211,7 @@ export default function Landing() {
             {["Features", "Pricing", "Verticals"].map(l => (
               <a key={l} className="nav-link" href={`#${l.toLowerCase()}`}>{l}</a>
             ))}
-            <a className="btn-primary" href="#pricing" style={{ padding: "9px 20px", fontSize: 13 }}>Get Started →</a>
+            <a className="btn-primary" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ padding: "9px 20px", fontSize: 13 }}>Get Started →</a>
           </div>
         </div>
       </nav>
@@ -225,7 +224,7 @@ export default function Landing() {
         {/* Grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`, backgroundSize: "64px 64px" }} />
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "20px 24px 60px", position: "relative", display: "flex", alignItems: "center", gap: 64, flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "80px 24px 100px", position: "relative", display: "flex", alignItems: "center", gap: 64, flexWrap: "wrap" }}>
           {/* Left */}
           <div style={{ flex: "1 1 480px" }}>
             <FadeIn>
@@ -245,12 +244,12 @@ export default function Landing() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
-                Stop typing WhatsApp messages one by one. ZedPing broadcasts, automates replies, and deploys AI agents -- priced in Kwacha, supported in Lusaka.
+                Stop typing WhatsApp messages one by one. ZedPing broadcasts, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}>
-                <a className="btn-glow" href="#pricing">Start 7-Day Free Trial</a>
+                <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true">Start 7-Day Free Trial</a>
                 <a className="btn-ghost" href="#features">See Features →</a>
               </div>
             </FadeIn>
@@ -266,7 +265,7 @@ export default function Landing() {
             </FadeIn>
           </div>
 
-          {/* Right -- mockup */}
+          {/* Right — mockup */}
           <FadeIn delay={0.2} style={{ flex: "0 0 300px" }}>
             <div className="float glass" style={{ padding: 18, maxWidth: 300, margin: "0 auto", boxShadow: `0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(91,91,214,0.2), inset 0 1px 0 rgba(255,255,255,0.06)` }}>
               {/* Header */}
@@ -363,7 +362,7 @@ export default function Landing() {
                   Everything your<br />business needs.
                 </h2>
               </div>
-              <a className="btn-ghost" href="#pricing">View Pricing →</a>
+              <a className="btn-ghost" href="https://zed-ping-dashboard.vercel.app?signup=true">View Pricing →</a>
             </div>
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
@@ -488,12 +487,12 @@ export default function Landing() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 520, margin: "0 auto 40px" }}>
-              Join Zambian businesses already automating their WhatsApp. Start your 7-day free trial -- no credit card, no USD billing.
+              Join Zambian businesses already automating their WhatsApp. Start your 7-day free trial — no credit card, no USD billing.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <a className="btn-glow" href="#pricing" style={{ fontSize: 16, padding: "16px 36px" }}>
-              Start Free Trial -- 7 Days Free
+            <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 16, padding: "16px 36px" }}>
+              Start Free Trial — 7 Days Free
             </a>
           </FadeIn>
         </div>
