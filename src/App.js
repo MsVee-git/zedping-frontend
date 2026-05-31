@@ -5,7 +5,7 @@ const SURFACE = "#121A2B";
 const INDIGO  = "#5B5BD6";
 const CYAN    = "#5EE6FF";
 const TEXT1   = "#F5F7FA";
-const TEXT2   = "#9CA3AF";
+const TEXT2   = "#C9D1D9";
 const WHITE   = "#FFFFFF";
 const BORDER  = "rgba(255,255,255,0.07)";
 
@@ -248,7 +248,7 @@ export default function Landing() {
 
         <div style={{ maxWidth: 1160, margin: "0 auto", padding: "clamp(24px, 5vw, 60px) clamp(16px, 4vw, 24px)", position: "relative", display: "flex", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
           {/* Left */}
-          <div style={{ flex: "1 1 480px" }}>
+          <div style={{ flex: "1 1 300px" }}>
             <FadeIn>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
                 <div className="chip">
