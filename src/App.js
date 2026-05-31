@@ -440,7 +440,7 @@ export default function Landing() {
                 Priced in Kwacha.<br />No USD surprises.
               </h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 440, margin: "14px auto 0", lineHeight: 1.7 }}>
-                Competitors charge $40–70/month in USD. ZedPing starts at K650/month. Pay via Airtel Money, MTN Money or Zamtel Money.
+                Competitors charge $40–$70/month in USD — that's roughly K900–K1,600/month. Every time the exchange rate moves, so does your bill. With ZedPing, you pay K650/month. In Kwacha. Fixed. Always.
               </p>
             </div>
           </FadeIn>
