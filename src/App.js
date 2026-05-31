@@ -138,12 +138,12 @@ const FEATURES = [
 const PLANS = [
   {
     name: "Starter", price: "K650", annual: "K450", setup: "K2,000 setup", msg: "500 msgs/month",
-    features: ["1 WhatsApp number", "Unlimited broadcasts", "2 keyword automations", "Message log", "7-day free trial"],
+    features: ["1 WhatsApp number", "Unlimited broadcasts", "2 keyword automations", "Message log", "free to explore"],
     highlight: false,
   },
   {
     name: "Business", price: "K1,500", annual: "K1,000", setup: "K2,000 setup", msg: "3,000 msgs/month",
-    features: ["1 WhatsApp number", "Unlimited automations", "Full keyword chatbot", "1 AI agent (GPT-4o)", "7-day free trial"],
+    features: ["1 WhatsApp number", "Unlimited automations", "Full keyword chatbot", "1 AI agent (GPT-4o)", "free to explore"],
     highlight: true,
   },
   {
@@ -245,12 +245,12 @@ export default function Landing() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p style={{ fontSize: "clamp(16px, 4vw, 18px)", color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
-                Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka.
+                Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka. Explore free. Pay when you're ready.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}>
-                <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true">Start 7-Day Free Trial</a>
+                <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true">Get Started Free</a>
                 <a className="btn-ghost" href="#features">See Features →</a>
               </div>
             </FadeIn>
@@ -419,7 +419,7 @@ export default function Landing() {
                 Priced in Kwacha.<br />No USD surprises.
               </h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 440, margin: "14px auto 0", lineHeight: 1.7 }}>
-                Competitors charge $40–70/month in USD. ZedPing starts at K650. Pay via Airtel Money or MTN Money.
+                Competitors charge $40–70/month in USD. ZedPing starts at K650/month. Pay via Airtel Money, MTN Money or Zamtel Money.
               </p>
             </div>
           </FadeIn>
@@ -442,7 +442,7 @@ export default function Landing() {
                     <span style={{ fontSize: 52, fontWeight: 900, color: TEXT1, letterSpacing: -3, lineHeight: 1 }}>{p.price}</span>
                     <span style={{ color: TEXT2, fontSize: 14 }}>/mo</span>
                   </div>
-                  <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 6 }}>{p.setup} · <span style={{color: CYAN}}>K{p.annual}/mo annually</span></div>
+                  <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 6 }}>{p.setup}</div>
                   <div style={{ color: p.highlight ? CYAN : "#A5A5FF", fontSize: 13, fontWeight: 600, marginBottom: 26, display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 5, height: 5, borderRadius: "50%", background: p.highlight ? CYAN : INDIGO, display: "inline-block" }} />
                     {p.msg}
@@ -464,7 +464,7 @@ export default function Landing() {
           </div>
           <FadeIn delay={0.4}>
             <p style={{ textAlign: "center", color: TEXT2, fontSize: 13, marginTop: 28 }}>
-              All plans include a 7-day free trial · Pay via Airtel Money, MTN Money or Zamtel Money · Cancel anytime
+              All plans include a free to explore · Pay via Airtel Money, MTN Money or Zamtel Money · Cancel anytime
             </p>
           </FadeIn>
         </div>
@@ -488,12 +488,12 @@ export default function Landing() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 520, margin: "0 auto 40px" }}>
-              Join Zambian businesses already automating their WhatsApp. Start your 7-day free trial — pay via Airtel Money, MTN Money or Zamtel Money. No USD billing.
+              Join Zambian businesses already automating their WhatsApp. Start your free to explore — pay via Airtel Money, MTN Money or Zamtel Money. No USD billing.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
             <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 16, padding: "16px 36px" }}>
-              Start Free Trial — 7 Days Free
+              Get Started Free — No Payment Needed
             </a>
           </FadeIn>
         </div>
