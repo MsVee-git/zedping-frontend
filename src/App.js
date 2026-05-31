@@ -265,7 +265,7 @@ export default function Landing() {
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p style={{ fontSize: "clamp(17px, 4vw, 18px)", color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
+              <p style={{ fontSize: "clamp(17px, 4vw, 18px)", color: "rgba(255,255,255,0.85)", lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
                 Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka. Explore free. Pay when you're ready.
               </p>
             </FadeIn>
