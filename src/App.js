@@ -217,7 +217,7 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="hero-section" style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: 64, position: "relative", overflow: "hidden", background: BG }}>
+      <section className="hero-section" style={{ display: "flex", alignItems: "center", paddingTop: 64, position: "relative", overflow: "hidden", background: BG }}>
         {/* Radial glows */}
         <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 800, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.18) 0%, transparent 65%)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "5%", right: "10%", width: 400, height: 400, background: `radial-gradient(circle, rgba(94,230,255,0.08) 0%, transparent 60%)`, pointerEvents: "none" }} />
@@ -236,7 +236,7 @@ export default function Landing() {
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 style={{ fontSize: "clamp(40px, 8vw, 78px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: -3.5, marginBottom: 24, color: TEXT1 }}>
+              <h1 style={{ fontSize: "clamp(36px, 10vw, 78px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: -3.5, marginBottom: 24, color: TEXT1 }}>
                 Your whole<br />
                 <span className="gradient-text">contact list.</span><br />
                 One click.
@@ -322,12 +322,12 @@ export default function Landing() {
       </div>
 
       {/* ── PAIN / GAIN ── */}
-      <section className="section-full" style={{ background: BG, padding: "96px 24px" }}>
+      <section style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
         <div style={{ maxWidth: 1160, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>The Problem</div>
-              <h2 style={{ fontSize: "clamp(30px, 5vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
+              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
                 Every Zambian SME owner<br />knows this feeling.
               </h2>
             </div>
@@ -352,13 +352,13 @@ export default function Landing() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ background: SURFACE, padding: "96px 24px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+      <section id="features" style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1160, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 20 }}>
               <div>
                 <div className="chip" style={{ marginBottom: 16, display: "inline-flex" }}>Features</div>
-                <h2 style={{ fontSize: "clamp(30px, 5vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
+                <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
                   Everything your<br />business needs.
                 </h2>
               </div>
@@ -383,12 +383,12 @@ export default function Landing() {
       </section>
 
       {/* ── VERTICALS ── */}
-      <section id="verticals" style={{ background: BG, padding: "96px 24px" }}>
+      <section id="verticals" style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
         <div style={{ maxWidth: 1160, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Who It's For</div>
-              <h2 style={{ fontSize: "clamp(30px, 5vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
+              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 420, margin: "14px auto 0", lineHeight: 1.7 }}>
                 If your business communicates with customers on WhatsApp, ZedPing is for you.
               </p>
@@ -409,12 +409,12 @@ export default function Landing() {
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" style={{ background: SURFACE, padding: "96px 24px", borderTop: `1px solid ${BORDER}` }}>
+      <section id="pricing" style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1160, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Pricing</div>
-              <h2 style={{ fontSize: "clamp(30px, 5vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
+              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
                 Priced in Kwacha.<br />No USD surprises.
               </h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 440, margin: "14px auto 0", lineHeight: 1.7 }}>
@@ -470,7 +470,7 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: BG, padding: "96px 24px", position: "relative", overflow: "hidden", borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px", position: "relative", overflow: "hidden", borderTop: `1px solid ${BORDER}` }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.15) 0%, transparent 65%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center", position: "relative" }}>
           <FadeIn>
