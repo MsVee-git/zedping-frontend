@@ -164,6 +164,7 @@ const VERTICALS = [
   { e: "🔧", n: "Workshops", t: "Job status by keyword. No calls needed." },
   { e: "💰", n: "Microfinance", t: "Loan reminders, disbursement alerts." },
   { e: "🛍️", n: "Retail", t: "AI sales agent. Closes deals while you sleep." },
+  { e: "🏘️", n: "Accommodation", t: "Rent reminders to tenants. Payment confirmations. Vacancy alerts." },
 ];
 
 const TICKER = ["Schools","Clinics","Salons","Restaurants","Real Estate","Workshops","Airlines","Retail","Churches","Gyms","Microfinance","Bus Operators"];
@@ -208,7 +209,7 @@ export default function Landing() {
           </div>
           {/* Links */}
           <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-            {["Features", "Pricing", "Verticals"].map(l => (
+            {["Features", "Pricing", "Industries"].map(l => (
               <a key={l} className="nav-link" href={`#${l.toLowerCase()}`}>{l}</a>
             ))}
             <a className="btn-primary" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ padding: "9px 20px", fontSize: 13 }}>Get Started →</a>
@@ -383,11 +384,11 @@ export default function Landing() {
       </section>
 
       {/* ── VERTICALS ── */}
-      <section id="verticals" style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
+      <section id="industries" style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
         <div style={{ maxWidth: 1160, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Who It's For</div>
+              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Who Is It For?</div>
               <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 420, margin: "14px auto 0", lineHeight: 1.7 }}>
                 If your business communicates with customers on WhatsApp, ZedPing is for you.
