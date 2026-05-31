@@ -127,7 +127,7 @@ function FadeIn({ children, delay = 0, style = {} }) {
 }
 
 const FEATURES = [
-  { icon: "⚡", label: "Broadcasts", title: "One click. Your entire list.", desc: "Personalised WhatsApp messages to every contact simultaneously. 300 parents receive their name in under 5 seconds." },
+  { icon: "⚡", label: "Broadcasts", title: "One click. Your entire list.", desc: "Send personalised WhatsApp messages to your entire contact list simultaneously. Every contact receives their name — automatically." },
   { icon: "🤖", label: "Chatbot", title: "Instant keyword replies.", desc: "Customers type QUOTE, HOURS, or BOOK and get an instant, accurate reply. No human. No delay. No missed leads." },
   { icon: "🧠", label: "AI Agent", title: "Conversations that close.", desc: "A GPT-powered assistant that holds full natural conversations, handles objections, and completes sales — 24/7." },
   { icon: "📅", label: "Scheduler", title: "Set it. Forget it.", desc: "Schedule broadcasts days in advance. The right message goes out at exactly the right time, every time." },
@@ -137,28 +137,28 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Starter", price: "K650", setup: "K500 setup", msg: "500 msgs/month",
+    name: "Starter", price: "K650", annual: "K450", setup: "K2,000 setup", msg: "500 msgs/month",
     features: ["1 WhatsApp number", "Unlimited broadcasts", "2 keyword automations", "Message log", "7-day free trial"],
     highlight: false,
   },
   {
-    name: "Business", price: "K1,500", setup: "K1,000 setup", msg: "3,000 msgs/month",
+    name: "Business", price: "K1,500", annual: "K1,000", setup: "K2,000 setup", msg: "3,000 msgs/month",
     features: ["1 WhatsApp number", "Unlimited automations", "Full keyword chatbot", "1 AI agent (GPT-4o)", "7-day free trial"],
     highlight: true,
   },
   {
-    name: "Pro", price: "K2,500", setup: "K2,500 setup", msg: "Unlimited messages",
+    name: "Pro", price: "K2,500", annual: "K2,000", setup: "K2,000 setup", msg: "Unlimited messages",
     features: ["3 WhatsApp numbers", "Multi-step chatbot flows", "Multiple AI agents", "Airtable + POS integration", "Priority Lusaka support"],
     highlight: false,
   },
 ];
 
 const VERTICALS = [
-  { e: "🏫", n: "Schools", t: "Fee reminders to 342 parents. One click." },
+  { e: "🏫", n: "Schools", t: "Send fee reminders to every parent at once." },
   { e: "🏥", n: "Clinics", t: "Appointment confirmations, auto-sent." },
   { e: "✂️", n: "Salons", t: "Promos, bookings, new stock alerts." },
   { e: "🍽️", n: "Restaurants", t: "Daily specials to your entire contact list." },
-  { e: "🏠", n: "Real Estate", t: "Rent reminders via Airtel or MTN." },
+  { e: "🏠", n: "Real Estate", t: "Share new listings instantly with interested buyers." },
   { e: "🚌", n: "Bus Operators", t: "Boarding reminders with seat reference." },
   { e: "✈️", n: "Airlines", t: "Flight alerts, gate changes, confirmations." },
   { e: "🔧", n: "Workshops", t: "Job status by keyword. No calls needed." },
@@ -169,8 +169,8 @@ const VERTICALS = [
 const TICKER = ["Schools","Clinics","Salons","Restaurants","Real Estate","Workshops","Airlines","Retail","Churches","Gyms","Microfinance","Bus Operators"];
 
 const BEFORE_AFTER = [
-  { b: "Sending 300 messages one. by. one.", a: "One click sends all 300. Personalised." },
-  { b: "'How much?' 'Where are you?' All. Day.", a: "AI agent answers instantly. 24/7." },
+  { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
+  { b: "'How much, where are you located' — all day, every day", a: "AI agent answers instantly. 24/7. No human needed." },
   { b: "Appointments forgotten. Revenue lost.", a: "Auto-confirmation when it's booked." },
   { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
 ];
@@ -217,14 +217,14 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 64, position: "relative", overflow: "hidden", background: BG }}>
+      <section style={{ display: "flex", alignItems: "center", paddingTop: 64, position: "relative", overflow: "hidden", background: BG }} className="hero-section">
         {/* Radial glows */}
         <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 800, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.18) 0%, transparent 65%)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "5%", right: "10%", width: 400, height: 400, background: `radial-gradient(circle, rgba(94,230,255,0.08) 0%, transparent 60%)`, pointerEvents: "none" }} />
         {/* Grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`, backgroundSize: "64px 64px" }} />
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "80px 24px 100px", position: "relative", display: "flex", alignItems: "center", gap: 64, flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "40px 24px 60px", position: "relative", display: "flex", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
           {/* Left */}
           <div style={{ flex: "1 1 480px" }}>
             <FadeIn>
@@ -244,7 +244,7 @@ export default function Landing() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
-                Stop typing WhatsApp messages one by one. ZedPing broadcasts, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka.
+                Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -255,7 +255,7 @@ export default function Landing() {
             </FadeIn>
             <FadeIn delay={0.4}>
               <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-                {[["💳", "No credit card"], ["📱", "Airtel / MTN Money"], ["🇿🇲", "Support in Lusaka"]].map(([e, t]) => (
+                {[["📱", "Airtel Money"], ["📱", "MTN Money"], ["📱", "Zamtel Money"], ["🇿🇲", "Support in Lusaka"]].map(([e, t]) => (
                   <div key={t} style={{ display: "flex", alignItems: "center", gap: 7 }}>
                     <span style={{ fontSize: 14 }}>{e}</span>
                     <span style={{ fontSize: 13, color: TEXT2, fontWeight: 500 }}>{t}</span>
@@ -283,8 +283,8 @@ export default function Landing() {
               {[
                 { t: "Hi Mrs Mwanza, Kutimba has outstanding fees of K3,500 due 30 May. Call 0977 000 000.", me: true },
                 { t: "Thank you! Paying today 🙏", me: false },
-                { t: "Hi Mr Banda, Chanda has outstanding fees of K2,200 due 30 May.", me: true },
-                { t: "Receipt sent ✓", me: false },
+                { t: "Payment sent ✓", me: false },
+                { t: "Thank you Mrs Mwanza! Payment received. Have a great day 😊", me: true },
               ].map((m, i) => (
                 <div key={i} style={{ display: "flex", justifyContent: m.me ? "flex-start" : "flex-end", marginBottom: 7 }}>
                   <div style={{
@@ -298,7 +298,7 @@ export default function Landing() {
               ))}
               {/* Stats */}
               <div style={{ background: "rgba(91,91,214,0.12)", border: "1px solid rgba(91,91,214,0.2)", borderRadius: 12, padding: "10px 14px", marginTop: 10, display: "flex", justifyContent: "space-around" }}>
-                {[["342", "Sent"], ["98%", "Delivered"], ["4s", "Time"]].map(([v, l]) => (
+                {[["✓✓✓", "Sent"], ["98%", "Delivered"], ["Fast", "Speed"]].map(([v, l]) => (
                   <div key={l} style={{ textAlign: "center" }}>
                     <div style={{ color: CYAN, fontWeight: 800, fontSize: 16, letterSpacing: -0.5 }}>{v}</div>
                     <div style={{ color: TEXT2, fontSize: 9, marginTop: 1 }}>{l}</div>
@@ -441,7 +441,7 @@ export default function Landing() {
                     <span style={{ fontSize: 52, fontWeight: 900, color: TEXT1, letterSpacing: -3, lineHeight: 1 }}>{p.price}</span>
                     <span style={{ color: TEXT2, fontSize: 14 }}>/mo</span>
                   </div>
-                  <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 6 }}>{p.setup}</div>
+                  <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 6 }}>{p.setup} · <span style={{color: CYAN}}>K{p.annual}/mo annually</span></div>
                   <div style={{ color: p.highlight ? CYAN : "#A5A5FF", fontSize: 13, fontWeight: 600, marginBottom: 26, display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 5, height: 5, borderRadius: "50%", background: p.highlight ? CYAN : INDIGO, display: "inline-block" }} />
                     {p.msg}
@@ -463,7 +463,7 @@ export default function Landing() {
           </div>
           <FadeIn delay={0.4}>
             <p style={{ textAlign: "center", color: TEXT2, fontSize: 13, marginTop: 28 }}>
-              All plans include a 7-day free trial · No credit card required · Cancel anytime
+              All plans include a 7-day free trial · Pay via Airtel Money, MTN Money or Zamtel Money · Cancel anytime
             </p>
           </FadeIn>
         </div>
@@ -487,7 +487,7 @@ export default function Landing() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 520, margin: "0 auto 40px" }}>
-              Join Zambian businesses already automating their WhatsApp. Start your 7-day free trial — no credit card, no USD billing.
+              Join Zambian businesses already automating their WhatsApp. Start your 7-day free trial — pay via Airtel Money, MTN Money or Zamtel Money. No USD billing.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
