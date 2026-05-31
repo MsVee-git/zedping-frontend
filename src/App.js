@@ -258,14 +258,14 @@ export default function Landing() {
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 style={{ fontSize: "clamp(36px, 10vw, 78px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: -3.5, marginBottom: 24, color: TEXT1 }}>
+              <h1 style={{ fontSize: "clamp(42px, 10vw, 78px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: -3.5, marginBottom: 24, color: TEXT1 }}>
                 Your whole<br />
                 <span className="gradient-text">contact list.</span><br />
                 One click.
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p style={{ fontSize: "clamp(16px, 4vw, 18px)", color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
+              <p style={{ fontSize: "clamp(17px, 4vw, 18px)", color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
                 Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka. Explore free. Pay when you're ready.
               </p>
             </FadeIn>
@@ -349,7 +349,7 @@ export default function Landing() {
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>The Problem</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
+              <h2 style={{ fontSize: "clamp(30px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
                 Every Zambian SME owner<br />knows this feeling.
               </h2>
             </div>
@@ -380,7 +380,7 @@ export default function Landing() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 20 }}>
               <div>
                 <div className="chip" style={{ marginBottom: 16, display: "inline-flex" }}>Features</div>
-                <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
+                <h2 style={{ fontSize: "clamp(30px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
                   Everything your<br />business needs.
                 </h2>
               </div>
@@ -410,7 +410,7 @@ export default function Landing() {
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Who Is It For?</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
+              <h2 style={{ fontSize: "clamp(30px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 420, margin: "14px auto 0", lineHeight: 1.7 }}>
                 If your business communicates with customers on WhatsApp, ZedPing is for you.
               </p>
@@ -436,7 +436,7 @@ export default function Landing() {
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Pricing</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
+              <h2 style={{ fontSize: "clamp(30px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
                 Priced in Kwacha.<br />No USD surprises.
               </h2>
               <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 440, margin: "14px auto 0", lineHeight: 1.7 }}>
@@ -502,7 +502,7 @@ export default function Landing() {
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h2 style={{ fontSize: "clamp(32px, 5vw, 58px)", fontWeight: 900, color: TEXT1, letterSpacing: -2.5, lineHeight: 1.05, marginBottom: 20 }}>
+            <h2 style={{ fontSize: "clamp(32px, 6vw, 58px)", fontWeight: 900, color: TEXT1, letterSpacing: -2.5, lineHeight: 1.05, marginBottom: 20 }}>
               Stop losing sales<br />
               <span className="gradient-text">to slow replies.</span>
             </h2>
@@ -539,11 +539,11 @@ export default function Landing() {
               {[
                 ["Product", ["Features", "Pricing", "How It Works", "Templates"]],
                 ["Company", ["About", "Contact", "LinkedIn", "WhatsApp Us"]],
-                ["Legal", ["Privacy Policy", "Terms of Service"]],
+                ["Legal", [["Privacy Policy", "/legal"], ["Terms of Service", "/legal"]]],
               ].map(([title, links]) => (
                 <div key={title}>
                   <div style={{ color: "#A5A5FF", fontSize: 10, fontWeight: 800, letterSpacing: 1.8, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
-                  {links.map(l => <div key={l} style={{ marginBottom: 10 }}><a href="#" style={{ color: TEXT2, fontSize: 13, opacity: 0.7 }}>{l}</a></div>)}
+                  {links.map(l => <div key={l} style={{ marginBottom: 10 }}><a href={Array.isArray(l) ? l[1] : "#"} style={{ color: TEXT2, fontSize: 13, opacity: 0.7 }}>{Array.isArray(l) ? l[0] : l}</a></div>)}
                 </div>
               ))}
             </div>
