@@ -137,18 +137,39 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Starter", price: "K650", annual: "K450", setup: "K2,000 setup", msg: "500 msgs/month",
-    features: ["1 WhatsApp number", "Unlimited broadcasts", "2 keyword automations", "Message log", "free to explore"],
+    name: "Starter", price: "K650", annual: "K450", setup: "K850 once-off setup", msg: "500 msgs/month",
+    features: [
+      "Explore the dashboard free",
+      "1 WhatsApp number (on activation)",
+      "Unlimited broadcasts",
+      "2 keyword automations",
+      "CSV contact upload",
+      "Message log",
+    ],
     highlight: false,
   },
   {
-    name: "Business", price: "K1,500", annual: "K1,000", setup: "K2,000 setup", msg: "3,000 msgs/month",
-    features: ["1 WhatsApp number", "Unlimited automations", "Full keyword chatbot", "1 AI agent (GPT-4o)", "free to explore"],
+    name: "Business", price: "K1,500", annual: "K1,000", setup: "K2,000 once-off setup", msg: "3,000 msgs/month",
+    features: [
+      "Everything in Starter, plus:",
+      "Unlimited keyword automations",
+      "Full keyword chatbot",
+      "1 AI agent (GPT-4o)",
+      "Broadcast scheduler",
+      "Contact list management",
+    ],
     highlight: true,
   },
   {
-    name: "Pro", price: "K2,500", annual: "K2,000", setup: "K2,000 setup", msg: "Unlimited messages",
-    features: ["3 WhatsApp numbers", "Multi-step chatbot flows", "Multiple AI agents", "Airtable + POS integration", "Priority Lusaka support"],
+    name: "Pro", price: "K2,500", annual: "K2,000", setup: "K3,500 once-off setup", msg: "Unlimited messages",
+    features: [
+      "Everything in Business, plus:",
+      "3 WhatsApp numbers",
+      "Multi-step chatbot flows",
+      "Multiple AI agents",
+      "Airtable & POS integration",
+      "Priority Lusaka support",
+    ],
     highlight: false,
   },
 ];
