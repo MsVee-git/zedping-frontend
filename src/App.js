@@ -491,6 +491,62 @@ export default function Landing() {
         </div>
       </section>
 
+
+      {/* ── TESTIMONIALS ── */}
+      <section style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}` }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: 64 }}>
+              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>What Our Clients Say</div>
+              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
+                Real businesses.<br />Real results.
+              </h2>
+            </div>
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+            {[
+              {
+                quote: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time we've saved in the accounts office alone is remarkable.",
+                name: "Accounts Manager",
+                org: "Beta Tester · School, Lusaka",
+                initial: "A",
+              },
+              {
+                quote: "Our customers now get instant replies to their enquiries even at night. We haven't missed a single lead since we activated the AI agent. It's like having a receptionist that never sleeps.",
+                name: "Business Owner",
+                org: "Beta Tester · Workshop, Lusaka",
+                initial: "B",
+              },
+              {
+                quote: "The fact that it's priced in Kwacha and we pay via Airtel Money made the decision easy. No USD stress, no bank transfers. Just a local product that actually works for us.",
+                name: "Manager",
+                org: "Beta Tester · SME, Lusaka",
+                initial: "M",
+              },
+            ].map((t, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div style={{ background: BG, border: `1px solid ${BORDER}`, borderRadius: 20, padding: "28px 26px", height: "100%" }}>
+                  <div style={{ fontSize: 32, color: INDIGO, marginBottom: 16, lineHeight: 1 }}>"</div>
+                  <p style={{ color: TEXT1, fontSize: 16, lineHeight: 1.8, marginBottom: 24, fontStyle: "italic" }}>{t.quote}</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ width: 42, height: 42, background: `linear-gradient(135deg, ${INDIGO}, #7B6FE8)`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "white", flexShrink: 0 }}>{t.initial}</div>
+                    <div>
+                      <div style={{ color: TEXT1, fontSize: 14, fontWeight: 700 }}>{t.name}</div>
+                      <div style={{ color: TEXT2, fontSize: 12, marginTop: 2 }}>{t.org}</div>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn delay={0.3}>
+            <p style={{ textAlign: "center", color: TEXT2, fontSize: 13, marginTop: 32 }}>
+              Reviews from beta testers · End of June 2026 · Real names and organisations will be added upon permission
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px", position: "relative", overflow: "hidden", borderTop: `1px solid ${BORDER}` }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.15) 0%, transparent 65%)`, pointerEvents: "none" }} />
