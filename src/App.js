@@ -296,7 +296,7 @@ export default function Landing() {
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <h1 className="display" style={{ fontSize: "clamp(72px, 12vw, 160px)", color: "var(--cyan)", lineHeight: 0.92, marginBottom: 8, WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>
+            <h1 className="display" style={{ fontSize: "clamp(72px, 12vw, 160px)", color: "var(--cyan)", lineHeight: 0.92, marginBottom: 8 }}>
               CONTACT LIST.
             </h1>
           </Reveal>
@@ -367,21 +367,21 @@ export default function Landing() {
               EVERY ZAMBIAN BUSINESS OWNER KNOWS THIS.
             </h2>
           </Reveal>
-          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 1, background: "var(--border)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--border)" }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
               { b: "Appointments forgotten. Revenue lost.", a: "Auto-confirmation fires the moment it's booked." },
               { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
             ].map((p, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ background: "var(--black)" }}>
-                  <div style={{ padding: "28px 24px", borderBottom: "1px solid var(--border)" }}>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "#EF4444", marginBottom: 12, textTransform: "uppercase" }}>Before</div>
+              <Reveal key={i} delay={i * 0.08} style={{ width: "calc(50% - 0.5px)", minWidth: 260, flexGrow: 1 }}>
+                <div style={{ background: "var(--black)", height: "100%" }}>
+                  <div style={{ padding: "24px 22px", borderBottom: "1px solid var(--border)" }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "#EF4444", marginBottom: 10, textTransform: "uppercase" }}>Before</div>
                     <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 15, lineHeight: 1.65, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
-                  <div style={{ padding: "28px 24px" }}>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "var(--cyan)", marginBottom: 12, textTransform: "uppercase" }}>After ZedPing</div>
+                  <div style={{ padding: "24px 22px" }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "var(--cyan)", marginBottom: 10, textTransform: "uppercase" }}>After ZedPing</div>
                     <p style={{ color: "var(--smoke)", fontSize: 15, lineHeight: 1.65, fontWeight: 500 }}>{p.a}</p>
                   </div>
                 </div>
@@ -433,7 +433,7 @@ export default function Landing() {
                 <div style={{ width: 24, height: 1, background: "var(--amber)" }} />
                 <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--amber)", textTransform: "uppercase" }}>AI Sales Agent</span>
               </div>
-              <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 80px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 24 }}>YOUR SHOP.<br /><span style={{ color: "var(--cyan)", WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>OPEN 24/7.</span></h2>
+              <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 80px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 24 }}>YOUR SHOP.<br /><span style={{ color: "var(--cyan)", color: "var(--cyan)" }}>OPEN 24/7.</span></h2>
               <p style={{ fontSize: 17, color: "var(--mist)", lineHeight: 1.8, marginBottom: 32 }}>Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you sleep.</p>
               <a className="btn-cin" href="https://zed-ping-dashboard.vercel.app?signup=true">See It In Action →</a>
             </Reveal>
@@ -643,7 +643,7 @@ export default function Landing() {
           <Reveal delay={0.1}>
             <h2 className="display" style={{ fontSize: "clamp(60px, 10vw, 130px)", color: "var(--smoke)", lineHeight: 0.92, marginBottom: 24 }}>
               STOP LOSING<br />
-              <span style={{ color: "var(--cyan)", WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>SALES TO</span><br />
+              <span style={{ color: "var(--cyan)", color: "var(--cyan)" }}>SALES TO</span><br />
               SLOW REPLIES.
             </h2>
           </Reveal>
