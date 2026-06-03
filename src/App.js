@@ -143,21 +143,19 @@ const css = `
   .ticker-inner { display: flex; animation: ticker 30s linear infinite; width: max-content; }
 
   /* Mobile */
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     .hide-mobile { display: none !important; }
-    .mobile-stack { flex-direction: column !important; }
-    .mobile-full { width: 100% !important; }
-  }
-
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--border); }
-
-  /* Custom cursor */
-  @media (pointer: fine) {
-    * { cursor: none !important; }
-    .cursor { width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: transform 0.1s; mix-blend-mode: screen; }
-    .cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(6,182,212,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99998; transition: all 0.15s ease; }
+    body { font-size: 17px !important; }
+    p { font-size: 16px !important; line-height: 1.75 !important; }
+    .btn-cin { font-size: 15px !important; padding: 14px 24px !important; width: 100% !important; justify-content: center !important; }
+    .btn-ghost-cin { font-size: 14px !important; padding: 13px 20px !important; width: 100% !important; justify-content: center !important; }
+    .feat-card { padding: 24px 18px !important; }
+    section { padding-left: 18px !important; padding-right: 18px !important; }
+    .before-after-grid { grid-template-columns: 1fr !important; background: none !important; gap: 12px !important; }
+    .hero-inner { padding: 24px 18px 48px !important; flex-direction: column !important; }
+    .hero-stats { flex-direction: row !important; flex-wrap: wrap !important; gap: 20px !important; }
+    .plan-grid { grid-template-columns: 1fr !important; }
+    .industry-grid { grid-template-columns: repeat(2, 1fr) !important; }
   }
 `;
 
@@ -273,7 +271,7 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{ minHeight: "100vh", background: "var(--black)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "var(--black)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
         {/* Dramatic spotlights */}
         <div className="spotlight" style={{ width: 800, height: 800, top: "10%", left: "55%", opacity: 0.8 }} />
         <div style={{ position: "absolute", top: "60%", left: "-5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(79,70,229,0.1) 0%, transparent 70%)", filter: "blur(40px)", pointerEvents: "none" }} />
@@ -282,7 +280,7 @@ export default function Landing() {
         <div style={{ position: "absolute", top: 0, left: "50%", width: 1, height: "100%", background: "rgba(255,255,255,0.02)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: 1, background: "rgba(255,255,255,0.02)", pointerEvents: "none" }} />
 
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 32px 100px", position: "relative", zIndex: 1, width: "100%" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "clamp(24px,5vw,80px) clamp(18px,4vw,32px) clamp(48px,6vw,100px)", position: "relative", zIndex: 1, width: "100%" }}>
           {/* Label */}
           <Reveal>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
@@ -369,7 +367,7 @@ export default function Landing() {
               EVERY ZAMBIAN BUSINESS OWNER KNOWS THIS.
             </h2>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 1, background: "var(--border)" }}>
+          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 1, background: "var(--border)" }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
