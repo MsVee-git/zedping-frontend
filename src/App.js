@@ -1,206 +1,239 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const BG      = "#0B1020";
-const SURFACE = "#121A2B";
-const INDIGO  = "#5B5BD6";
-const CYAN    = "#5EE6FF";
-const TEXT1   = "#F5F7FA";
-const TEXT2   = "#C9D1D9";
-const WHITE   = "#FFFFFF";
-const BORDER  = "rgba(255,255,255,0.07)";
+// ── CINEMATIC ZEDPING LANDING PAGE ──────────────────────────────────────────
+// Aesthetic: Dark cinematic · Film noir meets African tech · Dramatic lighting
+// Fonts: Bebas Neue (display) + DM Sans (body)
+// Palette: Deep black · Electric cyan · Warm amber · Smoke white
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --black: #060608;
+    --deep: #0C0C14;
+    --surface: #12121C;
+    --indigo: #4F46E5;
+    --cyan: #06B6D4;
+    --amber: #F59E0B;
+    --smoke: #E8E8F0;
+    --mist: #9090A8;
+    --border: rgba(255,255,255,0.06);
+    --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: ${BG}; color: ${TEXT1}; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--smoke);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Film grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--grain);
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: overlay;
+  }
+
+  /* Scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
   a { text-decoration: none; color: inherit; }
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: ${INDIGO}; color: ${WHITE};
-    padding: 12px 24px; border-radius: 10px;
-    font-weight: 600; font-size: 14px; letter-spacing: -0.1px;
-    transition: all 0.2s; border: none; cursor: pointer;
-  }
-  .btn-primary:hover { background: #4A4ABF; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(91,91,214,0.35); }
+  /* Typography */
+  .display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; line-height: 0.95; }
+  .mono { font-family: 'Space Mono', monospace; }
 
-  .btn-glow {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, ${INDIGO}, #7B6FE8);
-    color: ${WHITE}; padding: 14px 28px; border-radius: 12px;
-    font-weight: 700; font-size: 15px; letter-spacing: -0.2px;
-    transition: all 0.25s; border: none; cursor: pointer;
-    box-shadow: 0 0 0 0 rgba(91,91,214,0.4);
+  /* Cinematic button */
+  .btn-cin {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--smoke); color: var(--black);
+    padding: 14px 28px; font-family: 'Space Mono', monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; border: none; cursor: pointer;
+    transition: all 0.3s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   }
-  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(91,91,214,0.45); }
+  .btn-cin:hover { background: var(--cyan); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.3); }
 
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.06);
-    color: ${TEXT1}; padding: 13px 24px; border-radius: 12px;
-    font-weight: 600; font-size: 14px;
-    border: 1px solid ${BORDER};
-    transition: all 0.2s; cursor: pointer;
+  .btn-ghost-cin {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--smoke);
+    padding: 13px 28px; font-family: 'Space Mono', monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer; transition: all 0.3s;
   }
-  .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+  .btn-ghost-cin:hover { border-color: var(--cyan); color: var(--cyan); }
 
-  .chip {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(91,91,214,0.12);
-    border: 1px solid rgba(91,91,214,0.25);
-    color: #A5A5FF; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.8px; text-transform: uppercase;
-    padding: 6px 14px; border-radius: 100px;
-  }
+  /* Animated reveal */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.show { opacity: 1; transform: translateY(0); }
 
-  .glass {
-    background: ${SURFACE};
-    border: 1px solid ${BORDER};
-    border-radius: 20px;
+  /* Horizontal rule */
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+
+  /* Spotlight */
+  .spotlight {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+    filter: blur(40px);
   }
 
-  .feature-card {
-    background: ${SURFACE}; border: 1px solid ${BORDER};
-    border-radius: 16px; padding: 28px;
-    transition: all 0.25s;
+  /* Nav */
+  .nav-link-cin {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--mist); transition: color 0.2s;
   }
-  .feature-card:hover {
-    border-color: rgba(91,91,214,0.4);
-    box-shadow: 0 0 0 1px rgba(91,91,214,0.15), 0 8px 32px rgba(91,91,214,0.1);
-    transform: translateY(-2px);
+  .nav-link-cin:hover { color: var(--smoke); }
+
+  /* Stat */
+  .stat-block { border-left: 2px solid var(--cyan); padding-left: 20px; }
+
+  /* Feature card */
+  .feat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 32px 28px; position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .feat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .feat-card:hover::before { transform: scaleX(1); }
+  .feat-card:hover { border-color: rgba(6,182,212,0.2); }
+
+  /* Chat bubble */
+  .bubble-out { background: var(--indigo); border-radius: 18px 18px 4px 18px; padding: 11px 16px; }
+  .bubble-in { background: var(--surface); border: 1px solid var(--border); border-radius: 18px 18px 18px 4px; padding: 11px 16px; }
+
+  /* Plan card */
+  .plan { background: var(--surface); border: 1px solid var(--border); padding: 36px 30px; position: relative; }
+  .plan.featured { border-color: var(--cyan); box-shadow: 0 0 60px rgba(6,182,212,0.08), inset 0 1px 0 rgba(6,182,212,0.15); }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--border); overflow: hidden; cursor: pointer; }
+
+  /* Ticker */
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .ticker-inner { display: flex; animation: ticker 30s linear infinite; width: max-content; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .mobile-stack { flex-direction: column !important; }
+    .mobile-full { width: 100% !important; }
   }
 
-  .vert-card {
-    background: ${SURFACE}; border: 1px solid ${BORDER};
-    border-radius: 14px; padding: 22px;
-    transition: all 0.2s;
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+
+  /* Custom cursor */
+  @media (pointer: fine) {
+    * { cursor: none !important; }
+    .cursor { width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: transform 0.1s; mix-blend-mode: screen; }
+    .cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(6,182,212,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99998; transition: all 0.15s ease; }
   }
-  .vert-card:hover {
-    border-color: rgba(94,230,255,0.3);
-    background: rgba(94,230,255,0.04);
-  }
-
-  .plan-card { border-radius: 20px; padding: 32px; }
-
-  .nav-link { color: ${TEXT2}; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-  .nav-link:hover { color: ${TEXT1}; }
-
-  .fade { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
-  .fade.in { opacity: 1; transform: translateY(0); }
-
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .float { animation: float 5s ease-in-out infinite; }
-
-  @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .marquee { display: flex; gap: 0; animation: slide 24s linear infinite; width: max-content; }
-
-  @keyframes glow-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-
-  .gradient-text {
-    background: linear-gradient(135deg, ${WHITE} 0%, ${CYAN} 60%, ${INDIGO} 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-
-  .glow-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #22C55E; display: inline-block;
-    box-shadow: 0 0 8px #22C55E;
-    animation: glow-pulse 2s ease-in-out infinite;
-  }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: ${BG}; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 `;
 
-function FadeIn({ children, delay = 0, style = {} }) {
+function Reveal({ children, delay = 0, style = {} }) {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add("in"); }, { threshold: 0.08 });
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add("show"); }, { threshold: 0.1 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return <div ref={ref} className="fade" style={{ transitionDelay: `${delay}s`, ...style }}>{children}</div>;
+  return <div ref={ref} className="reveal" style={{ transitionDelay: `${delay}s`, ...style }}>{children}</div>;
+}
+
+function CursorDot() {
+  const dot = useRef(null);
+  const ring = useRef(null);
+  useEffect(() => {
+    const move = (e) => {
+      if (dot.current) { dot.current.style.left = e.clientX - 4 + "px"; dot.current.style.top = e.clientY - 4 + "px"; }
+      if (ring.current) { ring.current.style.left = e.clientX - 16 + "px"; ring.current.style.top = e.clientY - 16 + "px"; }
+    };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+  return <><div ref={dot} className="cursor" /><div ref={ring} className="cursor-ring" /></>;
 }
 
 const FEATURES = [
-  { icon: "⚡", label: "Broadcasts", title: "One click. Your entire list.", desc: "Send personalised WhatsApp messages to your entire contact list simultaneously. Every contact receives their name — automatically." },
-  { icon: "🤖", label: "Chatbot", title: "Instant keyword replies.", desc: "Customers type QUOTE, HOURS, or BOOK and get an instant, accurate reply. No human. No delay. No missed leads." },
-  { icon: "🧠", label: "AI Agent", title: "Conversations that close.", desc: "A GPT-powered assistant that holds full natural conversations, handles objections, and completes sales — 24/7." },
-  { icon: "📅", label: "Scheduler", title: "Set it. Forget it.", desc: "Schedule broadcasts days in advance. The right message goes out at exactly the right time, every time." },
-  { icon: "🔗", label: "Integrations", title: "Your tools, connected.", desc: "Airtable, Google Sheets, POS systems. New booking? Automatic WhatsApp confirmation. Zero manual work." },
-  { icon: "📊", label: "Analytics", title: "Every message, logged.", desc: "Full message history across all contacts. See what customers ask, what converts, and what to improve." },
+  { num: "01", icon: "⚡", label: "BROADCAST", title: "One click. Every contact.", body: "Send personalised WhatsApp messages to your entire list simultaneously. What took hours now takes four seconds." },
+  { num: "02", icon: "🤖", label: "CHATBOT", title: "Instant keyword replies.", body: "QUOTE. HOURS. BOOK. Customer sends a word — ZedPing fires the perfect response. No human. No delay. No missed lead." },
+  { num: "03", icon: "🧠", label: "AI AGENT", title: "Conversations that close.", body: "GPT-powered. Holds full natural conversations. Handles objections. Collects leads. Closes sales. Awake at 3am." },
+  { num: "04", icon: "📅", label: "SCHEDULER", title: "Set it. Walk away.", body: "Schedule broadcasts days ahead. ZedPing sends at precisely the right moment while you focus on what matters." },
+  { num: "05", icon: "🔗", label: "INTEGRATIONS", title: "Your tools, connected.", body: "New Airtable booking? WhatsApp confirmation fires instantly. New POS stock? Your list knows. Seamless." },
+  { num: "06", icon: "📊", label: "ANALYTICS", title: "Every message, logged.", body: "Full message history. Delivery status. What customers ask, what converts. Intelligence you can act on." },
 ];
 
 const PLANS = [
-  {
-    name: "Starter", price: "K650", annual: "K450", setup: "K850 once-off setup", msg: "500 msgs/month",
-    features: [
-      "Explore the dashboard free",
-      "1 WhatsApp number (on activation)",
-      "Unlimited broadcasts",
-      "2 keyword automations",
-      "CSV contact upload",
-      "Message log",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Business", price: "K1,500", annual: "K1,000", setup: "K2,000 once-off setup", msg: "3,000 msgs/month",
-    features: [
-      "Everything in Starter, plus:",
-      "Unlimited keyword automations",
-      "Full keyword chatbot",
-      "1 AI agent (GPT-4o)",
-      "Broadcast scheduler",
-      "Contact list management",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Pro", price: "K2,500", annual: "K2,000", setup: "K3,500 once-off setup", msg: "Unlimited messages",
-    features: [
-      "Everything in Business, plus:",
-      "3 WhatsApp numbers",
-      "Multi-step chatbot flows",
-      "Multiple AI agents",
-      "Airtable & POS integration",
-      "Priority Lusaka support",
-    ],
-    highlight: false,
-  },
+  { name: "STARTER", price: "K650", annual: "K450", setup: "K850", msg: "500 msgs / month", features: ["1 WhatsApp number", "Unlimited broadcasts", "2 keyword automations", "Message log", "CSV contact upload"], featured: false },
+  { name: "BUSINESS", price: "K1,500", annual: "K1,000", setup: "K2,000", msg: "3,000 msgs / month", features: ["Everything in Starter", "Unlimited automations", "Full keyword chatbot", "1 AI agent (GPT-4o)", "Broadcast scheduler"], featured: true },
+  { name: "PRO", price: "K2,500", annual: "K2,000", setup: "K3,500", msg: "Unlimited messages", features: ["Everything in Business", "3 WhatsApp numbers", "Multi-step chatbot", "Multiple AI agents", "Airtable & POS sync"], featured: false },
 ];
 
-const VERTICALS = [
-  { e: "🏫", n: "Schools", t: "Send fee reminders to every parent at once." },
-  { e: "🏥", n: "Clinics", t: "Appointment confirmations, auto-sent." },
-  { e: "✂️", n: "Salons", t: "Promos, bookings, new stock alerts." },
-  { e: "🍽️", n: "Restaurants", t: "Daily specials to your entire contact list." },
-  { e: "🏠", n: "Real Estate", t: "Share new listings instantly with interested buyers." },
-  { e: "🚌", n: "Bus Operators", t: "Boarding reminders with seat reference." },
-  { e: "✈️", n: "Airlines", t: "Flight alerts, gate changes, confirmations." },
+const INDUSTRIES = [
+  { e: "🏫", n: "Schools", t: "Fee reminders to every parent. One click." },
+  { e: "🏥", n: "Clinics", t: "Auto-confirmations the moment it's booked." },
+  { e: "✂️", n: "Salons", t: "Promos, reminders, new stock alerts." },
+  { e: "🍽️", n: "Restaurants", t: "Daily specials to your whole list." },
+  { e: "🏘️", n: "Accommodation", t: "Rent reminders to every tenant." },
   { e: "🔧", n: "Workshops", t: "Job status by keyword. No calls needed." },
   { e: "💰", n: "Microfinance", t: "Loan reminders, disbursement alerts." },
-  { e: "🛍️", n: "Retail", t: "AI sales agent. Closes deals while you sleep." },
-  { e: "🏘️", n: "Accommodation", t: "Rent reminders to tenants. Payment confirmations. Vacancy alerts." },
+  { e: "✈️", n: "Airlines", t: "Flight alerts, gate changes, confirmations." },
+  { e: "🛍️", n: "Retail", t: "AI agent closes deals 24/7." },
+  { e: "🏠", n: "Real Estate", t: "New listings to interested buyers instantly." },
 ];
 
-const TICKER = ["Schools","Clinics","Salons","Restaurants","Real Estate","Workshops","Airlines","Retail","Churches","Gyms","Microfinance","Bus Operators"];
-
-const BEFORE_AFTER = [
-  { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
-  { b: "'How much, where are you located' — all day, every day", a: "AI agent answers instantly. 24/7. No human needed." },
-  { b: "Appointments forgotten. Revenue lost.", a: "Auto-confirmation when it's booked." },
-  { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
+const FAQS = [
+  { q: "Do I need to download anything?", a: "No. ZedPing is entirely browser-based. Log in from any phone, tablet, or laptop. No app required." },
+  { q: "Do my customers need to do anything?", a: "Nothing. They use WhatsApp exactly as normal. The automation happens invisibly behind the scenes." },
+  { q: "How do I connect my WhatsApp number?", a: "Once you activate your plan, our team in Lusaka connects your WhatsApp Business number for you. We handle everything technical." },
+  { q: "What is an AI agent and how is it different from a chatbot?", a: "A chatbot fires fixed replies to keywords — like a menu. An AI agent holds a full natural conversation. It understands context, asks follow-up questions, handles objections, and responds like a human would. Available on Business plan and above." },
+  { q: "Is my data safe?", a: "Yes. ZedPing uses the official Meta WhatsApp Business API — the secure, compliant route. All data is handled under Zambia's Data Protection Act No. 3 of 2021." },
+  { q: "What payment methods do you accept?", a: "Airtel Money, MTN Money, and Zamtel Money. All in Zambian Kwacha. No USD. No bank transfers. No exchange rate surprises." },
+  { q: "I'm not technical. Can I still use ZedPing?", a: "Absolutely. ZedPing was built for business owners, not developers. Our team in Lusaka is available to set everything up and walk you through it personally." },
+  { q: "Can I cancel anytime?", a: "Yes. Cancel anytime. Your account stays active until the end of your billing period. No penalties." },
 ];
+
+const TICKER = ["BROADCASTS", "AI AGENTS", "CHATBOTS", "AUTOMATION", "KWACHA BILLING", "LOCAL SUPPORT", "SCHOOLS", "CLINICS", "SALONS", "RESTAURANTS", "WORKSHOPS", "REAL ESTATE"];
 
 export default function Landing() {
   const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
+    const fn = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -208,405 +241,457 @@ export default function Landing() {
   return (
     <>
       <style>{css}</style>
+      <CursorDot />
 
-      {/* ── NAV ── */}
+      {/* ── NAV ─────────────────────────────────────────────────────────── */}
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 999,
-        background: scrolled ? "rgba(11,16,32,0.88)" : "transparent",
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        background: scrolled ? "rgba(6,6,8,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? `1px solid ${BORDER}` : "none",
-        transition: "all 0.3s",
+        borderBottom: scrolled ? "1px solid var(--border)" : "none",
+        transition: "all 0.4s",
       }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 34, height: 34, background: INDIGO, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-              <span style={{ color: WHITE, fontWeight: 900, fontSize: 18, letterSpacing: -1, fontFamily: "Inter, sans-serif" }}>Z</span>
-              <div style={{ position: "absolute", top: -3, right: -3, width: 8, height: 8, borderRadius: "50%", background: CYAN, boxShadow: `0 0 8px ${CYAN}` }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ position: "relative" }}>
+              <div style={{ width: 36, height: 36, background: "var(--indigo)", clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <span style={{ color: "white", fontFamily: "Bebas Neue", fontSize: 22, letterSpacing: 1 }}>Z</span>
+              </div>
+              <div style={{ position: "absolute", top: -3, right: -3, width: 8, height: 8, background: "var(--cyan)", borderRadius: "50%", boxShadow: "0 0 8px var(--cyan)" }} />
             </div>
-            <span style={{ fontWeight: 800, fontSize: 18, color: TEXT1, letterSpacing: -0.5 }}>
-              Zed<span style={{ color: CYAN }}>Ping</span>
-            </span>
+            <span className="display" style={{ fontSize: 22, color: "var(--smoke)", letterSpacing: 2 }}>ZED<span style={{ color: "var(--cyan)" }}>PING</span></span>
           </div>
-          {/* Links */}
-          <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-            {["Features", "Pricing", "Industries"].map(l => (
-              <a key={l} className="nav-link" href={`#${l.toLowerCase()}`}>{l}</a>
+          {/* Nav links */}
+          <div className="hide-mobile" style={{ display: "flex", gap: 36, alignItems: "center" }}>
+            {["Features", "Pricing", "Industries", "FAQ"].map(l => (
+              <a key={l} className="nav-link-cin" href={`#${l.toLowerCase()}`}>{l}</a>
             ))}
-            <a className="btn-primary" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ padding: "9px 20px", fontSize: 13 }}>Get Started →</a>
           </div>
+          <a className="btn-cin" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 11, padding: "11px 22px", letterSpacing: 2 }}>Get Started</a>
         </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="hero-section" style={{ display: "flex", alignItems: "center", paddingTop: 64, position: "relative", overflow: "hidden", background: BG }}>
-        {/* Radial glows */}
-        <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 800, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.18) 0%, transparent 65%)`, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "5%", right: "10%", width: 400, height: 400, background: `radial-gradient(circle, rgba(94,230,255,0.08) 0%, transparent 60%)`, pointerEvents: "none" }} />
-        {/* Grid */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`, backgroundSize: "64px 64px" }} />
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section style={{ minHeight: "100vh", background: "var(--black)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
+        {/* Dramatic spotlights */}
+        <div className="spotlight" style={{ width: 800, height: 800, top: "10%", left: "55%", opacity: 0.8 }} />
+        <div style={{ position: "absolute", top: "60%", left: "-5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(79,70,229,0.1) 0%, transparent 70%)", filter: "blur(40px)", pointerEvents: "none" }} />
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "clamp(24px, 5vw, 60px) clamp(16px, 4vw, 24px)", position: "relative", display: "flex", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
-          {/* Left */}
-          <div style={{ flex: "1 1 300px" }}>
-            <FadeIn>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
-                <div className="chip">
-                  <span className="glow-dot" />
-                  Zambia's First WhatsApp Automation Platform
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 style={{ fontSize: "clamp(38px, 10vw, 78px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: -3.5, marginBottom: 24, color: TEXT1 }}>
-                Your whole<br />
-                <span className="gradient-text">contact list.</span><br />
-                One click.
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p style={{ fontSize: "clamp(17px, 4vw, 18px)", color: "rgba(255,255,255,0.85)", lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
-                Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka. Explore free. Pay when you're ready.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}>
-                <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true">Get Started Free</a>
-                <a className="btn-ghost" href="#features">See Features →</a>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.4}>
-              <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-                {[["📱", "Airtel Money"], ["📱", "MTN Money"], ["📱", "Zamtel Money"], ["🇿🇲", "Support in Lusaka"]].map(([e, t]) => (
-                  <div key={t} style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                    <span style={{ fontSize: 14 }}>{e}</span>
-                    <span style={{ fontSize: 13, color: TEXT2, fontWeight: 500 }}>{t}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
+        {/* Film frame lines */}
+        <div style={{ position: "absolute", top: 0, left: "50%", width: 1, height: "100%", background: "rgba(255,255,255,0.02)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: 1, background: "rgba(255,255,255,0.02)", pointerEvents: "none" }} />
 
-          {/* Right — mockup */}
-          <FadeIn delay={0.2} style={{ flex: "0 0 300px" }}>
-            <div className="float glass" style={{ padding: 18, maxWidth: 300, margin: "0 auto", boxShadow: `0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(91,91,214,0.2), inset 0 1px 0 rgba(255,255,255,0.06)` }}>
-              {/* Header */}
-              <div style={{ background: `linear-gradient(135deg, ${INDIGO}, #7B6FE8)`, borderRadius: 14, padding: "12px 14px", marginBottom: 12, display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 34, height: 34, background: "rgba(255,255,255,0.15)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🏫</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ color: WHITE, fontWeight: 700, fontSize: 12 }}>Sunrise Academy</div>
-                  <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 10 }}>342 contacts · just now</div>
-                </div>
-                <div style={{ background: "rgba(255,255,255,0.15)", borderRadius: 100, padding: "3px 9px" }}>
-                  <span style={{ color: WHITE, fontSize: 9, fontWeight: 800 }}>SENT ✓</span>
-                </div>
-              </div>
-              {/* Messages */}
-              {[
-                { t: "Hi Mrs Mwanza, Kutimba has outstanding fees of K3,500 due 30 May. Call 0977 000 000.", me: true },
-                { t: "Thank you! Paying today 🙏", me: false },
-                { t: "Payment sent ✓", me: false },
-                { t: "Thank you Mrs Mwanza! Payment received. Have a great day 😊", me: true },
-              ].map((m, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: m.me ? "flex-start" : "flex-end", marginBottom: 7 }}>
-                  <div style={{
-                    background: m.me ? "rgba(91,91,214,0.12)" : "rgba(255,255,255,0.05)",
-                    border: m.me ? "1px solid rgba(91,91,214,0.2)" : "1px solid rgba(255,255,255,0.07)",
-                    borderRadius: m.me ? "14px 14px 14px 4px" : "14px 14px 4px 14px",
-                    padding: "9px 12px", fontSize: 12, lineHeight: 1.5,
-                    maxWidth: 220, color: TEXT1,
-                  }}>{m.t}</div>
-                </div>
-              ))}
-              {/* Stats */}
-              <div style={{ background: "rgba(91,91,214,0.12)", border: "1px solid rgba(91,91,214,0.2)", borderRadius: 12, padding: "10px 14px", marginTop: 10, display: "flex", justifyContent: "space-around" }}>
-                {[["✓✓✓", "Sent"], ["98%", "Delivered"], ["Fast", "Speed"]].map(([v, l]) => (
-                  <div key={l} style={{ textAlign: "center" }}>
-                    <div style={{ color: CYAN, fontWeight: 800, fontSize: 16, letterSpacing: -0.5 }}>{v}</div>
-                    <div style={{ color: TEXT2, fontSize: 9, marginTop: 1 }}>{l}</div>
-                  </div>
-                ))}
-              </div>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 32px 100px", position: "relative", zIndex: 1, width: "100%" }}>
+          {/* Label */}
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
+              <div style={{ width: 32, height: 1, background: "var(--cyan)" }} />
+              <span className="mono" style={{ fontSize: 11, letterSpacing: 3, color: "var(--cyan)", textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
             </div>
-          </FadeIn>
+          </Reveal>
+
+          {/* Main headline */}
+          <Reveal delay={0.1}>
+            <h1 className="display" style={{ fontSize: "clamp(72px, 12vw, 160px)", color: "var(--smoke)", lineHeight: 0.92, marginBottom: 8 }}>
+              YOUR WHOLE
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <h1 className="display" style={{ fontSize: "clamp(72px, 12vw, 160px)", color: "var(--cyan)", lineHeight: 0.92, marginBottom: 8, WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>
+              CONTACT LIST.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <h1 className="display" style={{ fontSize: "clamp(72px, 12vw, 160px)", color: "var(--smoke)", lineHeight: 0.92, marginBottom: 48 }}>
+              ONE CLICK.
+            </h1>
+          </Reveal>
+
+          {/* Sub + CTAs */}
+          <div style={{ display: "flex", gap: 64, alignItems: "flex-start", flexWrap: "wrap" }}>
+            <Reveal delay={0.4} style={{ flex: "1 1 400px" }}>
+              <p style={{ fontSize: 18, color: "var(--mist)", lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
+                Stop sending WhatsApp messages one by one. ZedPing broadcasts, automates replies, and deploys AI agents for your business — priced in Kwacha, supported in Lusaka.
+              </p>
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 48 }}>
+                <a className="btn-cin" href="https://zed-ping-dashboard.vercel.app?signup=true">Explore Free →</a>
+                <a className="btn-ghost-cin" href="#features">See How It Works</a>
+              </div>
+              <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
+                {[["Airtel Money", "📱"], ["MTN Money", "📱"], ["Zamtel Money", "📱"], ["Visa / Mastercard", "💳"], ["Support in Lusaka", "🇿🇲"]].map(([t, e]) => (
+                  <div key={t} style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                    <span style={{ fontSize: 13 }}>{e}</span>
+                    <span className="mono" style={{ fontSize: 11, color: "var(--mist)", letterSpacing: 1 }}>{t}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            {/* Stats */}
+            <Reveal delay={0.5} style={{ flex: "0 1 auto" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+                {[["4s", "To send 300+ personalised messages"], ["24/7", "AI agent handles enquiries"], ["K650", "Starting price. In Kwacha. Always."]].map(([v, l]) => (
+                  <div key={v} className="stat-block">
+                    <div className="display" style={{ fontSize: 48, color: "var(--smoke)", lineHeight: 1, marginBottom: 4 }}>{v}</div>
+                    <div style={{ fontSize: 13, color: "var(--mist)", maxWidth: 200 }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
         </div>
+
+        {/* Corner markers */}
+        {[{t:68,l:0},{t:68,r:0},{b:0,l:0},{b:0,r:0}].map((pos,i) => (
+          <div key={i} style={{ position: "absolute", width: 20, height: 20, ...pos, borderTop: i < 2 ? "1px solid rgba(255,255,255,0.08)" : "none", borderBottom: i >= 2 ? "1px solid rgba(255,255,255,0.08)" : "none", borderLeft: i % 2 === 0 ? "1px solid rgba(255,255,255,0.08)" : "none", borderRight: i % 2 === 1 ? "1px solid rgba(255,255,255,0.08)" : "none" }} />
+        ))}
       </section>
 
-      {/* ── TICKER ── */}
-      <div style={{ background: SURFACE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, padding: "13px 0", overflow: "hidden" }}>
-        <div className="marquee">
-          {[...TICKER, ...TICKER].map((l, i) => (
-            <span key={i} style={{ color: TEXT2, fontSize: 11, fontWeight: 700, letterSpacing: 2, whiteSpace: "nowrap", padding: "0 28px", textTransform: "uppercase" }}>
-              {l}
-            </span>
+      {/* ── TICKER ─────────────────────────────────────────────────────────── */}
+      <div style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "14px 0", overflow: "hidden" }}>
+        <div className="ticker-inner">
+          {[...TICKER, ...TICKER].map((t, i) => (
+            <span key={i} className="mono" style={{ color: i % 3 === 0 ? "var(--cyan)" : "rgba(255,255,255,0.2)", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", padding: "0 32px", whiteSpace: "nowrap" }}>{t}</span>
           ))}
         </div>
       </div>
 
-      {/* ── PAIN / GAIN ── */}
-      <section style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>The Problem</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
-                Every Zambian SME owner<br />knows this feeling.
-              </h2>
+      {/* ── PROBLEM ─────────────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--black)", padding: "120px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+              <div style={{ width: 24, height: 1, background: "var(--amber)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--amber)", textTransform: "uppercase" }}>The Problem</span>
             </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
-            {BEFORE_AFTER.map((p, i) => (
-              <FadeIn key={i} delay={i * 0.08}>
-                <div style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${BORDER}` }}>
-                  <div style={{ background: "rgba(220,38,38,0.06)", padding: "20px 22px", borderBottom: "1px solid rgba(220,38,38,0.1)" }}>
-                    <div style={{ fontSize: 10, fontWeight: 800, color: "#EF4444", letterSpacing: 1.2, marginBottom: 8, textTransform: "uppercase" }}>Before ZedPing</div>
-                    <div style={{ fontSize: 14, color: TEXT2, lineHeight: 1.6, textDecoration: "line-through", opacity: 0.7 }}>{p.b}</div>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 7vw, 96px)", color: "var(--smoke)", marginBottom: 80, maxWidth: 800, lineHeight: 0.95 }}>
+              EVERY ZAMBIAN BUSINESS OWNER KNOWS THIS.
+            </h2>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 1, background: "var(--border)" }}>
+            {[
+              { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
+              { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
+              { b: "Appointments forgotten. Revenue lost.", a: "Auto-confirmation fires the moment it's booked." },
+              { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
+            ].map((p, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{ background: "var(--black)" }}>
+                  <div style={{ padding: "28px 24px", borderBottom: "1px solid var(--border)" }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "#EF4444", marginBottom: 12, textTransform: "uppercase" }}>Before</div>
+                    <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 15, lineHeight: 1.65, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
-                  <div style={{ background: "rgba(91,91,214,0.06)", padding: "20px 22px" }}>
-                    <div style={{ fontSize: 10, fontWeight: 800, color: "#A5A5FF", letterSpacing: 1.2, marginBottom: 8, textTransform: "uppercase" }}>With ZedPing</div>
-                    <div style={{ fontSize: 14, color: TEXT1, lineHeight: 1.6, fontWeight: 600 }}>{p.a}</div>
+                  <div style={{ padding: "28px 24px" }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 2, color: "var(--cyan)", marginBottom: 12, textTransform: "uppercase" }}>After ZedPing</div>
+                    <p style={{ color: "var(--smoke)", fontSize: 15, lineHeight: 1.65, fontWeight: 500 }}>{p.a}</p>
                   </div>
                 </div>
-              </FadeIn>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── FEATURES ── */}
-      <section id="features" style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 20 }}>
+      {/* ── FEATURES ────────────────────────────────────────────────────────── */}
+      <section id="features" style={{ background: "var(--deep)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 72, flexWrap: "wrap", gap: 20 }}>
               <div>
-                <div className="chip" style={{ marginBottom: 16, display: "inline-flex" }}>Features</div>
-                <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.1, color: TEXT1 }}>
-                  Everything your<br />business needs.
-                </h2>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <div style={{ width: 24, height: 1, background: "var(--cyan)" }} />
+                  <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--cyan)", textTransform: "uppercase" }}>Features</span>
+                </div>
+                <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 84px)", color: "var(--smoke)", lineHeight: 0.95 }}>EVERYTHING<br />YOU NEED.</h2>
               </div>
-              <a className="btn-ghost" href="https://zed-ping-dashboard.vercel.app?signup=true">View Pricing →</a>
+              <a className="btn-ghost-cin" href="#pricing">View Pricing →</a>
             </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 1, background: "var(--border)" }}>
             {FEATURES.map((f, i) => (
-              <FadeIn key={i} delay={i * 0.07}>
-                <div className="feature-card">
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                    <div style={{ width: 42, height: 42, background: "rgba(91,91,214,0.12)", border: "1px solid rgba(91,91,214,0.2)", borderRadius: 11, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{f.icon}</div>
-                    <span style={{ color: "#A5A5FF", fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>{f.label}</span>
+              <Reveal key={i} delay={i * 0.06}>
+                <div className="feat-card">
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+                    <span style={{ fontSize: 28 }}>{f.icon}</span>
+                    <span className="mono" style={{ fontSize: 10, color: "rgba(255,255,255,0.15)", letterSpacing: 2 }}>{f.num}</span>
                   </div>
-                  <h3 style={{ fontSize: 17, fontWeight: 800, color: TEXT1, letterSpacing: -0.3, marginBottom: 10 }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, color: TEXT2, lineHeight: 1.7 }}>{f.desc}</p>
+                  <div className="mono" style={{ fontSize: 10, letterSpacing: 2.5, color: "var(--cyan)", textTransform: "uppercase", marginBottom: 10 }}>{f.label}</div>
+                  <h3 style={{ fontSize: 20, fontWeight: 700, color: "var(--smoke)", marginBottom: 12, lineHeight: 1.3 }}>{f.title}</h3>
+                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.75 }}>{f.body}</p>
                 </div>
-              </FadeIn>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── VERTICALS ── */}
-      <section id="industries" style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px" }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Who Is It For?</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>Built for every Zambian SME.</h2>
-              <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 420, margin: "14px auto 0", lineHeight: 1.7 }}>
-                If your business communicates with customers on WhatsApp, ZedPing is for you.
-              </p>
-            </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 12 }}>
-            {VERTICALS.map((v, i) => (
-              <FadeIn key={i} delay={i * 0.05}>
-                <div className="vert-card">
-                  <div style={{ fontSize: 28, marginBottom: 10 }}>{v.e}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: TEXT1, marginBottom: 6, letterSpacing: -0.2 }}>{v.n}</div>
-                  <div style={{ fontSize: 13, color: TEXT2, lineHeight: 1.55 }}>{v.t}</div>
+      {/* ── CHAT DEMO ────────────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--black)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 80, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 360px" }}>
+            <Reveal>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                <div style={{ width: 24, height: 1, background: "var(--amber)" }} />
+                <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--amber)", textTransform: "uppercase" }}>AI Sales Agent</span>
+              </div>
+              <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 80px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 24 }}>YOUR SHOP.<br /><span style={{ color: "var(--cyan)", WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>OPEN 24/7.</span></h2>
+              <p style={{ fontSize: 17, color: "var(--mist)", lineHeight: 1.8, marginBottom: 32 }}>Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you sleep.</p>
+              <a className="btn-cin" href="https://zed-ping-dashboard.vercel.app?signup=true">See It In Action →</a>
+            </Reveal>
+          </div>
+
+          {/* Chat mockup */}
+          <Reveal delay={0.2} style={{ flex: "0 0 360px" }}>
+            <div style={{ background: "var(--surface)", border: "1px solid var(--border)", padding: 20, position: "relative" }}>
+              {/* Corner accents */}
+              {[[0,0,"top","left"],[0,"auto","top","right"],["auto",0,"bottom","left"],["auto","auto","bottom","right"]].map(([t,b,tb,lr],i) => (
+                <div key={i} style={{ position: "absolute", [tb]: t, [lr]: b === "auto" ? 0 : 0, width: 12, height: 12, borderTop: tb === "top" ? "1px solid var(--cyan)" : "none", borderBottom: tb === "bottom" ? "1px solid var(--cyan)" : "none", borderLeft: lr === "left" ? "1px solid var(--cyan)" : "none", borderRight: lr === "right" ? "1px solid var(--cyan)" : "none" }} />
+              ))}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, paddingBottom: 14, borderBottom: "1px solid var(--border)" }}>
+                <div style={{ width: 36, height: 36, background: "var(--indigo)", clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🛍️</div>
+                <div>
+                  <div style={{ color: "var(--smoke)", fontSize: 13, fontWeight: 600 }}>Lusaka Boutique</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22C55E", display: "inline-block", boxShadow: "0 0 5px #22C55E" }} />
+                    <span className="mono" style={{ color: "#22C55E", fontSize: 10 }}>AI AGENT · ONLINE</span>
+                  </div>
                 </div>
-              </FadeIn>
+              </div>
+              {[
+                { from: "c", text: "Hi, looking for a dress under K500" },
+                { from: "a", text: "Hey! 👗 Here are 3 options for you:", products: true },
+                { from: "c", text: "Red one, size medium please 🙏" },
+                { from: "a", text: "✅ Red wrap dress, size M — K420\n\nPay via Airtel Money: 0977 000 000\n\nOut for delivery within 24 hours 🚀" },
+                { from: "c", text: "Payment sent! Thank you 😊" },
+                { from: "a", text: "Perfect! Order confirmed ✓ See you soon!" },
+              ].map((m, i) => (
+                <div key={i} style={{ display: "flex", justifyContent: m.from === "c" ? "flex-end" : "flex-start", marginBottom: 8 }}>
+                  <div className={m.from === "c" ? "bubble-out" : "bubble-in"} style={{ maxWidth: "76%", fontSize: 12, lineHeight: 1.65, color: "var(--smoke)", whiteSpace: "pre-line" }}>
+                    {m.products && (
+                      <div style={{ display: "flex", gap: 6, marginBottom: 8 }}>
+                        {[["🔴","K420"],["⚫","K380"],["🔵","K490"]].map(([e,p],pi) => (
+                          <div key={pi} style={{ background: "rgba(255,255,255,0.07)", borderRadius: 6, padding: "6px 8px", textAlign: "center", flex: 1 }}>
+                            <div style={{ fontSize: 16 }}>{e}</div>
+                            <div className="mono" style={{ color: "var(--cyan)", fontSize: 10 }}>{p}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── INDUSTRIES ──────────────────────────────────────────────────────── */}
+      <section id="industries" style={{ background: "var(--deep)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 24, height: 1, background: "var(--cyan)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--cyan)", textTransform: "uppercase" }}>Who It's For</span>
+            </div>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 84px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 16 }}>BUILT FOR EVERY<br />ZAMBIAN SME.</h2>
+            <p style={{ fontSize: 17, color: "var(--mist)", marginBottom: 64, maxWidth: 500, lineHeight: 1.7 }}>If your business communicates with customers on WhatsApp, ZedPing is for you.</p>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 1, background: "var(--border)" }}>
+            {INDUSTRIES.map((v, i) => (
+              <Reveal key={i} delay={i * 0.04}>
+                <div style={{ background: "var(--deep)", padding: "24px 20px", transition: "background 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "var(--surface)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "var(--deep)"}>
+                  <div style={{ fontSize: 28, marginBottom: 12 }}>{v.e}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "var(--smoke)", marginBottom: 6 }}>{v.n}</div>
+                  <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.55 }}>{v.t}</div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── PRICING ── */}
-      <section id="pricing" style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>Pricing</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
-                Priced in Kwacha.<br />No USD surprises.
-              </h2>
-              <p style={{ fontSize: 17, color: TEXT2, marginTop: 14, maxWidth: 440, margin: "14px auto 0", lineHeight: 1.7 }}>
-                Competitors charge $40–$70/month in USD — that's roughly K900–K1,600/month. Every time the exchange rate moves, so does your bill. With ZedPing, you pay K650/month. In Kwacha. Fixed. Always.
-              </p>
+      {/* ── PRICING ─────────────────────────────────────────────────────────── */}
+      <section id="pricing" style={{ background: "var(--black)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 24, height: 1, background: "var(--amber)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--amber)", textTransform: "uppercase" }}>Pricing</span>
             </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20, alignItems: "start" }}>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 84px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 16 }}>PRICED IN KWACHA.<br /><span style={{ color: "var(--cyan)" }}>NO USD SURPRISES.</span></h2>
+            <p style={{ fontSize: 17, color: "var(--mist)", marginBottom: 20, maxWidth: 560, lineHeight: 1.7 }}>Competitors charge $40–$70/month in USD — that's roughly K900–K1,600/month. Every time the exchange rate moves, so does their bill. ZedPing? K650/month. In Kwacha. Fixed. Always.</p>
+            <p style={{ fontSize: 14, color: "var(--mist)", marginBottom: 64, opacity: 0.6 }}>Pay via Airtel Money · MTN Money · Zamtel Money · Visa & Mastercard</p>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 1, background: "var(--border)", alignItems: "start" }}>
             {PLANS.map((p, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="plan-card" style={{
-                  background: p.highlight ? `linear-gradient(160deg, #1A1F3A 0%, #1E1645 100%)` : BG,
-                  border: p.highlight ? `1px solid rgba(91,91,214,0.4)` : `1px solid ${BORDER}`,
-                  boxShadow: p.highlight ? "0 20px 60px rgba(91,91,214,0.2), 0 0 0 1px rgba(91,91,214,0.1)" : "none",
-                  position: "relative",
-                }}>
-                  {p.highlight && (
-                    <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: INDIGO, color: WHITE, fontSize: 10, fontWeight: 800, padding: "4px 16px", borderRadius: 100, letterSpacing: 1.2, textTransform: "uppercase", whiteSpace: "nowrap", boxShadow: "0 4px 12px rgba(91,91,214,0.4)" }}>
-                      Most Popular
-                    </div>
+              <Reveal key={i} delay={i * 0.1}>
+                <div className={`plan ${p.featured ? "featured" : ""}`} style={{ position: "relative" }}>
+                  {p.featured && (
+                    <div style={{ position: "absolute", top: -1, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, transparent, var(--cyan), transparent)" }} />
                   )}
-                  <div style={{ color: TEXT2, fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 12 }}>{p.name}</div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 4 }}>
-                    <span style={{ fontSize: 52, fontWeight: 900, color: TEXT1, letterSpacing: -3, lineHeight: 1 }}>{p.price}</span>
-                    <span style={{ color: TEXT2, fontSize: 14 }}>/mo</span>
-                  </div>
-                  <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 6 }}>{p.setup}</div>
-                  <div style={{ color: p.highlight ? CYAN : "#A5A5FF", fontSize: 13, fontWeight: 600, marginBottom: 26, display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: p.highlight ? CYAN : INDIGO, display: "inline-block" }} />
+                  {p.featured && (
+                    <div className="mono" style={{ position: "absolute", top: -14, left: 24, background: "var(--cyan)", color: "var(--black)", fontSize: 9, fontWeight: 700, padding: "3px 12px", letterSpacing: 2 }}>MOST POPULAR</div>
+                  )}
+                  <div className="mono" style={{ fontSize: 11, letterSpacing: 3, color: p.featured ? "var(--cyan)" : "var(--mist)", marginBottom: 20 }}>{p.name}</div>
+                  <div className="display" style={{ fontSize: 64, color: "var(--smoke)", lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
+                  <div className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
+                  <div className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>{p.setup} once-off setup</div>
+                  <div style={{ color: p.featured ? "var(--cyan)" : "var(--mist)", fontSize: 13, fontWeight: 500, marginBottom: 28, display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--cyan)" : "var(--mist)", display: "inline-block" }} />
                     {p.msg}
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
                     {p.features.map((f, j) => (
                       <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <div style={{ width: 20, height: 20, borderRadius: "50%", background: p.highlight ? "rgba(91,91,214,0.2)" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: p.highlight ? CYAN : "#A5A5FF", flexShrink: 0 }}>✓</div>
-                        <span style={{ fontSize: 14, color: TEXT1, opacity: 0.85 }}>{f}</span>
+                        <span style={{ color: p.featured ? "var(--cyan)" : "var(--mist)", fontSize: 12 }}>→</span>
+                        <span style={{ fontSize: 14, color: j === 0 && i > 0 ? "var(--mist)" : "var(--smoke)", fontStyle: j === 0 && i > 0 ? "italic" : "normal" }}>{f}</span>
                       </div>
                     ))}
                   </div>
-                  <a href="#" className={p.highlight ? "btn-glow" : "btn-ghost"} style={{ width: "100%", justifyContent: "center" }}>
+                  <a className={p.featured ? "btn-cin" : "btn-ghost-cin"} href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ display: "flex", justifyContent: "center", fontSize: 11, letterSpacing: 2 }}>
                     Get Started →
                   </a>
                 </div>
-              </FadeIn>
+              </Reveal>
             ))}
           </div>
-          <FadeIn delay={0.4}>
-            <p style={{ textAlign: "center", color: TEXT2, fontSize: 13, marginTop: 28 }}>
-              All plans include a free to explore · Pay via Airtel Money, MTN Money or Zamtel Money · Cancel anytime
+          <Reveal delay={0.4}>
+            <p className="mono" style={{ textAlign: "center", color: "var(--mist)", fontSize: 11, marginTop: 24, letterSpacing: 1.5, opacity: 0.6 }}>
+              FREE TO EXPLORE · PAY TO ACTIVATE YOUR WHATSAPP NUMBER · CANCEL ANYTIME
             </p>
-          </FadeIn>
+          </Reveal>
         </div>
       </section>
 
-
-      {/* ── TESTIMONIALS ── */}
-      <section style={{ background: SURFACE, padding: "clamp(48px, 8vw, 96px) 20px", borderTop: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div className="chip" style={{ marginBottom: 20, display: "inline-flex" }}>What Our Clients Say</div>
-              <h2 style={{ fontSize: "clamp(28px, 7vw, 50px)", fontWeight: 900, letterSpacing: -2, color: TEXT1 }}>
-                Real businesses.<br />Real results.
-              </h2>
+      {/* ── TESTIMONIALS ────────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--deep)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 24, height: 1, background: "var(--cyan)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--cyan)", textTransform: "uppercase" }}>Beta Testers</span>
             </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 84px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 64 }}>REAL BUSINESSES.<br />REAL RESULTS.</h2>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 1, background: "var(--border)" }}>
             {[
-              {
-                quote: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time we've saved in the accounts office alone is remarkable.",
-                name: "Accounts Manager",
-                org: "Beta Tester · School, Lusaka",
-                initial: "A",
-              },
-              {
-                quote: "Our customers now get instant replies to their enquiries even at night. We haven't missed a single lead since we activated the AI agent. It's like having a receptionist that never sleeps.",
-                name: "Business Owner",
-                org: "Beta Tester · Workshop, Lusaka",
-                initial: "B",
-              },
-              {
-                quote: "The fact that it's priced in Kwacha and we pay via Airtel Money made the decision easy. No USD stress, no bank transfers. Just a local product that actually works for us.",
-                name: "Manager",
-                org: "Beta Tester · SME, Lusaka",
-                initial: "M",
-              },
+              { quote: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office alone is remarkable.", name: "Accounts Manager", org: "Beta Tester · School, Lusaka", i: "A" },
+              { quote: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It's like having a receptionist that never sleeps.", name: "Business Owner", org: "Beta Tester · Workshop, Lusaka", i: "B" },
+              { quote: "Priced in Kwacha, paid via Airtel Money. No USD stress. No bank transfers. Just a local product that actually works for us.", name: "Manager", org: "Beta Tester · SME, Lusaka", i: "M" },
             ].map((t, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div style={{ background: BG, border: `1px solid ${BORDER}`, borderRadius: 20, padding: "28px 26px", height: "100%" }}>
-                  <div style={{ fontSize: 32, color: INDIGO, marginBottom: 16, lineHeight: 1 }}>"</div>
-                  <p style={{ color: TEXT1, fontSize: 16, lineHeight: 1.8, marginBottom: 24, fontStyle: "italic" }}>{t.quote}</p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 42, height: 42, background: `linear-gradient(135deg, ${INDIGO}, #7B6FE8)`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "white", flexShrink: 0 }}>{t.initial}</div>
+              <Reveal key={i} delay={i * 0.1}>
+                <div style={{ background: "var(--deep)", padding: "36px 28px" }}>
+                  <div className="display" style={{ fontSize: 72, color: "var(--indigo)", lineHeight: 0.8, marginBottom: 20, opacity: 0.4 }}>"</div>
+                  <p style={{ color: "var(--smoke)", fontSize: 15, lineHeight: 1.85, marginBottom: 28, fontStyle: "italic" }}>{t.quote}</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                    <div style={{ width: 40, height: 40, background: "var(--indigo)", clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: "white" }}>{t.i}</div>
                     <div>
-                      <div style={{ color: TEXT1, fontSize: 14, fontWeight: 700 }}>{t.name}</div>
-                      <div style={{ color: TEXT2, fontSize: 12, marginTop: 2 }}>{t.org}</div>
+                      <div style={{ color: "var(--smoke)", fontSize: 14, fontWeight: 600 }}>{t.name}</div>
+                      <div className="mono" style={{ color: "var(--mist)", fontSize: 10, letterSpacing: 1, marginTop: 2 }}>{t.org}</div>
                     </div>
                   </div>
                 </div>
-              </FadeIn>
+              </Reveal>
             ))}
           </div>
-          <FadeIn delay={0.3}>
-            <p style={{ textAlign: "center", color: TEXT2, fontSize: 13, marginTop: 32 }}>
-              Reviews from beta testers · End of June 2026 · Real names and organisations will be added upon permission
-            </p>
-          </FadeIn>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section style={{ background: BG, padding: "clamp(48px, 8vw, 96px) 20px", position: "relative", overflow: "hidden", borderTop: `1px solid ${BORDER}` }}>
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 400, background: `radial-gradient(ellipse, rgba(91,91,214,0.15) 0%, transparent 65%)`, pointerEvents: "none" }} />
-        <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center", position: "relative" }}>
-          <FadeIn>
-            <div className="chip" style={{ marginBottom: 24, display: "inline-flex" }}>
-              <span className="glow-dot" />
-              Now Available in Zambia
+      {/* ── FAQ ─────────────────────────────────────────────────────────────── */}
+      <section id="faq" style={{ background: "var(--black)", padding: "120px 32px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 24, height: 1, background: "var(--amber)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--amber)", textTransform: "uppercase" }}>FAQ</span>
             </div>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 style={{ fontSize: "clamp(30px, 6vw, 58px)", fontWeight: 900, color: TEXT1, letterSpacing: -2.5, lineHeight: 1.05, marginBottom: 20 }}>
-              Stop losing sales<br />
-              <span className="gradient-text">to slow replies.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p style={{ fontSize: 18, color: TEXT2, lineHeight: 1.75, marginBottom: 40, maxWidth: 520, margin: "0 auto 40px" }}>
-              Join Zambian businesses already automating their WhatsApp. Start your free to explore — pay via Airtel Money, MTN Money or Zamtel Money. No USD billing.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.3}>
-            <a className="btn-glow" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 16, padding: "16px 36px" }}>
-              Get Started Free — No Payment Needed
-            </a>
-          </FadeIn>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 84px)", color: "var(--smoke)", lineHeight: 0.95, marginBottom: 64 }}>QUESTIONS<br />ANSWERED.</h2>
+          </Reveal>
+          <div>
+            {FAQS.map((f, i) => (
+              <Reveal key={i} delay={i * 0.04}>
+                <div className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 0", gap: 20 }}>
+                    <span style={{ color: "var(--smoke)", fontSize: 16, fontWeight: 500, lineHeight: 1.4 }}>{f.q}</span>
+                    <span className="display" style={{ color: openFaq === i ? "var(--cyan)" : "var(--mist)", fontSize: 24, flexShrink: 0, transition: "all 0.3s" }}>{openFaq === i ? "−" : "+"}</span>
+                  </div>
+                  {openFaq === i && (
+                    <div style={{ paddingBottom: 22 }}>
+                      <p style={{ color: "var(--mist)", fontSize: 15, lineHeight: 1.8 }}>{f.a}</p>
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer style={{ background: SURFACE, borderTop: `1px solid ${BORDER}`, padding: "60px 24px 32px" }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+      {/* ── CTA ─────────────────────────────────────────────────────────────── */}
+      <section style={{ background: "var(--deep)", padding: "120px 32px", borderTop: "1px solid var(--border)", position: "relative", overflow: "hidden" }}>
+        <div className="spotlight" style={{ width: 1000, height: 600, top: "50%", left: "50%", transform: "translate(-50%,-50%)", opacity: 0.6 }} />
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 24 }}>
+              <div style={{ width: 24, height: 1, background: "var(--cyan)" }} />
+              <span className="mono" style={{ fontSize: 10, letterSpacing: 3, color: "var(--cyan)", textTransform: "uppercase" }}>Now Available in Zambia</span>
+              <div style={{ width: 24, height: 1, background: "var(--cyan)" }} />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="display" style={{ fontSize: "clamp(60px, 10vw, 130px)", color: "var(--smoke)", lineHeight: 0.92, marginBottom: 24 }}>
+              STOP LOSING<br />
+              <span style={{ color: "var(--cyan)", WebkitTextStroke: "1px var(--cyan)", WebkitTextFillColor: "transparent" }}>SALES TO</span><br />
+              SLOW REPLIES.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p style={{ fontSize: 18, color: "var(--mist)", lineHeight: 1.8, maxWidth: 520, margin: "0 auto 48px" }}>
+              Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No credit card. No USD billing.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <a className="btn-cin" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 13, padding: "18px 48px", letterSpacing: 2 }}>
+              Get Started Free →
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── FOOTER ──────────────────────────────────────────────────────────── */}
+      <footer style={{ background: "var(--black)", borderTop: "1px solid var(--border)", padding: "60px 32px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 48 }}>
-            <div style={{ maxWidth: 240 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 14 }}>
-                <div style={{ width: 30, height: 30, background: INDIGO, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: WHITE, fontWeight: 900, fontSize: 15 }}>Z</span>
+            <div style={{ maxWidth: 260 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                <div style={{ width: 32, height: 32, background: "var(--indigo)", clipPath: "polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ color: "white", fontFamily: "Bebas Neue", fontSize: 18, letterSpacing: 1 }}>Z</span>
                 </div>
-                <span style={{ fontWeight: 800, fontSize: 17, color: TEXT1 }}>Zed<span style={{ color: CYAN }}>Ping</span></span>
+                <span className="display" style={{ fontSize: 20, color: "var(--smoke)", letterSpacing: 2 }}>ZED<span style={{ color: "var(--cyan)" }}>PING</span></span>
               </div>
-              <p style={{ color: TEXT2, fontSize: 13, lineHeight: 1.7, opacity: 0.7 }}>
-                Zambia's first WhatsApp automation platform. Built for SMEs. Priced in Kwacha.
-              </p>
+              <p className="mono" style={{ color: "var(--mist)", fontSize: 11, lineHeight: 1.8, letterSpacing: 0.5, opacity: 0.6 }}>ZAMBIA'S FIRST WHATSAPP AUTOMATION PLATFORM. BUILT FOR SMES. PRICED IN KWACHA.</p>
             </div>
             <div style={{ display: "flex", gap: 56, flexWrap: "wrap" }}>
               {[
-                ["Product", ["Features", "Pricing", "How It Works", "Templates"]],
+                ["Product", ["Features", "Pricing", "Industries", "FAQ"]],
                 ["Company", ["About", "Contact", "LinkedIn", "WhatsApp Us"]],
-                ["Legal", [["Privacy Policy", "/legal"], ["Terms of Service", "/legal"]]],
+                ["Legal", ["Privacy Policy", "Terms of Service"]],
               ].map(([title, links]) => (
                 <div key={title}>
-                  <div style={{ color: "#A5A5FF", fontSize: 10, fontWeight: 800, letterSpacing: 1.8, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
-                  {links.map(l => <div key={l} style={{ marginBottom: 10 }}><a href={Array.isArray(l) ? l[1] : "#"} style={{ color: TEXT2, fontSize: 13, opacity: 0.7 }}>{Array.isArray(l) ? l[0] : l}</a></div>)}
+                  <div className="mono" style={{ color: "var(--cyan)", fontSize: 9, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
+                  {links.map(l => <div key={l} style={{ marginBottom: 10 }}><a href="#" style={{ color: "var(--mist)", fontSize: 13, opacity: 0.6 }}>{l}</a></div>)}
                 </div>
               ))}
             </div>
           </div>
-          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 22, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-            <p style={{ color: TEXT2, fontSize: 12, opacity: 0.5 }}>© 2026 ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
-            <p style={{ color: TEXT2, fontSize: 12, opacity: 0.35 }}>Zambia-first · Kwacha billing · Local support</p>
+          <div className="rule" style={{ marginBottom: 22 }} />
+          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+            <p className="mono" style={{ color: "var(--mist)", fontSize: 10, opacity: 0.4, letterSpacing: 1 }}>© 2026 ZEDPING · A PRODUCT OF CORELINE SYSTEMS · LUSAKA, ZAMBIA</p>
+            <p className="mono" style={{ color: "var(--mist)", fontSize: 10, opacity: 0.25, letterSpacing: 1 }}>YOUR BUSINESS, ON AUTOPILOT.</p>
           </div>
         </div>
       </footer>
