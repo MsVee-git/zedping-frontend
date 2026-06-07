@@ -383,7 +383,7 @@ export default function Landing() {
 
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "clamp(60px,8vw,100px) 40px clamp(60px,8vw,100px)", position: "relative", zIndex: 1, width: "100%", display: "flex", alignItems: "center", gap: 80, flexWrap: "wrap" }}>
           {/* Left */}
-          <div style={{ flex: "1 1 440px" }}>
+          <div style={{ flex: "1 1 100%", maxWidth: 720 }}>
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
@@ -420,11 +420,6 @@ export default function Landing() {
               </div>
             </Rise>
           </div>
-
-          {/* Phone */}
-          <Rise delay={0.2} style={{ flex: "0 0 280px", position: "relative" }}>
-            <PhoneMockup />
-          </Rise>
         </div>
       </section>
 
@@ -493,10 +488,10 @@ export default function Landing() {
               <a className="btn-wire" href="#pricing" style={{ fontSize: 10 }}>View Pricing →</a>
             </div>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
             {FEATURES.map((f,i) => (
               <Rise key={i} delay={i*0.07}>
-                <div className="feat-elite">
+                <div className="feat-elite" style={{ width: "calc(33.333% - 0.67px)", minWidth: 280, flexGrow: 1 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
                     <span style={{ fontSize: 24 }}>{f.icon}</span>
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
@@ -550,7 +545,7 @@ export default function Landing() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
             {INDUSTRIES.map((v,i) => (
               <Rise key={i} delay={i*0.04}>
-                <div className="industry-elite" style={{ width: "calc(25% - 0.75px)", minWidth: 180, flexGrow: 1 }}>
+                <div className="industry-elite" style={{ width: "calc(20% - 0.8px)", minWidth: 180, flexGrow: 1 }}>
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
                   <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
                   <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
@@ -610,7 +605,7 @@ export default function Landing() {
           </div>
           <Rise delay={0.4}>
             <p className="mono" style={{ textAlign: "center", color: "var(--mist)", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
-              Free to explore · Pay to activate your WhatsApp number · Cancel anytime
+              Free to explore · Pay to activate · No USD billing · Cancel anytime
             </p>
           </Rise>
         </div>
@@ -682,7 +677,153 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+
+      {/* ── ABOUT ── */}
+      <section id="about" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+        <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }} >
+          <div style={{ flex: "1 1 380px" }}>
+            <Rise>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+                <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>About</span>
+              </div>
+              <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 24, lineHeight: 0.95 }}>
+                Built in Lusaka.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Built for Zambia.</span>
+              </h2>
+              <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.9, marginBottom: 20 }}>
+                ZedPing is Zambia's first WhatsApp automation platform built specifically for local SMEs. We exist because Zambian businesses deserve world-class communication tools — priced in Kwacha, supported locally, and built to understand the way businesses here actually operate.
+              </p>
+              <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.9, marginBottom: 32 }}>
+                Before ZedPing, the only options were expensive international platforms billed in USD with no local support and no understanding of the Zambian market. ZedPing changes that. From school fee reminders to AI-powered sales agents — every feature was designed with Zambian businesses in mind.
+              </p>
+              <div style={{ background: "rgba(26,58,42,0.3)", border: "1px solid var(--wire2)", padding: "20px 24px", position: "relative" }}>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold), transparent)", opacity: 0.4 }} />
+                <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>A product of</div>
+                <div className="editorial" style={{ fontSize: 22, color: "var(--cream)", fontWeight: 600, marginBottom: 6 }}>Coreline Systems</div>
+                <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.7 }}>Coreline Systems is a business systems consultancy based in Lusaka, Zambia — helping businesses build structured systems and streamlined operations. ZedPing is our first SaaS product.</p>
+              </div>
+            </Rise>
+          </div>
+          <Rise delay={0.2} style={{ flex: "1 1 300px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)" }}>
+              {[
+                { label: "Founded", value: "2026", sub: "Lusaka, Zambia" },
+                { label: "Mission", value: "Local tools", sub: "For local businesses" },
+                { label: "Pricing", value: "Kwacha only", sub: "No USD billing. Ever." },
+                { label: "Support", value: "In Lusaka", sub: "Real people, local time zone" },
+                { label: "Payments", value: "Mobile money", sub: "Airtel · MTN · Zamtel · Card" },
+              ].map((s,i) => (
+                <div key={i} style={{ background: "var(--panel)", padding: "18px 22px" }}>
+                  <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
+                  <div className="editorial" style={{ fontSize: 20, color: "var(--cream)", fontWeight: 600, marginBottom: 3 }}>{s.value}</div>
+                  <div style={{ fontSize: 12, color: "var(--mist)" }}>{s.sub}</div>
+                </div>
+              ))}
+            </div>
+          </Rise>
+        </div>
+      </section>
+
+      {/* ── CONTACT ── */}
+      <section id="contact" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <Rise>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Get in Touch</span>
+            </div>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+              Contact us.
+            </h2>
+            <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
+          </Rise>
+          <Rise delay={0.1}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)", marginBottom: 32 }}>
+              {[
+                { label: "Email", value: "hello@zedping.com", sub: "We respond within 24 hours", icon: "📧" },
+                { label: "WhatsApp", value: "+260 [number coming soon]", sub: "Customer support & demos", icon: "📱" },
+                { label: "Phone", value: "+260 [number coming soon]", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️" },
+                { label: "Location", value: "Lusaka, Zambia", sub: "Central African Time (UTC+2)", icon: "📍" },
+                { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼" },
+              ].map((c,i) => (
+                <div key={i} style={{ background: "var(--panel)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16 }}>
+                  <span style={{ fontSize: 20, flexShrink: 0 }}>{c.icon}</span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
+                    <div style={{ fontSize: 15, color: "var(--cream)", fontWeight: 500, marginBottom: 2 }}>{c.value}</div>
+                    <div style={{ fontSize: 12, color: "var(--mist)" }}>{c.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Rise>
+        </div>
+      </section>
+
+      {/* ── LEGAL ── */}
+      <section id="legal" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <Rise>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Legal</span>
+            </div>
+            <h2 className="editorial" style={{ fontSize: "clamp(32px,5vw,60px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
+              Privacy Policy &<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Terms of Service.</span>
+            </h2>
+          </Rise>
+
+          {/* Privacy Policy */}
+          <Rise delay={0.1}>
+            <div className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Privacy Policy</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 48 }}>
+              {[
+                { title: "What we collect", body: "ZedPing collects business name, email address, phone number, and subscription details when you sign up. We also store message logs and contact lists that you upload to the platform. We do not collect personal data beyond what is necessary to operate the service." },
+                { title: "How we use your data", body: "Your data is used solely to provide the ZedPing service — sending messages, managing automations, and maintaining your account. We do not sell, rent, or share your personal data with third parties for marketing purposes." },
+                { title: "Your customers' data", body: "Contact lists you upload (names, phone numbers) are stored securely and used only to send messages on your instruction. You remain the data controller for your customers' information. ZedPing acts as the data processor." },
+                { title: "Data protection", body: "ZedPing operates in compliance with Zambia's Data Protection Act No. 3 of 2021. We are registered as a Data Controller with the Data Protection Commission of Zambia. All data is stored securely using industry-standard encryption." },
+                { title: "WhatsApp & Meta compliance", body: "ZedPing uses the official Meta WhatsApp Business API. All messaging activity must comply with Meta's WhatsApp Business Policy. You are responsible for ensuring your contacts have opted in to receive messages from your business." },
+                { title: "Data retention", body: "Message logs are retained for 12 months. Account data is retained while your account is active. On account closure, data is deleted within 30 days unless legal obligations require longer retention." },
+                { title: "Contact", body: "For privacy-related queries, contact us at hello@zedping.com." },
+              ].map((s,i) => (
+                <div key={i}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.85 }}>{s.body}</p>
+                </div>
+              ))}
+            </div>
+          </Rise>
+
+          <div className="gold-rule" style={{ marginBottom: 48 }} />
+
+          {/* Terms of Service */}
+          <Rise delay={0.2}>
+            <div className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Terms of Service</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {[
+                { title: "1. Acceptance", body: "By creating a ZedPing account, you agree to these Terms of Service. These terms form a binding agreement between you and Coreline Systems, trading as ZedPing. If you do not agree, do not use the platform." },
+                { title: "2. The service", body: "ZedPing provides a WhatsApp automation platform for business use. Features include broadcast messaging, keyword automations, AI agents, and message logging. Features are available according to your subscription plan." },
+                { title: "3. Acceptable use", body: "You may only use ZedPing for lawful business communication. You must not send spam, harass, mislead, or contact individuals who have not opted in to receive your messages. ZedPing may suspend accounts that violate this clause without notice." },
+                { title: "4. WhatsApp compliance", body: "All messaging activity must comply with Meta's WhatsApp Business Policy. You are solely responsible for ensuring your contact lists are opted in. ZedPing is not responsible for messages you send or their consequences." },
+                { title: "5. Subscriptions and billing", body: "Subscriptions are billed monthly in Zambian Kwacha via Airtel Money, MTN Money, Zamtel Money, or card payment. Subscriptions renew automatically. Cancellation takes effect at the end of the current billing period. No refunds are issued for partial months." },
+                { title: "6. Data and confidentiality", body: "You retain ownership of your data. ZedPing processes your data as a data processor under your instruction. You are the data controller and are responsible for compliance with Zambia's Data Protection Act in respect of your customers' data." },
+                { title: "7. Limitation of liability", body: "ZedPing is provided as-is. To the fullest extent permitted by Zambian law, Coreline Systems is not liable for indirect, incidental, or consequential damages arising from your use of the platform." },
+                { title: "8. Governing law", body: "These terms are governed by the laws of the Republic of Zambia. Any disputes shall be resolved through the courts of Zambia." },
+                { title: "9. Changes", body: "ZedPing may update these terms with 14 days notice by email. Continued use of the platform after changes take effect constitutes acceptance of the revised terms." },
+                { title: "10. Contact", body: "For queries about these terms, contact hello@zedping.com. ZedPing is a product of Coreline Systems, Lusaka, Zambia." },
+              ].map((s,i) => (
+                <div key={i}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.85 }}>{s.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mono" style={{ fontSize: 10, color: "var(--mist)", marginTop: 32, opacity: 0.5, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+          </Rise>
+        </div>
+      </section>
+
+      {/* ── CTA ── */
       <section style={{ background: "var(--green)", padding: "clamp(80px,10vw,140px) 40px", position: "relative", overflow: "hidden" }} className="m-pad">
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 60%)", filter: "blur(80px)", pointerEvents: "none" }} />
@@ -702,7 +843,7 @@ export default function Landing() {
           </Rise>
           <Rise delay={0.2}>
             <p style={{ fontSize: 17, color: "rgba(242,237,228,0.65)", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
-              Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No credit card. No USD billing.
+              Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No USD billing.
             </p>
           </Rise>
           <Rise delay={0.3}>
@@ -724,10 +865,13 @@ export default function Landing() {
               </p>
             </div>
             <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
-              {[["Product",["Features","Pricing","Industries","FAQ"]],["Company",["About","Contact","LinkedIn","WhatsApp Us"]],["Legal",["Privacy Policy","Terms of Service"]]].map(([title,links]) => (
+              {[["Product",["Features","Pricing","Industries","FAQ"]],["Company",["About ZedPing","Contact Us","LinkedIn","WhatsApp Us"]],["Legal",["Privacy Policy","Terms of Service"]]].map(([title,links]) => (
                 <div key={title}>
                   <div className="mono" style={{ color: "var(--gold2)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
-                  {links.map(l => <div key={l} style={{ marginBottom: 10 }}><a href="#" style={{ color: "var(--mist)", fontSize: 13, opacity: 0.6 }}>{l}</a></div>)}
+                  {links.map(l => {
+                  const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
+                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--mist)", fontSize: 13, opacity: 0.6 }}>{l}</a></div>;
+                })}
                 </div>
               ))}
             </div>
