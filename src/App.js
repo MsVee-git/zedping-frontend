@@ -547,10 +547,10 @@ export default function Landing() {
             </h2>
             <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
             {INDUSTRIES.map((v,i) => (
               <Rise key={i} delay={i*0.04}>
-                <div className="industry-elite">
+                <div className="industry-elite" style={{ width: "calc(25% - 0.75px)", minWidth: 180, flexGrow: 1 }}>
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
                   <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
                   <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
@@ -628,14 +628,14 @@ export default function Landing() {
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
             {[
               { q: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office is remarkable.", n: "Accounts Manager", o: "Beta Tester · School, Lusaka" },
               { q: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It works around the clock without complaint.", n: "Business Owner", o: "Beta Tester · Workshop, Lusaka" },
               { q: "Priced in Kwacha, paid via Airtel Money. No USD stress, no bank transfers. A local product built to the standard of any international platform.", n: "Manager", o: "Beta Tester · SME, Lusaka" },
             ].map((t,i) => (
               <Rise key={i} delay={i*0.1}>
-                <div className="card-elite" style={{ padding: "36px 28px", height: "100%" }}>
+                <div className="card-elite" style={{ padding: "36px 28px", height: "100%", width: "calc(33.333% - 0.67px)", minWidth: 280, flexGrow: 1 }}>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.3, fontStyle: "italic" }}>"</div>
                   <p style={{ color: "var(--cream)", fontSize: 15, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
