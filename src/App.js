@@ -255,7 +255,7 @@ function PhoneMockup() {
 
   return (
     <div ref={ref} onMouseMove={move} onMouseLeave={leave}
-      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 280, margin: "0 auto" }}>
+      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 320, margin: "0 auto" }}>
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone */}
@@ -275,7 +275,7 @@ function PhoneMockup() {
               <div style={{ color: "var(--text1)", fontSize: 16, fontWeight: 700 }}>Lusaka Boutique</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22C55E", display: "inline-block" }} />
-                <span className="mono" style={{ color: "#22C55E", fontSize: 8 }}>AI Online</span>
+                <span className="mono" style={{ color: "#22C55E", fontSize: 11 }}>AI Online</span>
               </div>
             </div>
           </div>
@@ -311,7 +311,7 @@ function PhoneMockup() {
             {[["342","Sent"],["98%","Delivered"],["4s","Time"]].map(([v,l]) => (
               <div key={l} style={{ textAlign: "center" }}>
                 <div className="editorial" style={{ color: "var(--gold2)", fontSize: 16, fontWeight: 700 }}>{v}</div>
-                <div style={{ color: "var(--mist)", fontSize: 8 }}>{l}</div>
+                <div style={{ color: "var(--mist)", fontSize: 11 }}>{l}</div>
               </div>
             ))}
           </div>
@@ -746,8 +746,8 @@ export default function Landing() {
               </div>
             </Rise>
           </div>
-          <Rise delay={0.2} style={{ flex: "1 1 300px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <Rise delay={0.2} style={{ flex: "1 1 280px", alignSelf: "flex-end" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {[
                 { label: "Founded", value: "2026", sub: "Lusaka, Zambia" },
                 { label: "Mission", value: "Local tools", sub: "For local businesses" },
