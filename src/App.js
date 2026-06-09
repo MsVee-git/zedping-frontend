@@ -255,7 +255,7 @@ function PhoneMockup() {
 
   return (
     <div ref={ref} onMouseMove={move} onMouseLeave={leave}
-      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 380, margin: "0 auto" }}>
+      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 460, margin: "0 auto" }}>
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone */}
@@ -270,12 +270,12 @@ function PhoneMockup() {
           </div>
           {/* Header */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, paddingBottom: 10, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-            <div style={{ width: 38, height: 38, background: "var(--green)", border: "1px solid var(--wire2)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🛍️</div>
+            <div style={{ width: 42, height: 42, background: "#312E81", border: "1px solid rgba(99,102,241,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🛍️</div>
             <div>
               <div style={{ color: "var(--text1)", fontSize: 16, fontWeight: 700 }}>Lusaka Boutique</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22C55E", display: "inline-block" }} />
-                <span className="mono" style={{ color: "#22C55E", fontSize: 12 }}>AI Online</span>
+                <span className="mono" style={{ color: "#22C55E", fontSize: 13 }}>AI Online</span>
               </div>
             </div>
           </div>
@@ -283,10 +283,10 @@ function PhoneMockup() {
           {msgs.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.c ? "flex-end" : "flex-start", marginBottom: 10 }}>
               <div style={{
-                background: m.c ? "var(--green)" : "rgba(255,255,255,0.04)",
-                border: m.c ? "1px solid var(--wire2)" : "1px solid rgba(255,255,255,0.05)",
-                borderRadius: m.c ? "14px 14px 3px 14px" : "14px 14px 14px 3px",
-                padding: "8px 11px", maxWidth: "82%",
+                background: "#111111",
+                border: "none",
+                borderRadius: m.c ? "16px 16px 3px 16px" : "16px 16px 16px 3px",
+                padding: "13px 16px", maxWidth: "85%",
               }}>
                 {m.p && (
                   <div style={{ display: "flex", gap: 5, marginBottom: 7 }}>
@@ -307,10 +307,10 @@ function PhoneMockup() {
             </div>
           ))}
           {/* Stats */}
-          <div style={{ display: "flex", justifyContent: "space-around", marginTop: 10, background: "rgba(184,146,42,0.06)", border: "1px solid var(--wire2)", borderRadius: 8, padding: "7px 0" }}>
+          <div style={{ display: "flex", justifyContent: "space-around", marginTop: 12, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "10px 0" }}>
             {[["342","Sent"],["98%","Delivered"],["4s","Time"]].map(([v,l]) => (
               <div key={l} style={{ textAlign: "center" }}>
-                <div className="editorial" style={{ color: "var(--gold2)", fontSize: 20, fontWeight: 700 }}>{v}</div>
+                <div className="editorial" style={{ color: "#D4A843", fontSize: 22, fontWeight: 700 }}>{v}</div>
                 <div style={{ color: "var(--mist)", fontSize: 13 }}>{l}</div>
               </div>
             ))}
@@ -584,12 +584,12 @@ export default function Landing() {
                 <span className="mono" style={{ fontSize: 16, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>AI Sales Agent</span>
               </div>
               <h2 className="editorial" style={{ fontSize: "clamp(36px,5vw,72px)", color: "var(--text1)", letterSpacing: -1, lineHeight: 0.95, marginBottom: 24 }}>
-                Your shop.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Open 24/7.</span>
+                Your shop.<br /><span style={{ color: "var(--gold)", fontStyle: "italic" }}>Open 24/7.</span>
               </h2>
               <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.85, marginBottom: 32, maxWidth: 420 }}>
                 Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you rest.
               </p>
-              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--green)", color: "var(--text1)" }}>Start for Free</a>
+              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Start for Free</a>
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "0 0 280px", position: "relative" }}>
