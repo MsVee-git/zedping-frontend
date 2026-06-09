@@ -557,7 +557,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── PRICING ── */
+      {/* ── PRICING ── */}
       <section id="pricing" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
@@ -824,7 +824,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── CTA ── */
+      {/* ── CTA ── */}
       <section style={{ background: "var(--green)", padding: "clamp(80px,10vw,140px) 40px", position: "relative", overflow: "hidden" }} className="m-pad">
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 60%)", filter: "blur(80px)", pointerEvents: "none" }} />
