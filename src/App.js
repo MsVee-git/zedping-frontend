@@ -9,18 +9,22 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
-  :root {
-    --ink:    #090909;
-    --deep:   #0F0F0F;
-    --panel:  #161616;
-    --cream:  #F2EDE4;
-    --cream2: #D4CCBE;
-    --gold:   #B8922A;
-    --gold2:  #D4A843;
+    :root {
+    --bg:     #FFFFFF;
+    --bg2:    #F8F5F0;
+    --bg3:    #F2EDE4;
+    --card:   #FFFFFF;
+    --card2:  #FAF8F5;
+    --text1:  #111111;
+    --text2:  #444444;
+    --text3:  #777777;
+    --gold:   #9A7420;
+    --gold2:  #B8922A;
+    --goldbg: #FBF6EC;
     --green:  #1A3A2A;
-    --mist:   #6B6B6B;
-    --wire:   rgba(255,255,255,0.07);
-    --wire2:  rgba(184,146,42,0.2);
+    --line:   rgba(0,0,0,0.08);
+    --line2:  rgba(154,116,32,0.3);
+    --inkbg:  #111111;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,15 +44,15 @@ const css = `
 
   /* ── SUBTLE 3D CARD ── */
   .card-elite {
-    background: var(--panel);
-    border: 1px solid var(--wire);
+    background: var(--card);
+    border: 1px solid var(--line);
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, border-color 0.3s;
     will-change: transform;
   }
   .card-elite:hover {
     transform: translateY(-8px) perspective(1000px) rotateX(2deg);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,146,42,0.15);
-    border-color: var(--wire2);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(184,146,42,0.2);
+    border-color: var(--line2);
   }
 
   /* ── FLOATING ── */
@@ -69,39 +73,39 @@ const css = `
   /* ── BUTTONS ── */
   .btn-elite {
     display: inline-flex; align-items: center; gap: 10px;
-    background: var(--cream); color: var(--ink);
+    background: var(--inkbg); color: #FFFFFF;
     padding: 14px 32px;
     font-family: 'DM Mono', monospace;
     font-size: 11px; font-weight: 500; letter-spacing: 2px;
     text-transform: uppercase; border: none; cursor: pointer;
     transition: all 0.3s;
   }
-  .btn-elite:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,67,0.25); }
+  .btn-elite:hover { background: var(--green); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
 
   .btn-wire {
     display: inline-flex; align-items: center; gap: 10px;
-    background: transparent; color: var(--cream);
+    background: transparent; color: var(--text1);
     padding: 13px 28px;
     font-family: 'DM Mono', monospace;
     font-size: 11px; font-weight: 500; letter-spacing: 2px;
     text-transform: uppercase;
-    border: 1px solid var(--wire); cursor: pointer;
+    border: 1px solid var(--line); cursor: pointer;
     transition: all 0.3s;
   }
-  .btn-wire:hover { border-color: var(--gold); color: var(--gold2); }
+  .btn-wire:hover { border-color: var(--gold2); color: var(--gold); background: var(--goldbg); }
 
   /* ── NAV ── */
   .nav-link-e {
     font-family: 'DM Mono', monospace;
     font-size: 10px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: #BEBEBE;
+    text-transform: uppercase; color: var(--text3);
     transition: color 0.2s;
   }
-  .nav-link-e:hover { color: var(--cream); }
+  .nav-link-e:hover { color: var(--text1); }
 
   /* ── FEATURE CARD ── */
   .feat-elite {
-    background: var(--panel); border: 1px solid var(--wire);
+    background: var(--card2); border: 1px solid var(--line);
     padding: 32px 28px; position: relative; overflow: hidden;
     transition: all 0.3s;
   }
@@ -113,29 +117,29 @@ const css = `
     transition: transform 0.5s ease;
   }
   .feat-elite:hover::after { transform: scaleX(0.5); }
-  .feat-elite:hover { border-color: var(--wire2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .feat-elite:hover { border-color: var(--line2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
 
   /* ── PLAN CARD ── */
   .plan-elite { padding: 36px 30px; position: relative; transition: all 0.4s; }
   .plan-elite:hover { transform: translateY(-8px) perspective(800px) rotateX(1.5deg); }
-  .plan-elite.featured { background: var(--green); border: 1px solid rgba(184,146,42,0.3); }
-  .plan-elite:not(.featured) { background: var(--panel); border: 1px solid var(--wire); }
+  .plan-elite.featured { background: var(--inkbg); border: 1px solid #333; }
+  .plan-elite:not(.featured) { background: var(--card2); border: 1px solid var(--line); }
 
   /* ── FAQ ── */
-  .faq-elite { border-bottom: 1px solid var(--wire); cursor: pointer; transition: all 0.2s; }
-  .faq-elite:hover { background: rgba(255,255,255,0.01); }
+  .faq-elite { border-bottom: 1px solid var(--line); cursor: pointer; transition: all 0.2s; }
+  .faq-elite:hover { background: var(--bg2); }
 
   /* ── INDUSTRY ── */
   .industry-elite {
-    background: var(--panel); border: 1px solid var(--wire);
+    background: var(--card2); border: 1px solid var(--line);
     padding: 22px 18px;
     transition: all 0.3s;
   }
   .industry-elite:hover {
-    background: var(--deep);
-    border-color: var(--wire2);
-    transform: translateY(-4px) perspective(600px) rotateX(3deg);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(184,146,42,0.1);
+    background: var(--goldbg);
+    border-color: var(--line2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   }
 
   /* ── BADGE ── */
@@ -145,9 +149,9 @@ const css = `
   .badge-cream { background: rgba(242,237,228,0.06); color: var(--cream2); border: 1px solid var(--wire); }
 
   /* ── INPUT ── */
-  .input-e { background: rgba(255,255,255,0.02); border: 1px solid var(--wire); padding: 12px 14px; font-size: 14px; color: var(--cream); outline: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s; width: 100%; }
-  .input-e:focus { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(184,146,42,0.1); }
-  .input-e::placeholder { color: var(--mist); }
+  .input-e { background: var(--bg2); border: 1px solid var(--line); padding: 12px 14px; font-size: 14px; color: var(--text1); outline: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s; width: 100%; }
+  .input-e:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,146,42,0.15); }
+  .input-e::placeholder { color: #999; }
 
   /* ── GOLD LINE DIVIDER ── */
   .gold-line { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.4; }
@@ -209,7 +213,7 @@ function Logo({ size = 20 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <div style={{ position: "relative" }}>
-        <div style={{ width: size * 1.8, height: size * 1.8, background: "var(--ink)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: size * 1.8, height: size * 1.8, background: "var(--bg)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <span className="editorial" style={{ color: "var(--cream)", fontSize: size * 1.1, fontWeight: 700, letterSpacing: -1, lineHeight: 1 }}>Z</span>
         </div>
         <div style={{ position: "absolute", top: -3, right: -3, width: 7, height: 7, background: "var(--gold2)", borderRadius: "50%", boxShadow: "0 0 8px rgba(212,168,67,0.6)" }} />
@@ -240,7 +244,7 @@ function PhoneMockup() {
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone */}
       <div style={{ background: "var(--panel)", border: "1px solid var(--wire2)", borderRadius: 24, padding: 3, boxShadow: "0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,146,42,0.08), inset 0 1px 0 rgba(255,255,255,0.04)", position: "relative" }}>
-        <div style={{ background: "var(--ink)", borderRadius: 20, padding: 14, overflow: "hidden" }}>
+        <div style={{ background: "var(--bg)", borderRadius: 20, padding: 14, overflow: "hidden" }}>
           {/* Status */}
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
             <span className="mono" style={{ fontSize: 9, color: "var(--mist)" }}>09:41</span>
@@ -359,9 +363,9 @@ export default function Landing() {
       {/* ── NAV ── */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(9,9,9,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(24px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--wire)" : "none",
+        background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.97)",
+        backdropFilter: "blur(20px)",
+        borderBottom: "1px solid var(--line)",
         transition: "all 0.4s",
       }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -376,7 +380,7 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ background: "var(--ink)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "var(--inkbg)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
         {/* Subtle warm glow */}
         <div style={{ position: "absolute", top: "20%", right: "0%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.06) 0%, transparent 65%)", filter: "blur(80px)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "10%", left: "-5%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,58,42,0.15) 0%, transparent 65%)", filter: "blur(60px)", pointerEvents: "none" }} />
@@ -390,15 +394,15 @@ export default function Landing() {
           <div style={{ flex: "1 1 400px" }}>
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
-                <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
-                <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
+                <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
+                <span className="mono" style={{ fontSize: 10, color: "#D4A843", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
               </div>
             </Rise>
             <Rise delay={0.1}>
               <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 0 }}>
                 Your whole
               </h1>
-              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--gold2)", letterSpacing: -1, marginBottom: 0, fontStyle: "italic" }}>
+              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "#D4A843", letterSpacing: -1, marginBottom: 0, fontStyle: "italic" }}>
                 contact list.
               </h1>
               <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 36 }}>
@@ -412,14 +416,14 @@ export default function Landing() {
             </Rise>
             <Rise delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 44 }} className="m-stack">
-                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true">Explore Free</a>
-                <a className="btn-wire m-full" href="#features">See How It Works →</a>
+                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#F2EDE4", color: "#111111" }}>Explore Free</a>
+                <a className="btn-wire m-full" href="#features" style={{ color: "#F2EDE4", borderColor: "rgba(255,255,255,0.25)" }}>See How It Works →</a>
               </div>
             </Rise>
             <Rise delay={0.4}>
               <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                 {["📱 Airtel Money","📱 MTN Money","📱 Zamtel Money","💳 Visa / Mastercard","🇿🇲 Lusaka Support"].map(t => (
-                  <span key={t} style={{ fontSize: 12, color: "var(--cream2)" }}>{t}</span>
+                  <span key={t} style={{ fontSize: 12, color: "rgba(242,237,228,0.65)" }}>{t}</span>
                 ))}
               </div>
             </Rise>
@@ -433,7 +437,7 @@ export default function Landing() {
                 { value: "24/7", label: "AI agent never sleeps", sub: "Handles enquiries around the clock." },
                 { value: "K650", label: "Starting price", sub: "In Kwacha. Fixed. Always." },
               ].map((s, i) => (
-                <div key={i} style={{ background: "var(--panel)", padding: "22px 24px", borderLeft: "2px solid var(--gold)", position: "relative" }}>
+                <div key={i} style={{ background: "rgba(255,255,255,0.04)", padding: "22px 24px", borderLeft: "2px solid var(--gold)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: "2px solid var(--gold)" }}>
                   <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
                   <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
                   <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
@@ -448,7 +452,7 @@ export default function Landing() {
       <div style={{ background: "var(--panel)", borderTop: "1px solid var(--wire)", borderBottom: "1px solid var(--wire)", padding: "12px 0", overflow: "hidden" }}>
         <div className="marquee-inner">
           {[...TICKER,...TICKER].map((t,i) => (
-            <span key={i} style={{ color: i%3===0 ? "var(--gold2)" : "rgba(255,255,255,0.18)", fontSize: 11, fontWeight: 500, fontFamily: "DM Mono, monospace", letterSpacing: 2, textTransform: "uppercase", padding: "0 32px", whiteSpace: "nowrap" }}>
+            <span key={i} style={{ color: i%3===0 ? "var(--gold)" : "var(--text3)", fontSize: 11, fontWeight: 500, fontFamily: "DM Mono, monospace", letterSpacing: 2, textTransform: "uppercase", padding: "0 32px", whiteSpace: "nowrap" }}>
               {t}
             </span>
           ))}
@@ -456,11 +460,11 @@ export default function Landing() {
       </div>
 
       {/* ── PROBLEM ── */}
-      <section style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px" }} className="m-pad">
+      <section style={{ background: "var(--bg)", padding: "clamp(64px,8vw,120px) 40px" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>The Problem</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 56, maxWidth: 800, lineHeight: 0.95 }}>
@@ -476,14 +480,14 @@ export default function Landing() {
               { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
             ].map((p,i) => (
               <Rise key={i} delay={i*0.08} style={{ minWidth: 260, flex: "1 1 260px" }}>
-                <div style={{ background: "var(--ink)", height: "100%" }}>
+                <div style={{ background: "var(--bg)", height: "100%", border: "1px solid var(--line)" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
-                    <div className="mono" style={{ fontSize: 9, color: "#888", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
+                    <div className="mono" style={{ fontSize: 9, color: "rgba(0,0,0,0.35)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
                     <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
                   <div style={{ padding: "24px 28px" }}>
-                    <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
-                    <p style={{ color: "var(--cream)", fontSize: 15, lineHeight: 1.7, fontWeight: 600 }}>{p.a}</p>
+                    <div className="mono" style={{ fontSize: 9, color: "var(--gold)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
+                    <p style={{ color: "var(--text1)", fontSize: 15, lineHeight: 1.7, fontWeight: 600 }}>{p.a}</p>
                   </div>
                 </div>
               </Rise>
@@ -493,13 +497,13 @@ export default function Landing() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="features" style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 20 }}>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                  <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+                  <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
                   <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Features</span>
                 </div>
                 <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, lineHeight: 0.95 }}>
@@ -518,7 +522,7 @@ export default function Landing() {
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
                   </div>
                   <h3 className="editorial" style={{ fontSize: 22, color: "var(--cream)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
-                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.8 }}>{f.body}</p>
+                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.8 }}>{f.body}</p>
                 </div>
               </Rise>
             ))}
@@ -527,14 +531,14 @@ export default function Landing() {
       </section>
 
       {/* ── INDUSTRIES ── */}
-      <section id="industries" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="industries" style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Who It's For</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Built for every<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Zambian SME.</span>
             </h2>
             <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
@@ -544,7 +548,7 @@ export default function Landing() {
               <Rise key={i} delay={i*0.04}>
                 <div className="industry-elite">
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
-                  <div className="editorial" style={{ fontSize: 18, color: "var(--cream)", marginBottom: 6, fontWeight: 700 }}>{v.n}</div>
+                  <div className="editorial" style={{ fontSize: 18, color: "var(--text1)", marginBottom: 6, fontWeight: 700 }}>{v.n}</div>
                   <div style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
                 </div>
               </Rise>
@@ -555,21 +559,21 @@ export default function Landing() {
 
 
       {/* ── AI AGENT DEMO ── */}
-      <section style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section style={{ background: "var(--bg)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--line)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 80, alignItems: "center", flexWrap: "wrap" }} className="m-stack">
           <div style={{ flex: "1 1 380px" }}>
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+                <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
                 <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>AI Sales Agent</span>
               </div>
-              <h2 className="editorial" style={{ fontSize: "clamp(36px,5vw,72px)", color: "var(--cream)", letterSpacing: -1, lineHeight: 0.95, marginBottom: 24 }}>
+              <h2 className="editorial" style={{ fontSize: "clamp(36px,5vw,72px)", color: "var(--text1)", letterSpacing: -1, lineHeight: 0.95, marginBottom: 24 }}>
                 Your shop.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Open 24/7.</span>
               </h2>
               <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.85, marginBottom: 32, maxWidth: 420 }}>
                 Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you rest.
               </p>
-              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true">Start for Free</a>
+              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--green)", color: "var(--cream)" }}>Start for Free</a>
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "0 0 280px", position: "relative" }}>
@@ -579,14 +583,14 @@ export default function Landing() {
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="pricing" style={{ background: "var(--bg)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Pricing</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Priced in Kwacha.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>No USD surprises.</span>
             </h2>
             <p style={{ fontSize: 16, color: "var(--cream2)", marginBottom: 14, maxWidth: 560, lineHeight: 1.85 }}>
@@ -602,7 +606,7 @@ export default function Landing() {
                 <div className={`plan-elite ${p.featured ? "featured" : ""}`} style={{ position: "relative" }}>
                   {p.featured && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold2), transparent)" }} />}
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 9, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
-                  <div className="mono" style={{ fontSize: 10, color: p.featured ? "var(--gold2)" : "var(--mist)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
+                  <div className="mono" style={{ fontSize: 10, color: p.featured ? "var(--gold2)" : "var(--text3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--cream)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 8 }}>{p.setup} once-off setup</div>
@@ -613,7 +617,7 @@ export default function Landing() {
                   <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
                     {p.features.map((f,j) => (
                       <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <span style={{ color: p.featured ? "var(--gold2)" : "var(--mist)", fontSize: 12 }}>—</span>
+                        <span style={{ color: p.featured ? "var(--gold2)" : "var(--text2)", fontSize: 12 }}>—</span>
                         <span style={{ fontSize: 14, color: j===0&&i>0 ? "#CCCCCC" : "var(--cream)", fontStyle: j===0&&i>0 ? "italic" : "normal" }}>{f}</span>
                       </div>
                     ))}
@@ -626,7 +630,7 @@ export default function Landing() {
             ))}
           </div>
           <Rise delay={0.4}>
-            <p className="mono" style={{ textAlign: "center", color: "#CCCCCC", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
+            <p className="mono" style={{ textAlign: "center", color: "var(--text3)", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
               Free to explore · Pay to activate · No USD billing · Cancel anytime
             </p>
           </Rise>
@@ -634,14 +638,14 @@ export default function Landing() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--line)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Beta Testers</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 56, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
@@ -652,14 +656,14 @@ export default function Landing() {
               { q: "Priced in Kwacha, paid via Airtel Money. No USD stress, no bank transfers. A local product built to the standard of any international platform.", n: "Manager", o: "Beta Tester · SME, Lusaka" },
             ].map((t,i) => (
               <Rise key={i} delay={i*0.1}>
-                <div className="card-elite" style={{ padding: "36px 28px" }}>
-                  <div className="editorial" style={{ fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.3, fontStyle: "italic" }}>"</div>
-                  <p style={{ color: "var(--cream)", fontSize: 16, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
+                <div className="card-elite" style={{ padding: "36px 28px", background: "var(--bg2)" }}>
+                  <div className="editorial" style={{ fontSize: 56, color: "var(--gold2)", lineHeight: 0.7, marginBottom: 20, opacity: 0.6, fontStyle: "italic" }}>"</div>
+                  <p style={{ color: "var(--text1)", fontSize: 16, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                     <div style={{ width: 36, height: 36, background: "var(--green)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "var(--gold2)", fontFamily: "Cormorant Garant, serif" }}>{t.n.charAt(0)}</div>
                     <div>
-                      <div style={{ color: "var(--cream)", fontSize: 13, fontWeight: 600 }}>{t.n}</div>
-                      <div className="mono" style={{ color: "#CCCCCC", fontSize: 10, marginTop: 2 }}>{t.o}</div>
+                      <div style={{ color: "var(--text1)", fontSize: 13, fontWeight: 600 }}>{t.n}</div>
+                      <div className="mono" style={{ color: "var(--text3)", fontSize: 10, marginTop: 2 }}>{t.o}</div>
                     </div>
                   </div>
                 </div>
@@ -670,14 +674,14 @@ export default function Landing() {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="faq" style={{ background: "var(--bg)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>FAQ</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Questions<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>answered.</span>
             </h2>
           </Rise>
@@ -690,7 +694,7 @@ export default function Landing() {
                 </div>
                 {openFaq===i && (
                   <div style={{ paddingBottom: 20 }}>
-                    <p style={{ color: "var(--cream2)", fontSize: 16, lineHeight: 1.85 }}>{f.a}</p>
+                    <p style={{ color: "var(--text2)", fontSize: 16, lineHeight: 1.85 }}>{f.a}</p>
                   </div>
                 )}
               </div>
@@ -701,27 +705,27 @@ export default function Landing() {
 
 
       {/* ── ABOUT ── */}
-      <section id="about" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="about" style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }} >
           <div style={{ flex: "1 1 380px" }}>
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+                <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
                 <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>About</span>
               </div>
-              <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 24, lineHeight: 0.95 }}>
+              <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 24, lineHeight: 0.95 }}>
                 Built in Lusaka.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Built for Zambia.</span>
               </h2>
-              <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.9, marginBottom: 20 }}>
                 ZedPing is Zambia's first WhatsApp automation platform built specifically for local SMEs. We exist because Zambian businesses deserve world-class communication tools — priced in Kwacha, supported locally, and built to understand the way businesses here actually operate.
               </p>
-              <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.9, marginBottom: 32 }}>
+              <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.9, marginBottom: 32 }}>
                 Before ZedPing, the only options were expensive international platforms billed in USD with no local support and no understanding of the Zambian market. ZedPing changes that. From school fee reminders to AI-powered sales agents — every feature was designed with Zambian businesses in mind.
               </p>
-              <div style={{ background: "rgba(26,58,42,0.3)", border: "1px solid var(--wire2)", padding: "20px 24px", position: "relative" }}>
+              <div style={{ background: "var(--bg2)", border: "1px solid var(--line)", padding: "20px 24px", position: "relative" }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold), transparent)", opacity: 0.4 }} />
                 <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>A product of</div>
-                <div className="editorial" style={{ fontSize: 22, color: "var(--cream)", fontWeight: 600, marginBottom: 6 }}>Coreline Systems</div>
+                <div className="editorial" style={{ fontSize: 22, color: "var(--green)", fontWeight: 700, marginBottom: 6 }}>Coreline Systems</div>
                 <p style={{ fontSize: 15, color: "var(--mist)", lineHeight: 1.7 }}>Coreline Systems is a business systems consultancy based in Lusaka, Zambia — helping businesses build structured systems and streamlined operations. ZedPing is our first SaaS product.</p>
               </div>
             </Rise>
@@ -737,7 +741,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i} style={{ background: "var(--panel)", padding: "18px 22px" }}>
                   <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
-                  <div className="editorial" style={{ fontSize: 20, color: "var(--cream)", fontWeight: 600, marginBottom: 3 }}>{s.value}</div>
+                  <div className="editorial" style={{ fontSize: 20, color: "var(--text1)", fontWeight: 600, marginBottom: 3 }}>{s.value}</div>
                   <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
@@ -747,14 +751,14 @@ export default function Landing() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="contact" style={{ background: "var(--bg)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Get in Touch</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Contact us.
             </h2>
             <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
@@ -768,12 +772,12 @@ export default function Landing() {
                 { label: "Location", value: "Lusaka, Zambia", sub: "Central African Time (UTC+2)", icon: "📍" },
                 { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼" },
               ].map((c,i) => (
-                <div key={i} style={{ background: "var(--panel)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16 }}>
+                <div key={i} style={{ background: "var(--bg2)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16, border: "1px solid var(--line)", marginBottom: 1 }}>
                   <span style={{ fontSize: 20, flexShrink: 0 }}>{c.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
-                    <div style={{ fontSize: 15, color: "var(--cream)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
-                    <div style={{ fontSize: 12, color: "#E0E0E0" }}>{c.sub}</div>
+                    <div style={{ fontSize: 15, color: "var(--text1)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
+                    <div style={{ fontSize: 12, color: "var(--text2)" }}>{c.sub}</div>
                   </div>
                 </div>
               ))}
@@ -783,14 +787,14 @@ export default function Landing() {
       </section>
 
       {/* ── LEGAL ── */}
-      <section id="legal" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+      <section id="legal" style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Legal</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(32px,5vw,60px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(32px,5vw,60px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Privacy Policy &<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Terms of Service.</span>
             </h2>
           </Rise>
@@ -809,8 +813,8 @@ export default function Landing() {
                 { title: "Contact", body: "For privacy-related queries, contact us at hello@zedping.com." },
               ].map((s,i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.85 }}>{s.body}</p>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -835,12 +839,12 @@ export default function Landing() {
                 { title: "10. Contact", body: "For queries about these terms, contact hello@zedping.com. ZedPing is a product of Coreline Systems, Lusaka, Zambia." },
               ].map((s,i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.85 }}>{s.body}</p>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
-            <p className="mono" style={{ fontSize: 10, color: "var(--mist)", marginTop: 32, opacity: 0.5, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+            <p className="mono" style={{ fontSize: 10, color: "var(--text3)", marginTop: 32, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
           </Rise>
         </div>
       </section>
@@ -852,9 +856,9 @@ export default function Landing() {
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 24 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
+              <span className="mono" style={{ fontSize: 10, color: "#D4A843", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
+              <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
             </div>
           </Rise>
           <Rise delay={0.1}>
@@ -864,12 +868,12 @@ export default function Landing() {
             </h2>
           </Rise>
           <Rise delay={0.2}>
-            <p style={{ fontSize: 17, color: "#F0F0F0", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
+            <p style={{ fontSize: 17, color: "var(--text1)", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
               Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No USD billing.
             </p>
           </Rise>
           <Rise delay={0.3}>
-            <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 12, padding: "16px 48px" }}>
+            <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 12, padding: "16px 48px", background: "#F2EDE4", color: "#111111" }}>
               Get Started Free →
             </a>
           </Rise>
@@ -877,12 +881,12 @@ export default function Landing() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: "var(--ink)", borderTop: "1px solid var(--wire)", padding: "56px 40px 28px" }} className="m-pad">
+      <footer style={{ background: "var(--inkbg)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "56px 40px 28px" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 40 }}>
             <div style={{ maxWidth: 260 }}>
               <div style={{ marginBottom: 16 }}><Logo /></div>
-              <p style={{ color: "var(--mist)", fontSize: 13, lineHeight: 1.8, opacity: 0.7 }}>
+              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 13, lineHeight: 1.8 }}>
                 Zambia's first WhatsApp automation platform. Built for SMEs. Priced in Kwacha.
               </p>
             </div>
@@ -892,7 +896,7 @@ export default function Landing() {
                   <div className="mono" style={{ color: "var(--gold2)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
                   {links.map(l => {
                   const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
-                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--mist)", fontSize: 13, opacity: 0.85 }}>{l}</a></div>;
+                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "rgba(255,255,255,0.6)", fontSize: 13 }}>{l}</a></div>;
                 })}
                 </div>
               ))}
