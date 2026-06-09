@@ -283,7 +283,7 @@ function PhoneMockup() {
           {msgs.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.c ? "flex-end" : "flex-start", marginBottom: 10 }}>
               <div style={{
-                background: "#111111",
+                background: m.c ? "#111111" : "#F0F0F0",
                 border: "none",
                 borderRadius: m.c ? "16px 16px 3px 16px" : "16px 16px 16px 3px",
                 padding: "13px 16px", maxWidth: "85%",
@@ -302,7 +302,7 @@ function PhoneMockup() {
                     ))}
                   </div>
                 )}
-                <div style={{ color: "var(--text1)", fontSize: 10, lineHeight: 1.65, whiteSpace: "pre-line" }}>{m.t}</div>
+                <div style={{ color: m.c ? "#FFFFFF" : "#111111", fontSize: 17, lineHeight: 1.75, whiteSpace: "pre-line" }}>{m.t}</div>
               </div>
             </div>
           ))}
