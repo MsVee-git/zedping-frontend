@@ -447,14 +447,14 @@ export default function Landing() {
               <span style={{ color: "var(--gold2)", fontStyle: "italic" }}>knows this feeling.</span>
             </h2>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
               { b: "Appointments forgotten. Revenue lost.", a: "Auto-confirmation fires the moment it's booked." },
               { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
             ].map((p,i) => (
-              <Rise key={i} delay={i*0.08} style={{ width: "calc(50% - 0.5px)", minWidth: 260, flexGrow: 1 }}>
+              <Rise key={i} delay={i*0.08} style={{ minWidth: 260, flex: "1 1 260px" }}>
                 <div style={{ background: "var(--ink)", height: "100%" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
                     <div className="mono" style={{ fontSize: 9, color: "#888", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
@@ -488,10 +488,10 @@ export default function Landing() {
               <a className="btn-wire" href="#pricing" style={{ fontSize: 10 }}>View Pricing →</a>
             </div>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             {FEATURES.map((f,i) => (
               <Rise key={i} delay={i*0.07}>
-                <div className="feat-elite" style={{ width: "calc(33.333% - 0.67px)", minWidth: 280, flexGrow: 1 }}>
+                <div className="feat-elite" style={{ minWidth: 280, flex: "1 1 300px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
                     <span style={{ fontSize: 24 }}>{f.icon}</span>
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
@@ -504,6 +504,34 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* ── INDUSTRIES ── */}
+      <section id="industries" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <Rise>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
+              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Who It's For</span>
+            </div>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+              Built for every<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Zambian SME.</span>
+            </h2>
+            <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
+          </Rise>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            {INDUSTRIES.map((v,i) => (
+              <Rise key={i} delay={i*0.04}>
+                <div className="industry-elite" style={{ minWidth: 180, flex: "1 1 180px" }}>
+                  <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
+                  <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
+                  <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
+                </div>
+              </Rise>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ── AI AGENT DEMO ── */}
       <section style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
@@ -529,34 +557,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── INDUSTRIES ── */}
-      <section id="industries" style={{ background: "var(--deep)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Rise>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Who It's For</span>
-            </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
-              Built for every<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Zambian SME.</span>
-            </h2>
-            <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
-          </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
-            {INDUSTRIES.map((v,i) => (
-              <Rise key={i} delay={i*0.04}>
-                <div className="industry-elite" style={{ width: "calc(20% - 0.8px)", minWidth: 180, flexGrow: 1 }}>
-                  <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
-                  <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
-                  <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
-                </div>
-              </Rise>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRICING ── */}
+      {/* ── PRICING ── */
       <section id="pricing" style={{ background: "var(--ink)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--wire)" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Rise>
@@ -623,14 +624,14 @@ export default function Landing() {
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 1, background: "var(--wire)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             {[
               { q: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office is remarkable.", n: "Accounts Manager", o: "Beta Tester · School, Lusaka" },
               { q: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It works around the clock without complaint.", n: "Business Owner", o: "Beta Tester · Workshop, Lusaka" },
               { q: "Priced in Kwacha, paid via Airtel Money. No USD stress, no bank transfers. A local product built to the standard of any international platform.", n: "Manager", o: "Beta Tester · SME, Lusaka" },
             ].map((t,i) => (
               <Rise key={i} delay={i*0.1}>
-                <div className="card-elite" style={{ padding: "36px 28px", height: "100%", width: "calc(33.333% - 0.67px)", minWidth: 280, flexGrow: 1 }}>
+                <div className="card-elite" style={{ padding: "36px 28px", minWidth: 280, flex: "1 1 300px" }}>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.3, fontStyle: "italic" }}>"</div>
                   <p style={{ color: "var(--cream)", fontSize: 15, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
@@ -705,7 +706,7 @@ export default function Landing() {
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "1 1 300px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {[
                 { label: "Founded", value: "2026", sub: "Lusaka, Zambia" },
                 { label: "Mission", value: "Local tools", sub: "For local businesses" },
@@ -738,7 +739,7 @@ export default function Landing() {
             <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
           </Rise>
           <Rise delay={0.1}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)", marginBottom: 32 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1, marginBottom: 32 }}>
               {[
                 { label: "Email", value: "hello@zedping.com", sub: "We respond within 24 hours", icon: "📧" },
                 { label: "WhatsApp", value: "+260 [number coming soon]", sub: "Customer support & demos", icon: "📱" },
