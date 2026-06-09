@@ -387,7 +387,7 @@ export default function Landing() {
 
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "clamp(60px,8vw,100px) 40px clamp(60px,8vw,100px)", position: "relative", zIndex: 1, width: "100%", display: "flex", alignItems: "center", gap: 80, flexWrap: "wrap" }}>
           {/* Left */}
-          <div style={{ flex: "1 1 100%", maxWidth: 720 }}>
+          <div style={{ flex: "1 1 400px" }}>
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)" }} />
@@ -424,6 +424,23 @@ export default function Landing() {
               </div>
             </Rise>
           </div>
+
+          {/* Right — Stats */}
+          <Rise delay={0.3} style={{ flex: "0 1 280px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)" }}>
+              {[
+                { value: "4s", label: "To reach 300+ contacts", sub: "Personalised. Simultaneously." },
+                { value: "24/7", label: "AI agent never sleeps", sub: "Handles enquiries around the clock." },
+                { value: "K650", label: "Starting price", sub: "In Kwacha. Fixed. Always." },
+              ].map((s, i) => (
+                <div key={i} style={{ background: "var(--panel)", padding: "22px 24px", borderLeft: "2px solid var(--gold)", position: "relative" }}>
+                  <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
+                  <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
+                  <div style={{ fontSize: 12, color: "var(--mist)" }}>{s.sub}</div>
+                </div>
+              ))}
+            </div>
+          </Rise>
         </div>
       </section>
 
