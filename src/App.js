@@ -122,7 +122,7 @@ const css = `
   /* ── PLAN CARD ── */
   .plan-elite { padding: 36px 30px; position: relative; transition: all 0.4s; }
   .plan-elite:hover { transform: translateY(-8px) perspective(800px) rotateX(1.5deg); }
-  .plan-elite.featured { background: var(--inkbg); border: 1px solid #333; }
+  .plan-elite.featured { background: var(--green); border: 1px solid var(--green); }
   .plan-elite:not(.featured) { background: var(--card2); border: 1px solid var(--line); }
 
   /* ── FAQ ── */
@@ -363,7 +363,7 @@ export default function Landing() {
       {/* ── NAV ── */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.97)",
+        background: "rgba(255,255,255,0.97)",
         backdropFilter: "blur(20px)",
         borderBottom: "1px solid var(--line)",
         transition: "all 0.4s",
@@ -380,13 +380,13 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ background: "var(--inkbg)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "var(--bg)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
         {/* Subtle warm glow */}
-        <div style={{ position: "absolute", top: "20%", right: "0%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.06) 0%, transparent 65%)", filter: "blur(80px)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "10%", left: "-5%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,58,42,0.15) 0%, transparent 65%)", filter: "blur(60px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "20%", right: "0%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 65%)", filter: "blur(80px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "10%", left: "-5%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,58,42,0.05) 0%, transparent 65%)", filter: "blur(60px)", pointerEvents: "none" }} />
         {/* Subtle vertical lines */}
         {[25,50,75].map(x => (
-          <div key={x} style={{ position: "absolute", top: 0, bottom: 0, left: `${x}%`, width: 1, background: "rgba(255,255,255,0.02)", pointerEvents: "none" }} />
+          <div key={x} style={{ position: "absolute", top: 0, bottom: 0, left: `${x}%`, width: 1, background: "rgba(0,0,0,0.04)", pointerEvents: "none" }} />
         ))}
 
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "clamp(60px,8vw,100px) 40px clamp(60px,8vw,100px)", position: "relative", zIndex: 1, width: "100%", display: "flex", alignItems: "center", gap: 80, flexWrap: "wrap" }}>
@@ -395,14 +395,14 @@ export default function Landing() {
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-                <span className="mono" style={{ fontSize: 10, color: "#D4A843", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
+                <span className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
               </div>
             </Rise>
             <Rise delay={0.1}>
               <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 0 }}>
                 Your whole
               </h1>
-              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "#D4A843", letterSpacing: -1, marginBottom: 0, fontStyle: "italic" }}>
+              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--gold)", letterSpacing: -1, marginBottom: 0, fontStyle: "italic" }}>
                 contact list.
               </h1>
               <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 36 }}>
@@ -416,14 +416,14 @@ export default function Landing() {
             </Rise>
             <Rise delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 44 }} className="m-stack">
-                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#F2EDE4", color: "#111111" }}>Explore Free</a>
-                <a className="btn-wire m-full" href="#features" style={{ color: "#F2EDE4", borderColor: "rgba(255,255,255,0.25)" }}>See How It Works →</a>
+                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--inkbg)", color: "#FFFFFF" }}>Explore Free</a>
+                <a className="btn-wire m-full" href="#features" style={{ color: "var(--text1)", borderColor: "var(--line)" }}>See How It Works →</a>
               </div>
             </Rise>
             <Rise delay={0.4}>
               <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                 {["📱 Airtel Money","📱 MTN Money","📱 Zamtel Money","💳 Visa / Mastercard","🇿🇲 Lusaka Support"].map(t => (
-                  <span key={t} style={{ fontSize: 12, color: "rgba(242,237,228,0.65)" }}>{t}</span>
+                  <span key={t} style={{ fontSize: 12, color: "var(--text3)" }}>{t}</span>
                 ))}
               </div>
             </Rise>
@@ -437,7 +437,7 @@ export default function Landing() {
                 { value: "24/7", label: "AI agent never sleeps", sub: "Handles enquiries around the clock." },
                 { value: "K650", label: "Starting price", sub: "In Kwacha. Fixed. Always." },
               ].map((s, i) => (
-                <div key={i} style={{ background: "rgba(255,255,255,0.04)", padding: "22px 24px", borderLeft: "2px solid var(--gold)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: "2px solid var(--gold)" }}>
+                <div key={i} style={{ background: "var(--bg2)", padding: "22px 24px", borderLeft: "3px solid var(--gold)", border: "1px solid var(--line)" }}>
                   <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
                   <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
                   <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
@@ -850,14 +850,14 @@ export default function Landing() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "var(--green)", padding: "clamp(80px,10vw,140px) 40px", position: "relative", overflow: "hidden" }} className="m-pad">
+      <section style={{ background: "var(--bg2)", padding: "clamp(80px,10vw,140px) 40px", position: "relative", overflow: "hidden" }} className="m-pad">
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: "50%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 60%)", filter: "blur(80px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.1) 0%, transparent 60%)", filter: "blur(80px)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
           <Rise>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-              <span className="mono" style={{ fontSize: 10, color: "#D4A843", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
+              <span className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
               <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
             </div>
           </Rise>
@@ -873,7 +873,7 @@ export default function Landing() {
             </p>
           </Rise>
           <Rise delay={0.3}>
-            <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 12, padding: "16px 48px", background: "#F2EDE4", color: "#111111" }}>
+            <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 12, padding: "16px 48px", background: "var(--inkbg)", color: "#FFFFFF" }}>
               Get Started Free →
             </a>
           </Rise>
@@ -881,22 +881,22 @@ export default function Landing() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: "var(--inkbg)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "56px 40px 28px" }} className="m-pad">
+      <footer style={{ background: "var(--bg2)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "56px 40px 28px" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 40 }}>
             <div style={{ maxWidth: 260 }}>
               <div style={{ marginBottom: 16 }}><Logo /></div>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 13, lineHeight: 1.8 }}>
+              <p style={{ color: "var(--text3)", fontSize: 13, lineHeight: 1.8 }}>
                 Zambia's first WhatsApp automation platform. Built for SMEs. Priced in Kwacha.
               </p>
             </div>
             <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
               {[["Product",["Features","Pricing","Industries","FAQ"]],["Company",["About ZedPing","Contact Us","LinkedIn","WhatsApp Us"]],["Legal",["Privacy Policy","Terms of Service"]]].map(([title,links]) => (
                 <div key={title}>
-                  <div className="mono" style={{ color: "var(--gold2)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
+                  <div className="mono" style={{ color: "var(--gold)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
                   {links.map(l => {
                   const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
-                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "rgba(255,255,255,0.6)", fontSize: 13 }}>{l}</a></div>;
+                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--text3)", fontSize: 13 }}>{l}</a></div>;
                 })}
                 </div>
               ))}
@@ -904,8 +904,8 @@ export default function Landing() {
           </div>
           <div className="gold-line" style={{ marginBottom: 20 }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-            <p className="mono" style={{ color: "var(--mist)", fontSize: 10, opacity: 0.4, letterSpacing: 1 }}>© 2026 ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
-            <p className="editorial" style={{ color: "var(--mist)", fontSize: 12, opacity: 0.3, fontStyle: "italic" }}>Your business, on autopilot.</p>
+            <p className="mono" style={{ color: "var(--text3)", fontSize: 10, letterSpacing: 1 }}>© 2026 ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+            <p className="editorial" style={{ color: "var(--text3)", fontSize: 12, fontStyle: "italic" }}>Your business, on autopilot.</p>
           </div>
         </div>
       </footer>
