@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 // 3D: Subtle elevation, gentle parallax, breathing depth — not performing
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
     :root {
     --bg:     #FFFFFF;
@@ -30,7 +30,7 @@ const css = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--ink);
     color: var(--cream);
     -webkit-font-smoothing: antialiased;
@@ -76,7 +76,7 @@ const css = `
     background: var(--inkbg); color: #FFFFFF;
     padding: 14px 32px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
     text-transform: uppercase; border: none; cursor: pointer;
     transition: all 0.3s;
   }
@@ -87,7 +87,7 @@ const css = `
     background: transparent; color: var(--text1);
     padding: 13px 28px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
     text-transform: uppercase;
     border: 1px solid var(--line); cursor: pointer;
     transition: all 0.3s;
@@ -97,8 +97,8 @@ const css = `
   /* ── NAV ── */
   .nav-link-e {
     font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--text3);
+    font-size: 13px; font-weight: 500; letter-spacing: 1px;
+    text-transform: none; color: var(--text2);
     transition: color 0.2s;
   }
   .nav-link-e:hover { color: var(--text1); }
@@ -149,7 +149,7 @@ const css = `
   .badge-cream { background: rgba(242,237,228,0.06); color: var(--cream2); border: 1px solid var(--wire); }
 
   /* ── INPUT ── */
-  .input-e { background: var(--bg2); border: 1px solid var(--line); padding: 12px 14px; font-size: 14px; color: var(--text1); outline: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s; width: 100%; }
+  .input-e { background: var(--bg2); border: 1px solid var(--line); padding: 12px 14px; font-size: 14px; color: var(--text1); outline: none; font-family: 'Inter', sans-serif; transition: all 0.2s; width: 100%; }
   .input-e:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,146,42,0.15); }
   .input-e::placeholder { color: #999; }
 
@@ -247,7 +247,7 @@ function PhoneMockup() {
         <div style={{ background: "var(--bg)", borderRadius: 20, padding: 14, overflow: "hidden" }}>
           {/* Status */}
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
-            <span className="mono" style={{ fontSize: 9, color: "var(--mist)" }}>09:41</span>
+            <span className="mono" style={{ fontSize: 13, color: "var(--mist)" }}>09:41</span>
             <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
               {[3,4,4,3].map((h,i) => <div key={i} style={{ width: 2, height: h, background: "var(--mist)", borderRadius: 1 }} />)}
             </div>
@@ -395,7 +395,7 @@ export default function Landing() {
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-                <span className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
+                <span className="mono" style={{ fontSize: 13, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Zambia's First WhatsApp Automation Platform</span>
               </div>
             </Rise>
             <Rise delay={0.1}>
@@ -423,7 +423,7 @@ export default function Landing() {
             <Rise delay={0.4}>
               <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                 {["📱 Airtel Money","📱 MTN Money","📱 Zamtel Money","💳 Visa / Mastercard","🇿🇲 Lusaka Support"].map(t => (
-                  <span key={t} style={{ fontSize: 12, color: "var(--text3)" }}>{t}</span>
+                  <span key={t} style={{ fontSize: 14, color: "var(--text3)" }}>{t}</span>
                 ))}
               </div>
             </Rise>
@@ -439,7 +439,7 @@ export default function Landing() {
               ].map((s, i) => (
                 <div key={i} style={{ background: "var(--bg2)", padding: "22px 24px", borderLeft: "3px solid var(--gold)", border: "1px solid var(--line)" }}>
                   <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
-                  <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
+                  <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
                   <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
@@ -465,7 +465,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>The Problem</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>The Problem</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 56, maxWidth: 800, lineHeight: 0.95 }}>
               Every Zambian business owner<br />
@@ -482,12 +482,12 @@ export default function Landing() {
               <Rise key={i} delay={i*0.08} style={{ minWidth: 260, flex: "1 1 260px" }}>
                 <div style={{ background: "var(--bg)", height: "100%", border: "1px solid var(--line)" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
-                    <div className="mono" style={{ fontSize: 9, color: "rgba(0,0,0,0.35)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
+                    <div className="mono" style={{ fontSize: 13, color: "rgba(0,0,0,0.35)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
                     <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
                   <div style={{ padding: "24px 28px" }}>
-                    <div className="mono" style={{ fontSize: 9, color: "var(--gold)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
-                    <p style={{ color: "var(--text1)", fontSize: 15, lineHeight: 1.7, fontWeight: 600 }}>{p.a}</p>
+                    <div className="mono" style={{ fontSize: 13, color: "var(--gold)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
+                    <p style={{ color: "var(--text1)", fontSize: 16, lineHeight: 1.7, fontWeight: 600 }}>{p.a}</p>
                   </div>
                 </div>
               </Rise>
@@ -504,7 +504,7 @@ export default function Landing() {
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
                   <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-                  <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Features</span>
+                  <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Features</span>
                 </div>
                 <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, lineHeight: 0.95 }}>
                   Everything your<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>business needs.</span>
@@ -522,7 +522,7 @@ export default function Landing() {
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
                   </div>
                   <h3 className="editorial" style={{ fontSize: 22, color: "var(--cream)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
-                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.8 }}>{f.body}</p>
+                  <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.8 }}>{f.body}</p>
                 </div>
               </Rise>
             ))}
@@ -536,7 +536,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Who It's For</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Who It's For</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Built for every<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Zambian SME.</span>
@@ -548,7 +548,7 @@ export default function Landing() {
               <Rise key={i} delay={i*0.04}>
                 <div className="industry-elite">
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
-                  <div className="editorial" style={{ fontSize: 18, color: "var(--text1)", marginBottom: 6, fontWeight: 700 }}>{v.n}</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text1)", marginBottom: 6 }}>{v.n}</div>
                   <div style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
                 </div>
               </Rise>
@@ -565,7 +565,7 @@ export default function Landing() {
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-                <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>AI Sales Agent</span>
+                <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>AI Sales Agent</span>
               </div>
               <h2 className="editorial" style={{ fontSize: "clamp(36px,5vw,72px)", color: "var(--text1)", letterSpacing: -1, lineHeight: 0.95, marginBottom: 24 }}>
                 Your shop.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Open 24/7.</span>
@@ -588,7 +588,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Pricing</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Pricing</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Priced in Kwacha.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>No USD surprises.</span>
@@ -605,8 +605,8 @@ export default function Landing() {
               <Rise key={i} delay={i*0.1}>
                 <div className={`plan-elite ${p.featured ? "featured" : ""}`} style={{ position: "relative" }}>
                   {p.featured && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold2), transparent)" }} />}
-                  {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 9, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
-                  <div className="mono" style={{ fontSize: 10, color: p.featured ? "var(--gold2)" : "var(--text3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
+                  {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 13, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
+                  <div className="mono" style={{ fontSize: 13, color: p.featured ? "var(--gold2)" : "var(--text3)", fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--cream)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 8 }}>{p.setup} once-off setup</div>
@@ -630,7 +630,7 @@ export default function Landing() {
             ))}
           </div>
           <Rise delay={0.4}>
-            <p className="mono" style={{ textAlign: "center", color: "var(--text3)", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
+            <p className="mono" style={{ textAlign: "center", color: "var(--text2)", fontSize: 15, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
               Free to explore · Pay to activate · No USD billing · Cancel anytime
             </p>
           </Rise>
@@ -643,7 +643,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Beta Testers</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Beta Testers</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
@@ -658,12 +658,12 @@ export default function Landing() {
               <Rise key={i} delay={i*0.1}>
                 <div className="card-elite" style={{ padding: "36px 28px", background: "var(--bg2)" }}>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--gold2)", lineHeight: 0.7, marginBottom: 20, opacity: 0.6, fontStyle: "italic" }}>"</div>
-                  <p style={{ color: "var(--text1)", fontSize: 16, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
+                  <p style={{ color: "var(--text1)", fontSize: 17, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                     <div style={{ width: 36, height: 36, background: "var(--green)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "var(--gold2)", fontFamily: "Cormorant Garant, serif" }}>{t.n.charAt(0)}</div>
                     <div>
-                      <div style={{ color: "var(--text1)", fontSize: 13, fontWeight: 600 }}>{t.n}</div>
-                      <div className="mono" style={{ color: "var(--text3)", fontSize: 10, marginTop: 2 }}>{t.o}</div>
+                      <div style={{ color: "var(--text1)", fontSize: 15, fontWeight: 600 }}>{t.n}</div>
+                      <div className="mono" style={{ color: "var(--text2)", fontSize: 15, marginTop: 2 }}>{t.o}</div>
                     </div>
                   </div>
                 </div>
@@ -679,7 +679,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>FAQ</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>FAQ</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Questions<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>answered.</span>
@@ -694,7 +694,7 @@ export default function Landing() {
                 </div>
                 {openFaq===i && (
                   <div style={{ paddingBottom: 20 }}>
-                    <p style={{ color: "var(--text2)", fontSize: 16, lineHeight: 1.85 }}>{f.a}</p>
+                    <p style={{ color: "var(--text2)", fontSize: 18, lineHeight: 1.85 }}>{f.a}</p>
                   </div>
                 )}
               </div>
@@ -711,20 +711,20 @@ export default function Landing() {
             <Rise>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
                 <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-                <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>About</span>
+                <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>About</span>
               </div>
               <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 24, lineHeight: 0.95 }}>
                 Built in Lusaka.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Built for Zambia.</span>
               </h2>
-              <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontSize: 18, color: "var(--text2)", lineHeight: 1.9, marginBottom: 20 }}>
                 ZedPing is Zambia's first WhatsApp automation platform built specifically for local SMEs. We exist because Zambian businesses deserve world-class communication tools — priced in Kwacha, supported locally, and built to understand the way businesses here actually operate.
               </p>
-              <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.9, marginBottom: 32 }}>
+              <p style={{ fontSize: 18, color: "var(--text2)", lineHeight: 1.9, marginBottom: 32 }}>
                 Before ZedPing, the only options were expensive international platforms billed in USD with no local support and no understanding of the Zambian market. ZedPing changes that. From school fee reminders to AI-powered sales agents — every feature was designed with Zambian businesses in mind.
               </p>
               <div style={{ background: "var(--bg2)", border: "1px solid var(--line)", padding: "20px 24px", position: "relative" }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold), transparent)", opacity: 0.4 }} />
-                <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>A product of</div>
+                <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>A product of</div>
                 <div className="editorial" style={{ fontSize: 22, color: "var(--green)", fontWeight: 700, marginBottom: 6 }}>Coreline Systems</div>
                 <p style={{ fontSize: 15, color: "var(--mist)", lineHeight: 1.7 }}>Coreline Systems is a business systems consultancy based in Lusaka, Zambia — helping businesses build structured systems and streamlined operations. ZedPing is our first SaaS product.</p>
               </div>
@@ -740,8 +740,8 @@ export default function Landing() {
                 { label: "Payments", value: "Mobile money", sub: "Airtel · MTN · Zamtel · Card" },
               ].map((s,i) => (
                 <div key={i} style={{ background: "var(--panel)", padding: "18px 22px" }}>
-                  <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
-                  <div className="editorial" style={{ fontSize: 20, color: "var(--text1)", fontWeight: 600, marginBottom: 3 }}>{s.value}</div>
+                  <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: "var(--text1)", marginBottom: 3 }}>{s.value}</div>
                   <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
@@ -756,7 +756,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Get in Touch</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Get in Touch</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Contact us.
@@ -775,8 +775,8 @@ export default function Landing() {
                 <div key={i} style={{ background: "var(--bg2)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16, border: "1px solid var(--line)", marginBottom: 1 }}>
                   <span style={{ fontSize: 20, flexShrink: 0 }}>{c.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
-                    <div style={{ fontSize: 15, color: "var(--text1)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
+                    <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
+                    <div style={{ fontSize: 16, color: "var(--text1)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
                     <div style={{ fontSize: 12, color: "var(--text2)" }}>{c.sub}</div>
                   </div>
                 </div>
@@ -792,7 +792,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Legal</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Legal</span>
             </div>
             <h2 className="editorial" style={{ fontSize: "clamp(32px,5vw,60px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 48, lineHeight: 0.95 }}>
               Privacy Policy &<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Terms of Service.</span>
@@ -801,7 +801,7 @@ export default function Landing() {
 
           {/* Privacy Policy */}
           <Rise delay={0.1}>
-            <div className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Privacy Policy</div>
+            <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Privacy Policy</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 48 }}>
               {[
                 { title: "What we collect", body: "ZedPing collects business name, email address, phone number, and subscription details when you sign up. We also store message logs and contact lists that you upload to the platform. We do not collect personal data beyond what is necessary to operate the service." },
@@ -813,8 +813,8 @@ export default function Landing() {
                 { title: "Contact", body: "For privacy-related queries, contact us at hello@zedping.com." },
               ].map((s,i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.85 }}>{s.body}</p>
+                  <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 18, color: "var(--text2)", fontSize: 16, lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -824,7 +824,7 @@ export default function Landing() {
 
           {/* Terms of Service */}
           <Rise delay={0.2}>
-            <div className="mono" style={{ fontSize: 10, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Terms of Service</div>
+            <div className="mono" style={{ fontSize: 13, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Terms of Service</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 { title: "1. Acceptance", body: "By creating a ZedPing account, you agree to these Terms of Service. These terms form a binding agreement between you and Coreline Systems, trading as ZedPing. If you do not agree, do not use the platform." },
@@ -839,12 +839,12 @@ export default function Landing() {
                 { title: "10. Contact", body: "For queries about these terms, contact hello@zedping.com. ZedPing is a product of Coreline Systems, Lusaka, Zambia." },
               ].map((s,i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.85 }}>{s.body}</p>
+                  <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
+                  <p style={{ fontSize: 18, color: "var(--text2)", fontSize: 16, lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
-            <p className="mono" style={{ fontSize: 10, color: "var(--text3)", marginTop: 32, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+            <p className="mono" style={{ fontSize: 13, color: "var(--text3)", marginTop: 32, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
           </Rise>
         </div>
       </section>
@@ -857,7 +857,7 @@ export default function Landing() {
           <Rise>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
-              <span className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Now Available in Zambia</span>
               <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
             </div>
           </Rise>
@@ -886,17 +886,17 @@ export default function Landing() {
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 40 }}>
             <div style={{ maxWidth: 260 }}>
               <div style={{ marginBottom: 16 }}><Logo /></div>
-              <p style={{ color: "var(--text3)", fontSize: 13, lineHeight: 1.8 }}>
+              <p style={{ color: "var(--text2)", fontSize: 15, lineHeight: 1.8 }}>
                 Zambia's first WhatsApp automation platform. Built for SMEs. Priced in Kwacha.
               </p>
             </div>
             <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
               {[["Product",["Features","Pricing","Industries","FAQ"]],["Company",["About ZedPing","Contact Us","LinkedIn","WhatsApp Us"]],["Legal",["Privacy Policy","Terms of Service"]]].map(([title,links]) => (
                 <div key={title}>
-                  <div className="mono" style={{ color: "var(--gold)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
+                  <div className="mono" style={{ color: "var(--gold)", fontSize: 13, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
                   {links.map(l => {
                   const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
-                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--text3)", fontSize: 13 }}>{l}</a></div>;
+                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--text2)", fontSize: 15 }}>{l}</a></div>;
                 })}
                 </div>
               ))}
@@ -904,8 +904,8 @@ export default function Landing() {
           </div>
           <div className="gold-line" style={{ marginBottom: 20 }} />
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-            <p className="mono" style={{ color: "var(--text3)", fontSize: 10, letterSpacing: 1 }}>© 2026 ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
-            <p className="editorial" style={{ color: "var(--text3)", fontSize: 12, fontStyle: "italic" }}>Your business, on autopilot.</p>
+            <p className="mono" style={{ color: "var(--text2)", fontSize: 15, letterSpacing: 1 }}>© 2026 ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+            <p className="editorial" style={{ color: "var(--text2)", fontSize: 14, fontStyle: "italic" }}>Your business, on autopilot.</p>
           </div>
         </div>
       </footer>
