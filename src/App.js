@@ -158,10 +158,14 @@ const css = `
     .m-stack { flex-direction: column !important; gap: 20px !important; }
     .m-full { width: 100% !important; justify-content: center !important; }
     .m-pad { padding-left: 20px !important; padding-right: 20px !important; }
-    .m-grid-1 { grid-template-columns: 1fr !important; }
-    .m-grid-2 { grid-template-columns: 1fr 1fr !important; }
     .m-text-sm { font-size: clamp(44px, 11vw, 80px) !important; }
     body { font-size: 16px !important; }
+
+    /* Grid overrides on mobile */
+    .before-after-grid { grid-template-columns: 1fr !important; }
+    .feat-grid { grid-template-columns: 1fr !important; }
+    .industry-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .testimonial-grid { grid-template-columns: 1fr !important; }
   }
 
   ::-webkit-scrollbar { width: 3px; }
@@ -447,7 +451,7 @@ export default function Landing() {
               <span style={{ color: "var(--gold2)", fontStyle: "italic" }}>knows this feeling.</span>
             </h2>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
@@ -488,10 +492,10 @@ export default function Landing() {
               <a className="btn-wire" href="#pricing" style={{ fontSize: 10 }}>View Pricing →</a>
             </div>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
             {FEATURES.map((f,i) => (
               <Rise key={i} delay={i*0.07}>
-                <div className="feat-elite" style={{ minWidth: 280, flex: "1 1 300px" }}>
+                <div className="feat-elite">
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
                     <span style={{ fontSize: 24 }}>{f.icon}</span>
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
@@ -518,10 +522,10 @@ export default function Landing() {
             </h2>
             <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
             {INDUSTRIES.map((v,i) => (
               <Rise key={i} delay={i*0.04}>
-                <div className="industry-elite" style={{ minWidth: 180, flex: "1 1 180px" }}>
+                <div className="industry-elite">
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
                   <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
                   <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
@@ -624,14 +628,14 @@ export default function Landing() {
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
             {[
               { q: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office is remarkable.", n: "Accounts Manager", o: "Beta Tester · School, Lusaka" },
               { q: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It works around the clock without complaint.", n: "Business Owner", o: "Beta Tester · Workshop, Lusaka" },
               { q: "Priced in Kwacha, paid via Airtel Money. No USD stress, no bank transfers. A local product built to the standard of any international platform.", n: "Manager", o: "Beta Tester · SME, Lusaka" },
             ].map((t,i) => (
               <Rise key={i} delay={i*0.1}>
-                <div className="card-elite" style={{ padding: "36px 28px", minWidth: 280, flex: "1 1 300px" }}>
+                <div className="card-elite" style={{ padding: "36px 28px" }}>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.3, fontStyle: "italic" }}>"</div>
                   <p style={{ color: "var(--cream)", fontSize: 15, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
