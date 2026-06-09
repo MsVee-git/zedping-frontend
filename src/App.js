@@ -255,7 +255,7 @@ function PhoneMockup() {
 
   return (
     <div ref={ref} onMouseMove={move} onMouseLeave={leave}
-      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 320, margin: "0 auto" }}>
+      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 380, margin: "0 auto" }}>
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone */}
@@ -270,18 +270,18 @@ function PhoneMockup() {
           </div>
           {/* Header */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, paddingBottom: 10, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-            <div style={{ width: 30, height: 30, background: "var(--green)", border: "1px solid var(--wire2)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>🛍️</div>
+            <div style={{ width: 38, height: 38, background: "var(--green)", border: "1px solid var(--wire2)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🛍️</div>
             <div>
               <div style={{ color: "var(--text1)", fontSize: 16, fontWeight: 700 }}>Lusaka Boutique</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22C55E", display: "inline-block" }} />
-                <span className="mono" style={{ color: "#22C55E", fontSize: 11 }}>AI Online</span>
+                <span className="mono" style={{ color: "#22C55E", fontSize: 12 }}>AI Online</span>
               </div>
             </div>
           </div>
           {/* Messages */}
           {msgs.map((m, i) => (
-            <div key={i} style={{ display: "flex", justifyContent: m.c ? "flex-end" : "flex-start", marginBottom: 7 }}>
+            <div key={i} style={{ display: "flex", justifyContent: m.c ? "flex-end" : "flex-start", marginBottom: 10 }}>
               <div style={{
                 background: m.c ? "var(--green)" : "rgba(255,255,255,0.04)",
                 border: m.c ? "1px solid var(--wire2)" : "1px solid rgba(255,255,255,0.05)",
@@ -292,8 +292,8 @@ function PhoneMockup() {
                   <div style={{ display: "flex", gap: 5, marginBottom: 7 }}>
                     {[["#8B0000","K420"],["#1a1a1a","K380"],["#1B3A6B","K490"]].map(([bg,p],pi) => (
                       <div key={pi} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 6, overflow: "hidden", flex: 1, textAlign: "center" }}>
-                        <div style={{ background: bg, height: 42, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <svg width="14" height="22" viewBox="0 0 28 44"><path d="M14 2C14 2 10 4 7 8L2 14L8 16L6 42L22 42L20 16L26 14L21 8C18 4 14 2 14 2Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5"/></svg>
+                        <div style={{ background: bg, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <svg width="20" height="30" viewBox="0 0 28 44"><path d="M14 2C14 2 10 4 7 8L2 14L8 16L6 42L22 42L20 16L26 14L21 8C18 4 14 2 14 2Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5"/></svg>
                         </div>
                         <div style={{ padding: "3px 2px" }}>
                           <div className="mono" style={{ color: "var(--gold2)", fontSize: 8, fontWeight: 500 }}>{p}</div>
@@ -310,8 +310,8 @@ function PhoneMockup() {
           <div style={{ display: "flex", justifyContent: "space-around", marginTop: 10, background: "rgba(184,146,42,0.06)", border: "1px solid var(--wire2)", borderRadius: 8, padding: "7px 0" }}>
             {[["342","Sent"],["98%","Delivered"],["4s","Time"]].map(([v,l]) => (
               <div key={l} style={{ textAlign: "center" }}>
-                <div className="editorial" style={{ color: "var(--gold2)", fontSize: 16, fontWeight: 700 }}>{v}</div>
-                <div style={{ color: "var(--mist)", fontSize: 11 }}>{l}</div>
+                <div className="editorial" style={{ color: "var(--gold2)", fontSize: 20, fontWeight: 700 }}>{v}</div>
+                <div style={{ color: "var(--mist)", fontSize: 13 }}>{l}</div>
               </div>
             ))}
           </div>
@@ -746,8 +746,8 @@ export default function Landing() {
               </div>
             </Rise>
           </div>
-          <Rise delay={0.2} style={{ flex: "1 1 280px", alignSelf: "flex-end" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <Rise delay={0.2} style={{ flex: "1 1 300px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
                 { label: "Founded", value: "2026", sub: "Lusaka, Zambia" },
                 { label: "Mission", value: "Local tools", sub: "For local businesses" },
@@ -757,7 +757,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i} style={{ background: "var(--bg2)", padding: "18px 22px" }}>
                   <div className="mono" style={{ fontSize: 16, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text1)", marginBottom: 3 }}>{s.value}</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: "var(--text1)", marginBottom: 3 }}>{s.value}</div>
                   <div style={{ fontSize: 16, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
