@@ -479,7 +479,7 @@ export default function Landing() {
                 <div style={{ background: "var(--ink)", height: "100%" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
                     <div className="mono" style={{ fontSize: 9, color: "#888", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
-                    <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
+                    <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
                   <div style={{ padding: "24px 28px" }}>
                     <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
@@ -518,7 +518,7 @@ export default function Landing() {
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
                   </div>
                   <h3 className="editorial" style={{ fontSize: 22, color: "var(--cream)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
-                  <p style={{ fontSize: 15, color: "rgba(242,237,228,0.75)", lineHeight: 1.8 }}>{f.body}</p>
+                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.8 }}>{f.body}</p>
                 </div>
               </Rise>
             ))}
@@ -604,9 +604,9 @@ export default function Landing() {
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 9, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
                   <div className="mono" style={{ fontSize: 10, color: p.featured ? "var(--gold2)" : "var(--mist)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--cream)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
-                  <div className="mono" style={{ color: "rgba(255,255,255,0.75)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
+                  <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 8 }}>{p.setup} once-off setup</div>
-                  <div className="mono" style={{ color: p.featured ? "var(--gold2)" : "rgba(242,237,228,0.7)", fontSize: 11, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
+                  <div className="mono" style={{ color: p.featured ? "var(--gold2)" : "#E0E0E0", fontSize: 11, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--gold2)" : "var(--mist)", display: "inline-block" }} />
                     {p.msg}
                   </div>
@@ -614,7 +614,7 @@ export default function Landing() {
                     {p.features.map((f,j) => (
                       <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                         <span style={{ color: p.featured ? "var(--gold2)" : "var(--mist)", fontSize: 12 }}>—</span>
-                        <span style={{ fontSize: 14, color: j===0&&i>0 ? "rgba(242,237,228,0.6)" : "var(--cream)", fontStyle: j===0&&i>0 ? "italic" : "normal" }}>{f}</span>
+                        <span style={{ fontSize: 14, color: j===0&&i>0 ? "#CCCCCC" : "var(--cream)", fontStyle: j===0&&i>0 ? "italic" : "normal" }}>{f}</span>
                       </div>
                     ))}
                   </div>
@@ -626,7 +626,7 @@ export default function Landing() {
             ))}
           </div>
           <Rise delay={0.4}>
-            <p className="mono" style={{ textAlign: "center", color: "rgba(242,237,228,0.65)", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
+            <p className="mono" style={{ textAlign: "center", color: "#CCCCCC", fontSize: 10, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
               Free to explore · Pay to activate · No USD billing · Cancel anytime
             </p>
           </Rise>
@@ -659,7 +659,7 @@ export default function Landing() {
                     <div style={{ width: 36, height: 36, background: "var(--green)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "var(--gold2)", fontFamily: "Cormorant Garant, serif" }}>{t.n.charAt(0)}</div>
                     <div>
                       <div style={{ color: "var(--cream)", fontSize: 13, fontWeight: 600 }}>{t.n}</div>
-                      <div className="mono" style={{ color: "rgba(242,237,228,0.65)", fontSize: 10, marginTop: 2 }}>{t.o}</div>
+                      <div className="mono" style={{ color: "#CCCCCC", fontSize: 10, marginTop: 2 }}>{t.o}</div>
                     </div>
                   </div>
                 </div>
@@ -773,7 +773,7 @@ export default function Landing() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
                     <div style={{ fontSize: 15, color: "var(--cream)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
-                    <div style={{ fontSize: 12, color: "rgba(242,237,228,0.7)" }}>{c.sub}</div>
+                    <div style={{ fontSize: 12, color: "#E0E0E0" }}>{c.sub}</div>
                   </div>
                 </div>
               ))}
@@ -810,7 +810,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "rgba(242,237,228,0.75)", lineHeight: 1.85 }}>{s.body}</p>
+                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -836,7 +836,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 15, color: "rgba(242,237,228,0.75)", lineHeight: 1.85 }}>{s.body}</p>
+                  <p style={{ fontSize: 15, color: "#E0E0E0", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -864,7 +864,7 @@ export default function Landing() {
             </h2>
           </Rise>
           <Rise delay={0.2}>
-            <p style={{ fontSize: 17, color: "rgba(242,237,228,0.92)", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
+            <p style={{ fontSize: 17, color: "#F0F0F0", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
               Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No USD billing.
             </p>
           </Rise>
