@@ -94,7 +94,7 @@ const css = `
   .nav-link-e {
     font-family: 'DM Mono', monospace;
     font-size: 10px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--mist);
+    text-transform: uppercase; color: #BEBEBE;
     transition: color 0.2s;
   }
   .nav-link-e:hover { color: var(--cream); }
@@ -406,7 +406,7 @@ export default function Landing() {
               </h1>
             </Rise>
             <Rise delay={0.2}>
-              <p style={{ fontSize: "clamp(15px,2vw,17px)", color: "var(--mist)", lineHeight: 1.85, maxWidth: 500, marginBottom: 40 }}>
+              <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "var(--cream2)", lineHeight: 1.85, maxWidth: 500, marginBottom: 40 }}>
                 Stop sending WhatsApp messages one by one. ZedPing broadcasts to your entire contact list, automates replies, and deploys AI agents — priced in Kwacha, supported in Lusaka.
               </p>
             </Rise>
@@ -419,7 +419,7 @@ export default function Landing() {
             <Rise delay={0.4}>
               <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                 {["📱 Airtel Money","📱 MTN Money","📱 Zamtel Money","💳 Visa / Mastercard","🇿🇲 Lusaka Support"].map(t => (
-                  <span key={t} style={{ fontSize: 12, color: "var(--mist)" }}>{t}</span>
+                  <span key={t} style={{ fontSize: 12, color: "var(--cream2)" }}>{t}</span>
                 ))}
               </div>
             </Rise>
@@ -436,7 +436,7 @@ export default function Landing() {
                 <div key={i} style={{ background: "var(--panel)", padding: "22px 24px", borderLeft: "2px solid var(--gold)", position: "relative" }}>
                   <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
                   <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
-                  <div style={{ fontSize: 12, color: "var(--mist)" }}>{s.sub}</div>
+                  <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -479,7 +479,7 @@ export default function Landing() {
                 <div style={{ background: "var(--ink)", height: "100%" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
                     <div className="mono" style={{ fontSize: 9, color: "#888", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
-                    <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
+                    <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 15, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
                   </div>
                   <div style={{ padding: "24px 28px" }}>
                     <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase" }}>With ZedPing</div>
@@ -518,7 +518,7 @@ export default function Landing() {
                     <span className="mono" style={{ fontSize: 11, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
                   </div>
                   <h3 className="editorial" style={{ fontSize: 22, color: "var(--cream)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.8 }}>{f.body}</p>
+                  <p style={{ fontSize: 15, color: "var(--cream2)", lineHeight: 1.8 }}>{f.body}</p>
                 </div>
               </Rise>
             ))}
@@ -545,7 +545,7 @@ export default function Landing() {
                 <div className="industry-elite">
                   <div style={{ fontSize: 26, marginBottom: 10 }}>{v.e}</div>
                   <div className="editorial" style={{ fontSize: 17, color: "var(--cream)", marginBottom: 6, fontWeight: 600 }}>{v.n}</div>
-                  <div style={{ fontSize: 13, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
+                  <div style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.6 }}>{v.t}</div>
                 </div>
               </Rise>
             ))}
@@ -589,7 +589,7 @@ export default function Landing() {
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Priced in Kwacha.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>No USD surprises.</span>
             </h2>
-            <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 14, maxWidth: 560, lineHeight: 1.85 }}>
+            <p style={{ fontSize: 16, color: "var(--cream2)", marginBottom: 14, maxWidth: 560, lineHeight: 1.85 }}>
               Competitors charge $40–$70/month in USD — roughly K900–K1,600. Every time the exchange rate moves, so does their bill. ZedPing? K650/month. In Kwacha. Fixed. Always.
             </p>
             <p style={{ fontSize: 12, color: "var(--mist)", marginBottom: 56, opacity: 0.6, fontFamily: "DM Mono, monospace", letterSpacing: 1 }}>
@@ -604,8 +604,8 @@ export default function Landing() {
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 9, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
                   <div className="mono" style={{ fontSize: 10, color: p.featured ? "var(--gold2)" : "var(--mist)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--cream)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
-                  <div className="mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
-                  <div className="mono" style={{ color: "rgba(255,255,255,0.15)", fontSize: 11, marginBottom: 8 }}>{p.setup} once-off setup</div>
+                  <div className="mono" style={{ color: "rgba(255,255,255,0.75)", fontSize: 11, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
+                  <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 8 }}>{p.setup} once-off setup</div>
                   <div className="mono" style={{ color: p.featured ? "var(--gold2)" : "var(--mist)", fontSize: 11, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--gold2)" : "var(--mist)", display: "inline-block" }} />
                     {p.msg}
@@ -654,7 +654,7 @@ export default function Landing() {
               <Rise key={i} delay={i*0.1}>
                 <div className="card-elite" style={{ padding: "36px 28px" }}>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.3, fontStyle: "italic" }}>"</div>
-                  <p style={{ color: "var(--cream)", fontSize: 15, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
+                  <p style={{ color: "var(--cream)", fontSize: 16, lineHeight: 1.9, marginBottom: 28, fontStyle: "italic" }}>{t.q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                     <div style={{ width: 36, height: 36, background: "var(--green)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "var(--gold2)", fontFamily: "Cormorant Garant, serif" }}>{t.n.charAt(0)}</div>
                     <div>
@@ -690,7 +690,7 @@ export default function Landing() {
                 </div>
                 {openFaq===i && (
                   <div style={{ paddingBottom: 20 }}>
-                    <p style={{ color: "var(--mist)", fontSize: 15, lineHeight: 1.85 }}>{f.a}</p>
+                    <p style={{ color: "var(--cream2)", fontSize: 16, lineHeight: 1.85 }}>{f.a}</p>
                   </div>
                 )}
               </div>
@@ -712,17 +712,17 @@ export default function Landing() {
               <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 24, lineHeight: 0.95 }}>
                 Built in Lusaka.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Built for Zambia.</span>
               </h2>
-              <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.9, marginBottom: 20 }}>
                 ZedPing is Zambia's first WhatsApp automation platform built specifically for local SMEs. We exist because Zambian businesses deserve world-class communication tools — priced in Kwacha, supported locally, and built to understand the way businesses here actually operate.
               </p>
-              <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.9, marginBottom: 32 }}>
+              <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.9, marginBottom: 32 }}>
                 Before ZedPing, the only options were expensive international platforms billed in USD with no local support and no understanding of the Zambian market. ZedPing changes that. From school fee reminders to AI-powered sales agents — every feature was designed with Zambian businesses in mind.
               </p>
               <div style={{ background: "rgba(26,58,42,0.3)", border: "1px solid var(--wire2)", padding: "20px 24px", position: "relative" }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold), transparent)", opacity: 0.4 }} />
                 <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>A product of</div>
                 <div className="editorial" style={{ fontSize: 22, color: "var(--cream)", fontWeight: 600, marginBottom: 6 }}>Coreline Systems</div>
-                <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.7 }}>Coreline Systems is a business systems consultancy based in Lusaka, Zambia — helping businesses build structured systems and streamlined operations. ZedPing is our first SaaS product.</p>
+                <p style={{ fontSize: 15, color: "var(--mist)", lineHeight: 1.7 }}>Coreline Systems is a business systems consultancy based in Lusaka, Zambia — helping businesses build structured systems and streamlined operations. ZedPing is our first SaaS product.</p>
               </div>
             </Rise>
           </div>
@@ -738,7 +738,7 @@ export default function Landing() {
                 <div key={i} style={{ background: "var(--panel)", padding: "18px 22px" }}>
                   <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
                   <div className="editorial" style={{ fontSize: 20, color: "var(--cream)", fontWeight: 600, marginBottom: 3 }}>{s.value}</div>
-                  <div style={{ fontSize: 12, color: "var(--mist)" }}>{s.sub}</div>
+                  <div style={{ fontSize: 12, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -757,7 +757,7 @@ export default function Landing() {
             <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,72px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
               Contact us.
             </h2>
-            <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
+            <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
           </Rise>
           <Rise delay={0.1}>
             <div style={{ display: "flex", flexDirection: "column", gap: 1, marginBottom: 32 }}>
@@ -772,8 +772,8 @@ export default function Landing() {
                   <span style={{ fontSize: 20, flexShrink: 0 }}>{c.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="mono" style={{ fontSize: 9, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
-                    <div style={{ fontSize: 15, color: "var(--cream)", fontWeight: 500, marginBottom: 2 }}>{c.value}</div>
-                    <div style={{ fontSize: 12, color: "var(--mist)" }}>{c.sub}</div>
+                    <div style={{ fontSize: 15, color: "var(--cream)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
+                    <div style={{ fontSize: 12, color: "var(--cream2)" }}>{c.sub}</div>
                   </div>
                 </div>
               ))}
@@ -810,7 +810,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.85 }}>{s.body}</p>
+                  <p style={{ fontSize: 15, color: "var(--cream2)", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -836,7 +836,7 @@ export default function Landing() {
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: "var(--cream)", marginBottom: 6 }}>{s.title}</div>
-                  <p style={{ fontSize: 14, color: "var(--mist)", lineHeight: 1.85 }}>{s.body}</p>
+                  <p style={{ fontSize: 15, color: "var(--cream2)", lineHeight: 1.85 }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -864,7 +864,7 @@ export default function Landing() {
             </h2>
           </Rise>
           <Rise delay={0.2}>
-            <p style={{ fontSize: 17, color: "rgba(242,237,228,0.65)", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
+            <p style={{ fontSize: 17, color: "rgba(242,237,228,0.92)", lineHeight: 1.85, maxWidth: 520, margin: "0 auto 48px" }}>
               Explore the ZedPing dashboard for free. Pay only when you're ready to go live. No USD billing.
             </p>
           </Rise>
@@ -892,7 +892,7 @@ export default function Landing() {
                   <div className="mono" style={{ color: "var(--gold2)", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
                   {links.map(l => {
                   const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
-                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--mist)", fontSize: 13, opacity: 0.6 }}>{l}</a></div>;
+                  return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--mist)", fontSize: 13, opacity: 0.85 }}>{l}</a></div>;
                 })}
                 </div>
               ))}
