@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 // 3D: Subtle elevation, gentle parallax, breathing depth — not performing
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
     :root {
     --bg:     #FFFFFF;
@@ -30,7 +30,7 @@ const css = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     background: var(--ink);
     color: var(--cream);
     -webkit-font-smoothing: antialiased;
@@ -44,7 +44,7 @@ const css = `
 
   /* ── SUBTLE 3D CARD ── */
   .card-elite {
-    background: var(--card);
+    background: #FFFFFF;
     border: 1px solid var(--line);
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, border-color 0.3s;
     will-change: transform;
@@ -52,7 +52,7 @@ const css = `
   .card-elite:hover {
     transform: translateY(-8px) perspective(1000px) rotateX(2deg);
     box-shadow: 0 24px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(184,146,42,0.2);
-    border-color: var(--line2);
+    border-color: rgba(184,146,42,0.25);
   }
 
   /* ── FLOATING ── */
@@ -105,7 +105,7 @@ const css = `
 
   /* ── FEATURE CARD ── */
   .feat-elite {
-    background: var(--card2); border: 1px solid var(--line);
+    background: var(--bg2); border: 1px solid var(--line);
     padding: 32px 28px; position: relative; overflow: hidden;
     transition: all 0.3s;
   }
@@ -117,13 +117,13 @@ const css = `
     transition: transform 0.5s ease;
   }
   .feat-elite:hover::after { transform: scaleX(0.5); }
-  .feat-elite:hover { border-color: var(--line2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .feat-elite:hover { border-color: rgba(184,146,42,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
 
   /* ── PLAN CARD ── */
   .plan-elite { padding: 36px 30px; position: relative; transition: all 0.4s; }
   .plan-elite:hover { transform: translateY(-8px) perspective(800px) rotateX(1.5deg); }
   .plan-elite.featured { background: var(--green); border: 1px solid var(--green); }
-  .plan-elite:not(.featured) { background: var(--card2); border: 1px solid var(--line); }
+  .plan-elite:not(.featured) { background: #FFFFFF; border: 1px solid var(--line); }
 
   /* ── FAQ ── */
   .faq-elite { border-bottom: 1px solid var(--line); cursor: pointer; transition: all 0.2s; }
@@ -131,13 +131,13 @@ const css = `
 
   /* ── INDUSTRY ── */
   .industry-elite {
-    background: var(--card2); border: 1px solid var(--line);
+    background: var(--bg2); border: 1px solid var(--line);
     padding: 22px 18px;
     transition: all 0.3s;
   }
   .industry-elite:hover {
     background: var(--goldbg);
-    border-color: var(--line2);
+    border-color: rgba(184,146,42,0.25);
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   }
@@ -149,7 +149,7 @@ const css = `
   .badge-cream { background: rgba(242,237,228,0.06); color: var(--cream2); border: 1px solid var(--wire); }
 
   /* ── INPUT ── */
-  .input-e { background: var(--bg2); border: 1px solid var(--line); padding: 12px 14px; font-size: 14px; color: var(--text1); outline: none; font-family: 'Inter', sans-serif; transition: all 0.2s; width: 100%; }
+  .input-e { background: var(--bg2); border: 1px solid var(--line); padding: 12px 14px; font-size: 14px; color: var(--text1); outline: none; font-family: 'Outfit', sans-serif; transition: all 0.2s; width: 100%; }
   .input-e:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,146,42,0.15); }
   .input-e::placeholder { color: #999; }
 
@@ -220,11 +220,11 @@ function Logo({ size = 20 }) {
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <div style={{ position: "relative" }}>
         <div style={{ width: size * 1.8, height: size * 1.8, background: "var(--bg)", border: "1px solid var(--wire2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <span className="editorial" style={{ color: "var(--cream)", fontSize: size * 1.1, fontWeight: 700, letterSpacing: -1, lineHeight: 1 }}>Z</span>
+          <span className="editorial" style={{ color: "var(--text1)", fontSize: size * 1.1, fontWeight: 700, letterSpacing: -1, lineHeight: 1 }}>Z</span>
         </div>
         <div style={{ position: "absolute", top: -3, right: -3, width: 7, height: 7, background: "var(--gold2)", borderRadius: "50%", boxShadow: "0 0 8px rgba(212,168,67,0.6)" }} />
       </div>
-      <span style={{ fontFamily: "Cormorant Garant, serif", fontWeight: 600, fontSize: size, color: "var(--cream)", letterSpacing: 1 }}>
+      <span style={{ fontFamily: "Cormorant Garant, serif", fontWeight: 600, fontSize: size, color: "var(--text1)", letterSpacing: 1 }}>
         Zed<span style={{ color: "var(--gold2)" }}>Ping</span>
       </span>
     </div>
@@ -249,7 +249,7 @@ function PhoneMockup() {
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone */}
-      <div style={{ background: "var(--panel)", border: "1px solid var(--wire2)", borderRadius: 24, padding: 3, boxShadow: "0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,146,42,0.08), inset 0 1px 0 rgba(255,255,255,0.04)", position: "relative" }}>
+      <div style={{ background: "var(--bg2)", border: "1px solid var(--wire2)", borderRadius: 24, padding: 3, boxShadow: "0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,146,42,0.08), inset 0 1px 0 rgba(255,255,255,0.04)", position: "relative" }}>
         <div style={{ background: "var(--bg)", borderRadius: 20, padding: 14, overflow: "hidden" }}>
           {/* Status */}
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
@@ -262,7 +262,7 @@ function PhoneMockup() {
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, paddingBottom: 10, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <div style={{ width: 30, height: 30, background: "var(--green)", border: "1px solid var(--wire2)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>🛍️</div>
             <div>
-              <div style={{ color: "var(--cream)", fontSize: 26, fontWeight: 600 }}>Lusaka Boutique</div>
+              <div style={{ color: "var(--text1)", fontSize: 26, fontWeight: 600 }}>Lusaka Boutique</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22C55E", display: "inline-block" }} />
                 <span className="mono" style={{ color: "#22C55E", fontSize: 8 }}>AI Online</span>
@@ -292,7 +292,7 @@ function PhoneMockup() {
                     ))}
                   </div>
                 )}
-                <div style={{ color: "var(--cream)", fontSize: 10, lineHeight: 1.65, whiteSpace: "pre-line" }}>{m.t}</div>
+                <div style={{ color: "var(--text1)", fontSize: 10, lineHeight: 1.65, whiteSpace: "pre-line" }}>{m.t}</div>
               </div>
             </div>
           ))}
@@ -386,9 +386,9 @@ export default function Landing() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ background: "var(--bg)", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "#FFFFFF", display: "flex", alignItems: "center", paddingTop: 68, position: "relative", overflow: "hidden" }}>
         {/* Subtle warm glow */}
-        <div style={{ position: "absolute", top: "20%", right: "0%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 65%)", filter: "blur(80px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "20%", right: "0%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(184,146,42,0.06) 0%, transparent 65%)", filter: "blur(80px)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "10%", left: "-5%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,58,42,0.05) 0%, transparent 65%)", filter: "blur(60px)", pointerEvents: "none" }} />
         {/* Subtle vertical lines */}
         {[25,50,75].map(x => (
@@ -405,13 +405,13 @@ export default function Landing() {
               </div>
             </Rise>
             <Rise delay={0.1}>
-              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 0 }}>
+              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "#111111", letterSpacing: -1, marginBottom: 0 }}>
                 Your whole
               </h1>
               <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--gold)", letterSpacing: -1, marginBottom: 0, fontStyle: "italic" }}>
                 contact list.
               </h1>
-              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 36 }}>
+              <h1 className="editorial m-text-sm" style={{ fontSize: "clamp(52px, 8vw, 100px)", color: "#111111", letterSpacing: -1, marginBottom: 36 }}>
                 One click.
               </h1>
             </Rise>
@@ -422,8 +422,8 @@ export default function Landing() {
             </Rise>
             <Rise delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 44 }} className="m-stack">
-                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--inkbg)", color: "#FFFFFF" }}>Explore Free</a>
-                <a className="btn-wire m-full" href="#features" style={{ color: "var(--text1)", borderColor: "var(--line)" }}>See How It Works →</a>
+                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Explore Free</a>
+                <a className="btn-wire m-full" href="#features" style={{ color: "#111111", borderColor: "rgba(0,0,0,0.2)" }}>See How It Works →</a>
               </div>
             </Rise>
             <Rise delay={0.4}>
@@ -443,8 +443,8 @@ export default function Landing() {
                 { value: "24/7", label: "AI agent never sleeps", sub: "Handles enquiries around the clock." },
                 { value: "K650", label: "Starting price", sub: "In Kwacha. Fixed. Always." },
               ].map((s, i) => (
-                <div key={i} style={{ background: "var(--bg2)", padding: "22px 24px", borderLeft: "3px solid var(--gold)", border: "1px solid var(--line)" }}>
-                  <div className="editorial" style={{ fontSize: 44, color: "var(--cream)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
+                <div key={i} style={{ background: "#FFFFFF", padding: "22px 24px", borderLeft: "3px solid var(--gold)", border: "1px solid var(--line)" }}>
+                  <div className="editorial" style={{ fontSize: 44, color: "var(--text1)", lineHeight: 1, letterSpacing: -1, fontWeight: 600, marginBottom: 6 }}>{s.value}</div>
                   <div className="mono" style={{ fontSize: 28, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 3 }}>{s.label}</div>
                   <div style={{ fontSize: 27, color: "var(--cream2)" }}>{s.sub}</div>
                 </div>
@@ -455,7 +455,7 @@ export default function Landing() {
       </section>
 
       {/* ── TICKER ── */}
-      <div style={{ background: "var(--panel)", borderTop: "1px solid var(--wire)", borderBottom: "1px solid var(--wire)", padding: "12px 0", overflow: "hidden" }}>
+      <div style={{ background: "var(--bg2)", borderTop: "1px solid var(--wire)", borderBottom: "1px solid var(--wire)", padding: "12px 0", overflow: "hidden" }}>
         <div className="marquee-inner">
           {[...TICKER,...TICKER].map((t,i) => (
             <span key={i} style={{ color: i%3===0 ? "var(--gold)" : "var(--text3)", fontSize: 26, fontWeight: 500, fontFamily: "DM Mono, monospace", letterSpacing: 2, textTransform: "uppercase", padding: "0 32px", whiteSpace: "nowrap" }}>
@@ -473,12 +473,12 @@ export default function Landing() {
               <div style={{ width: 28, height: 1, background: "var(--gold2)" }} />
               <span className="mono" style={{ fontSize: 28, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>The Problem</span>
             </div>
-            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, marginBottom: 56, maxWidth: 800, lineHeight: 0.95 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 56, maxWidth: 800, lineHeight: 0.95 }}>
               Every Zambian business owner<br />
               <span style={{ color: "var(--gold2)", fontStyle: "italic" }}>knows this feeling.</span>
             </h2>
           </Rise>
-          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
@@ -486,7 +486,7 @@ export default function Landing() {
               { b: "Chasing payments manually each month.", a: "Reminders sent to everyone in seconds." },
             ].map((p,i) => (
               <Rise key={i} delay={i*0.08} style={{ minWidth: 260, flex: "1 1 260px" }}>
-                <div style={{ background: "var(--bg)", height: "100%", border: "1px solid var(--line)" }}>
+                <div style={{ background: "var(--bg)", height: "100%" }}>
                   <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--wire)" }}>
                     <div className="mono" style={{ fontSize: 28, color: "rgba(0,0,0,0.35)", letterSpacing: 1.5, marginBottom: 10, textTransform: "uppercase", textDecoration: "line-through" }}>Before</div>
                     <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 27, lineHeight: 1.7, textDecoration: "line-through" }}>{p.b}</p>
@@ -512,14 +512,14 @@ export default function Landing() {
                   <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
                   <span className="mono" style={{ fontSize: 28, color: "var(--gold2)", letterSpacing: 2, textTransform: "uppercase" }}>Features</span>
                 </div>
-                <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--cream)", letterSpacing: -1, lineHeight: 0.95 }}>
+                <h2 className="editorial" style={{ fontSize: "clamp(36px,6vw,80px)", color: "var(--text1)", letterSpacing: -1, lineHeight: 0.95 }}>
                   Everything your<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>business needs.</span>
                 </h2>
               </div>
               <a className="btn-wire" href="#pricing" style={{ fontSize: 10 }}>View Pricing →</a>
             </div>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
             {FEATURES.map((f,i) => (
               <Rise key={i} delay={i*0.07}>
                 <div className="feat-elite">
@@ -527,7 +527,7 @@ export default function Landing() {
                     <span style={{ fontSize: 24 }}>{f.icon}</span>
                     <span className="mono" style={{ fontSize: 26, color: "rgba(255,255,255,0.08)", fontWeight: 500 }}>{f.n}</span>
                   </div>
-                  <h3 className="editorial" style={{ fontSize: 28, color: "var(--cream)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
+                  <h3 className="editorial" style={{ fontSize: 28, color: "var(--text1)", marginBottom: 10, lineHeight: 1.2, fontWeight: 600 }}>{f.title}</h3>
                   <p style={{ fontSize: 26, color: "var(--text2)", lineHeight: 1.8 }}>{f.body}</p>
                 </div>
               </Rise>
@@ -549,7 +549,7 @@ export default function Landing() {
             </h2>
             <p style={{ fontSize: 25, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
             {INDUSTRIES.map((v,i) => (
               <Rise key={i} delay={i*0.04}>
                 <div className="industry-elite">
@@ -579,7 +579,7 @@ export default function Landing() {
               <p style={{ fontSize: 25, color: "var(--mist)", lineHeight: 1.85, marginBottom: 32, maxWidth: 420 }}>
                 Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you rest.
               </p>
-              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--green)", color: "var(--cream)" }}>Start for Free</a>
+              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "var(--green)", color: "var(--text1)" }}>Start for Free</a>
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "0 0 280px", position: "relative" }}>
@@ -613,7 +613,7 @@ export default function Landing() {
                   {p.featured && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold2), transparent)" }} />}
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 28, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
                   <div className="mono" style={{ fontSize: 28, color: p.featured ? "var(--gold2)" : "var(--text3)", fontSize: 27, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
-                  <div className="editorial" style={{ fontSize: 56, color: "var(--cream)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
+                  <div className="editorial" style={{ fontSize: 56, color: "var(--text1)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 26, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 26, marginBottom: 8 }}>{p.setup} once-off setup</div>
                   <div className="mono" style={{ color: p.featured ? "var(--gold2)" : "#E0E0E0", fontSize: 26, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
@@ -655,7 +655,7 @@ export default function Landing() {
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
             {[
               { q: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office is remarkable.", n: "Accounts Manager", o: "Beta Tester · School, Lusaka" },
               { q: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It works around the clock without complaint.", n: "Business Owner", o: "Beta Tester · Workshop, Lusaka" },
@@ -695,7 +695,7 @@ export default function Landing() {
             <Rise key={i} delay={i*0.04}>
               <div className="faq-elite" onClick={() => setOpenFaq(openFaq===i ? null : i)}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 0", gap: 20 }}>
-                  <span style={{ color: "var(--cream)", fontSize: 25, fontWeight: 400, lineHeight: 1.4 }}>{f.q}</span>
+                  <span style={{ color: "var(--text1)", fontSize: 25, fontWeight: 400, lineHeight: 1.4 }}>{f.q}</span>
                   <span className="editorial" style={{ color: openFaq===i ? "var(--gold2)" : "var(--mist)", fontSize: 28, fontWeight: 300, flexShrink: 0, transition: "all 0.3s" }}>{openFaq===i ? "−" : "+"}</span>
                 </div>
                 {openFaq===i && (
@@ -745,7 +745,7 @@ export default function Landing() {
                 { label: "Support", value: "In Lusaka", sub: "Real people, local time zone" },
                 { label: "Payments", value: "Mobile money", sub: "Airtel · MTN · Zamtel · Card" },
               ].map((s,i) => (
-                <div key={i} style={{ background: "var(--panel)", padding: "18px 22px" }}>
+                <div key={i} style={{ background: "var(--bg2)", padding: "18px 22px" }}>
                   <div className="mono" style={{ fontSize: 28, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{s.label}</div>
                   <div style={{ fontSize: 27, fontWeight: 700, color: "var(--text1)", marginBottom: 3 }}>{s.value}</div>
                   <div style={{ fontSize: 27, color: "var(--cream2)" }}>{s.sub}</div>
@@ -868,7 +868,7 @@ export default function Landing() {
             </div>
           </Rise>
           <Rise delay={0.1}>
-            <h2 className="editorial" style={{ fontSize: "clamp(48px,8vw,100px)", color: "var(--cream)", letterSpacing: -2, lineHeight: 0.92, marginBottom: 24 }}>
+            <h2 className="editorial" style={{ fontSize: "clamp(48px,8vw,100px)", color: "#111111", letterSpacing: -2, lineHeight: 0.92, marginBottom: 24 }}>
               Stop losing sales<br />
               <span style={{ color: "var(--gold2)", fontStyle: "italic" }}>to slow replies.</span>
             </h2>
@@ -887,7 +887,7 @@ export default function Landing() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: "var(--bg2)", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "56px 40px 28px" }} className="m-pad">
+      <footer style={{ background: "var(--bg2)", borderTop: "1px solid var(--line)", padding: "56px 40px 28px" }} className="m-pad">
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 40 }}>
             <div style={{ maxWidth: 260 }}>
