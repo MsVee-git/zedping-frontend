@@ -246,23 +246,21 @@ function PhoneMockup() {
   const { ref, move, leave } = useTilt(5);
   const msgs = [
     { c: true, t: "Hi, I need a dress under K500" },
-    { c: false, t: "Good afternoon! 👗 Here are 3 beautiful options:", p: true },
-    { c: true, t: "The red one in size medium, please" },
-    { c: false, t: "Lovely choice ✓\n\nRed wrap dress · Size M · K420\n\nKindly send payment to Airtel Money 0977 000 000\n\nYour order will be delivered within 24 hours." },
-    { c: true, t: "Payment sent. Thank you! 😊" },
-    { c: false, t: "Order confirmed ✓ We appreciate your business." },
+    { c: false, t: "Hi! 👗 We have red wrap (K420), black midi (K380) & blue maxi (K490) in stock right now. Which do you like?" },
+    { c: true, t: "Red one, size medium please 🙏" },
+    { c: false, t: "Perfect! ✓ Red wrap dress · M · K420\n\nPay: Airtel Money 0977 000 000\nDelivery within 24 hours 🚀" },
   ];
 
   return (
     <div ref={ref} onMouseMove={move} onMouseLeave={leave}
-      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 300, margin: "0 auto" }}>
+      style={{ animation: "breathe 7s ease-in-out infinite", width: 260, margin: "0 auto" }}>
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
       {/* Phone frame */}
       <div style={{ background: "#1A1A1A", border: "6px solid #2A2A2A", borderRadius: 44, padding: 0, boxShadow: "0 32px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)", position: "relative", overflow: "hidden" }}>
         {/* Notch */}
         <div style={{ background: "#2A2A2A", width: 100, height: 28, borderRadius: "0 0 20px 20px", margin: "0 auto", position: "relative", zIndex: 1 }} />
-        <div style={{ background: "#111111", padding: "8px 16px 20px", overflow: "hidden" }}>
+        <div style={{ background: "#111111", padding: "10px 14px 16px", overflow: "hidden", minHeight: 400, maxHeight: 480 }}>
           {/* Status */}
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
             <span className="mono" style={{ fontSize: 16, color: "var(--mist)" }}>09:41</span>
@@ -272,12 +270,12 @@ function PhoneMockup() {
           </div>
           {/* Header */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, paddingBottom: 10, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-            <div style={{ width: 42, height: 42, background: "#312E81", border: "1px solid rgba(99,102,241,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🛍️</div>
+            <div style={{ width: 32, height: 32, background: "#312E81", border: "1px solid rgba(99,102,241,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🛍️</div>
             <div>
               <div style={{ color: "var(--text1)", fontSize: 16, fontWeight: 700 }}>Lusaka Boutique</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22C55E", display: "inline-block" }} />
-                <span className="mono" style={{ color: "#22C55E", fontSize: 13 }}>AI Online</span>
+                <span className="mono" style={{ color: "#22C55E", fontSize: 11 }}>AI Online</span>
               </div>
             </div>
           </div>
@@ -288,35 +286,13 @@ function PhoneMockup() {
                 background: m.c ? "#111111" : "#F0F0F0",
                 border: "none",
                 borderRadius: m.c ? "16px 16px 3px 16px" : "16px 16px 16px 3px",
-                padding: "13px 16px", maxWidth: "85%",
+                padding: "10px 13px", maxWidth: "85%",
               }}>
-                {m.p && (
-                  <div style={{ display: "flex", gap: 5, marginBottom: 7 }}>
-                    {[["#8B0000","K420"],["#1a1a1a","K380"],["#1B3A6B","K490"]].map(([bg,p],pi) => (
-                      <div key={pi} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 6, overflow: "hidden", flex: 1, textAlign: "center" }}>
-                        <div style={{ background: bg, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <svg width="20" height="30" viewBox="0 0 28 44"><path d="M14 2C14 2 10 4 7 8L2 14L8 16L6 42L22 42L20 16L26 14L21 8C18 4 14 2 14 2Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5"/></svg>
-                        </div>
-                        <div style={{ padding: "3px 2px" }}>
-                          <div className="mono" style={{ color: "var(--gold2)", fontSize: 8, fontWeight: 500 }}>{p}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <div style={{ color: m.c ? "#FFFFFF" : "#111111", fontSize: 17, lineHeight: 1.75, whiteSpace: "pre-line" }}>{m.t}</div>
+                <div style={{ color: m.c ? "#FFFFFF" : "#111111", fontSize: 14, lineHeight: 1.65, whiteSpace: "pre-line" }}>{m.t}</div>
               </div>
             </div>
           ))}
-          {/* Stats */}
-          <div style={{ display: "flex", justifyContent: "space-around", marginTop: 12, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "10px 0" }}>
-            {[["342","Sent"],["98%","Delivered"],["4s","Time"]].map(([v,l]) => (
-              <div key={l} style={{ textAlign: "center" }}>
-                <div className="editorial" style={{ color: "#D4A843", fontSize: 22, fontWeight: 700 }}>{v}</div>
-                <div style={{ color: "var(--mist)", fontSize: 13 }}>{l}</div>
-              </div>
-            ))}
-          </div>
+
         </div>
         {/* Home bar */}
         <div style={{ background: "#1A1A1A", padding: "10px 0 8px", display: "flex", justifyContent: "center" }}>
