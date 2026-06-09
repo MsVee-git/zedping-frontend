@@ -255,12 +255,14 @@ function PhoneMockup() {
 
   return (
     <div ref={ref} onMouseMove={move} onMouseLeave={leave}
-      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 460, margin: "0 auto" }}>
+      style={{ animation: "breathe 7s ease-in-out infinite", maxWidth: 300, margin: "0 auto" }}>
       {/* Glow behind phone */}
       <div style={{ position: "absolute", inset: -30, background: "radial-gradient(ellipse, rgba(184,146,42,0.08) 0%, transparent 65%)", borderRadius: 60, filter: "blur(20px)", pointerEvents: "none" }} />
-      {/* Phone */}
-      <div style={{ background: "var(--bg2)", border: "1px solid var(--wire2)", borderRadius: 24, padding: 3, boxShadow: "0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,146,42,0.08), inset 0 1px 0 rgba(255,255,255,0.04)", position: "relative" }}>
-        <div style={{ background: "var(--bg)", borderRadius: 20, padding: 14, overflow: "hidden" }}>
+      {/* Phone frame */}
+      <div style={{ background: "#1A1A1A", border: "6px solid #2A2A2A", borderRadius: 44, padding: 0, boxShadow: "0 32px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)", position: "relative", overflow: "hidden" }}>
+        {/* Notch */}
+        <div style={{ background: "#2A2A2A", width: 100, height: 28, borderRadius: "0 0 20px 20px", margin: "0 auto", position: "relative", zIndex: 1 }} />
+        <div style={{ background: "#111111", padding: "8px 16px 20px", overflow: "hidden" }}>
           {/* Status */}
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
             <span className="mono" style={{ fontSize: 16, color: "var(--mist)" }}>09:41</span>
@@ -315,6 +317,10 @@ function PhoneMockup() {
               </div>
             ))}
           </div>
+        </div>
+        {/* Home bar */}
+        <div style={{ background: "#1A1A1A", padding: "10px 0 8px", display: "flex", justifyContent: "center" }}>
+          <div style={{ width: 80, height: 4, background: "rgba(255,255,255,0.3)", borderRadius: 2 }} />
         </div>
       </div>
     </div>
