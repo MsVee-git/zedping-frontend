@@ -105,7 +105,7 @@ const css = `
 
   /* ── FEATURE CARD ── */
   .feat-elite {
-    background: var(--bg2); border: 1px solid var(--line);
+    background: #FFFFFF; border: 1px solid var(--line);
     padding: 32px 28px; position: relative; overflow: hidden;
     transition: all 0.3s;
   }
@@ -122,7 +122,7 @@ const css = `
   /* ── PLAN CARD ── */
   .plan-elite { padding: 36px 30px; position: relative; transition: all 0.4s; }
   .plan-elite:hover { transform: translateY(-8px) perspective(800px) rotateX(1.5deg); }
-  .plan-elite.featured { background: var(--green); border: 1px solid var(--green); }
+  .plan-elite.featured { background: #FFFFFF; border: 2px solid var(--gold); box-shadow: 0 8px 32px rgba(154,116,32,0.12); }
   .plan-elite:not(.featured) { background: #FFFFFF; border: 1px solid var(--line); }
 
   /* ── FAQ ── */
@@ -131,7 +131,7 @@ const css = `
 
   /* ── INDUSTRY ── */
   .industry-elite {
-    background: var(--bg2); border: 1px solid var(--line);
+    background: #FFFFFF; border: 1px solid var(--line);
     padding: 22px 18px;
     transition: all 0.3s;
   }
@@ -447,7 +447,7 @@ export default function Landing() {
 
           {/* Right — Stats */}
           <Rise delay={0.3} style={{ flex: "0 1 280px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--wire)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 126 }}>
               {[
                 { value: "4s", label: "To reach 300+ contacts", sub: "Personalised. Simultaneously." },
                 { value: "24/7", label: "AI agent never sleeps", sub: "Handles enquiries around the clock." },
@@ -488,7 +488,7 @@ export default function Landing() {
               <span style={{ color: "var(--gold2)", fontStyle: "italic" }}>knows this feeling.</span>
             </h2>
           </Rise>
-          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
+          <div className="before-after-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
             {[
               { b: "Sending messages all day, one by one", a: "One click sends to your entire list, personalised" },
               { b: '"How much, where are you located" — all day, every day', a: "AI agent answers instantly. 24/7. No human needed." },
@@ -529,7 +529,7 @@ export default function Landing() {
               <a className="btn-wire" href="#pricing" style={{ fontSize: 10 }}>View Pricing →</a>
             </div>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
             {FEATURES.map((f,i) => (
               <Rise key={i} delay={i*0.07}>
                 <div className="feat-elite">
@@ -559,7 +559,7 @@ export default function Landing() {
             </h2>
             <p style={{ fontSize: 16, color: "var(--mist)", marginBottom: 56, maxWidth: 480, lineHeight: 1.8 }}>If your business communicates with customers on WhatsApp, ZedPing was built for you.</p>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
             {INDUSTRIES.map((v,i) => (
               <Rise key={i} delay={i*0.04}>
                 <div className="industry-elite">
@@ -622,7 +622,7 @@ export default function Landing() {
                 <div className={`plan-elite ${p.featured ? "featured" : ""}`} style={{ position: "relative" }}>
                   {p.featured && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold2), transparent)" }} />}
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 16, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
-                  <div className="mono" style={{ fontSize: 16, color: p.featured ? "var(--gold2)" : "var(--text3)", fontSize: 16, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
+                  <div className="mono" style={{ fontSize: 16, color: "var(--text3)", fontSize: 16, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--text1)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 16, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
                   <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, marginBottom: 8 }}>{p.setup} once-off setup</div>
@@ -630,7 +630,7 @@ export default function Landing() {
                     <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--gold2)" : "var(--mist)", display: "inline-block" }} />
                     {p.msg}
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 122, marginBottom: 28 }}>
                     {p.features.map((f,j) => (
                       <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                         <span style={{ color: p.featured ? "var(--gold2)" : "var(--text2)", fontSize: 12 }}>—</span>
@@ -665,7 +665,7 @@ export default function Landing() {
               Real businesses.<br /><span style={{ color: "var(--gold2)", fontStyle: "italic" }}>Real results.</span>
             </h2>
           </Rise>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, background: "var(--line)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
             {[
               { q: "Before ZedPing I was manually sending fee reminders to over 300 parents every term. Now it takes seconds. The time saved in the accounts office is remarkable.", n: "Accounts Manager", o: "Beta Tester · School, Lusaka" },
               { q: "Our customers get instant replies even at night. We haven't missed a single lead since activating the AI agent. It works around the clock without complaint.", n: "Business Owner", o: "Beta Tester · Workshop, Lusaka" },
@@ -747,7 +747,7 @@ export default function Landing() {
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "1 1 300px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
                 { label: "Founded", value: "2026", sub: "Lusaka, Zambia" },
                 { label: "Mission", value: "Local tools", sub: "For local businesses" },
@@ -780,7 +780,7 @@ export default function Landing() {
             <p style={{ fontSize: 16, color: "var(--cream2)", lineHeight: 1.8, marginBottom: 48 }}>We're based in Lusaka and we actually answer. Reach out for support, sales enquiries, or to book a demo.</p>
           </Rise>
           <Rise delay={0.1}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1, marginBottom: 32 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
               {[
                 { label: "Email", value: "hello@zedping.com", sub: "We respond within 24 hours", icon: "📧" },
                 { label: "WhatsApp", value: "+260 [number coming soon]", sub: "Customer support & demos", icon: "📱" },
