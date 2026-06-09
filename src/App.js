@@ -604,23 +604,23 @@ export default function Landing() {
                 <div className={`plan-elite ${p.featured ? "featured" : ""}`} style={{ position: "relative" }}>
                   {p.featured && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--gold2), transparent)" }} />}
                   {p.featured && <div className="mono" style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--ink)", fontSize: 16, fontWeight: 600, padding: "3px 14px", letterSpacing: 2, whiteSpace: "nowrap" }}>MOST POPULAR</div>}
-                  <div className="mono" style={{ fontSize: 16, color: "var(--text2)", fontSize: 16, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
+                  <div className="mono" style={{ fontSize: 12, color: "var(--text3)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 16 }}>{p.name}</div>
                   <div className="editorial" style={{ fontSize: 56, color: "var(--text1)", letterSpacing: -1, lineHeight: 1, marginBottom: 4 }}>{p.price}</div>
-                  <div className="mono" style={{ color: "rgba(255,255,255,0.95)", fontSize: 16, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
-                  <div className="mono" style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, marginBottom: 8 }}>{p.setup} once-off setup</div>
-                  <div className="mono" style={{ color: p.featured ? "var(--gold2)" : "#E0E0E0", fontSize: 16, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--gold2)" : "var(--mist)", display: "inline-block" }} />
+                  <div className="mono" style={{ color: "var(--text2)", fontSize: 14, marginBottom: 4 }}>/month · or {p.annual}/mo annually</div>
+                  <div className="mono" style={{ color: "var(--text2)", fontSize: 14, marginBottom: 8 }}>{p.setup} once-off setup</div>
+                  <div className="mono" style={{ color: p.featured ? "var(--gold)" : "var(--text2)", fontSize: 14, marginBottom: 24, display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: p.featured ? "var(--gold)" : "var(--text3)", display: "inline-block" }} />
                     {p.msg}
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 122, marginBottom: 28 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
                     {p.features.map((f,j) => (
                       <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <span style={{ color: p.featured ? "var(--gold2)" : "var(--text2)", fontSize: 12 }}>—</span>
-                        <span style={{ fontSize: 16, color: j===0&&i>0 ? "#CCCCCC" : "var(--cream)", fontStyle: j===0&&i>0 ? "italic" : "normal" }}>{f}</span>
+                        <span style={{ color: "var(--gold)", fontSize: 14 }}>—</span>
+                        <span style={{ fontSize: 16, color: "#111111", fontWeight: 400 }}>{f}</span>
                       </div>
                     ))}
                   </div>
-                  <a href="https://zed-ping-dashboard.vercel.app?signup=true" className={p.featured ? "btn-elite" : "btn-wire"} style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: 10 }}>
+                  <a href="https://zed-ping-dashboard.vercel.app?signup=true" className={p.featured ? "btn-elite" : "btn-wire"} style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: 14 }}>
                     Get Started →
                   </a>
                 </div>
