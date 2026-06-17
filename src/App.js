@@ -791,9 +791,27 @@ export default function App() {
   const [active, setActive] = useState("overview");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [reset, setReset] = useState(() => window.location.hash.includes("type=recovery"));
+  const [reset, setReset] = useState(() => {
+    const hash = window.location.hash || "";
+    const search = window.location.search || "";
+    return hash.includes("type=recovery") || search.includes("type=recovery") || (hash.includes("access_token") && hash.includes("recovery"));
+  });
 
   useEffect(() => {
+    // Handle PKCE password recovery flow - exchange code for session
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const type = params.get("type");
+    if (code || type === "recovery") {
+      supabase.auth.exchangeCodeForSession(window.location.href).then(({ data, error }) => {
+        if (data?.session && type === "recovery") {
+          setReset(true);
+          setUser(null);
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+      }).catch(() => {});
+    }
+
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
         setUser(session.user);
@@ -803,7 +821,13 @@ export default function App() {
       setLoading(false);
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event==="PASSWORD_RECOVERY") { setReset(true); setUser(null); return; }
+      if (event==="PASSWORD_RECOVERY") { 
+        setReset(true); 
+        setUser(null);
+        // Clear the URL hash so it looks clean
+        window.history.replaceState(null, "", window.location.pathname);
+        return; 
+      }
       if (session?.user) {
         setUser(session.user);
         const { data: c } = await supabase.from("customers").select("*").eq("auth_user_id", session.user.id).single();
