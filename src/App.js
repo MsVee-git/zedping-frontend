@@ -535,7 +535,13 @@ function Overview({ customer, user }) {
           <div style={{ color: "var(--cream)", fontSize: 14, fontWeight: 500, marginBottom: 2 }}>Activate your WhatsApp number</div>
           <div style={{ color: "var(--mist)", fontSize: 13 }}>You're exploring ZedPing free. Pay to connect your WhatsApp number and go live.</div>
         </div>
-        <button className="btn btn-gold" style={{ flexShrink: 0, padding: "9px 18px", fontSize: 10 }}>Pay to Activate →</button>
+        <a
+          href={`https://wa.me/260XXXXXXXXX?text=${encodeURIComponent(`Hi ZedPing! I'd like to activate my account. Business: ${customer?.business_name || ""} | Plan: ${(customer?.subscription_plan || "starter").charAt(0).toUpperCase() + (customer?.subscription_plan || "starter").slice(1)} | Email: ${user?.email || ""}`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-gold"
+          style={{ flexShrink: 0, padding: "9px 18px", fontSize: 10, textDecoration: "none" }}
+        >Pay to Activate →</a>
       </div>
 
       {/* Stats */}
