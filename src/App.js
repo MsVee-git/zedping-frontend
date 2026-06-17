@@ -373,7 +373,7 @@ export default function Landing() {
               <a key={l} className="nav-link-e" href={`#${l.toLowerCase()}`}>{l}</a>
             ))}
           </div>
-          <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ padding: "10px 24px", fontSize: 10 }}>Get Started</a>
+          <a className="btn-elite" href="https://app.zedping.app?signup=true" style={{ padding: "10px 24px", fontSize: 10 }}>Get Started</a>
         </div>
       </nav>
 
@@ -414,7 +414,7 @@ export default function Landing() {
             </Rise>
             <Rise delay={0.3}>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 44 }} className="m-stack">
-                <a className="btn-elite m-full" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Explore Free</a>
+                <a className="btn-elite m-full" href="https://app.zedping.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Explore Free</a>
                 <a className="btn-wire m-full" href="#features" style={{ color: "#111111", borderColor: "rgba(0,0,0,0.2)" }}>See How It Works →</a>
               </div>
             </Rise>
@@ -571,7 +571,7 @@ export default function Landing() {
               <p style={{ fontSize: 16, color: "var(--mist)", lineHeight: 1.85, marginBottom: 32, maxWidth: 420 }}>
                 Your AI agent takes orders, recommends products, collects payment, and confirms delivery — all inside WhatsApp. While you rest.
               </p>
-              <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Start for Free</a>
+              <a className="btn-elite" href="https://app.zedping.app?signup=true" style={{ background: "#111111", color: "#FFFFFF" }}>Start for Free</a>
             </Rise>
           </div>
           <Rise delay={0.2} style={{ flex: "0 0 280px", position: "relative" }}>
@@ -620,7 +620,7 @@ export default function Landing() {
                       </div>
                     ))}
                   </div>
-                  <a href="https://zed-ping-dashboard.vercel.app?signup=true" className={p.featured ? "btn-elite" : "btn-wire"} style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: 14 }}>
+                  <a href="https://app.zedping.app?signup=true" className={p.featured ? "btn-elite" : "btn-wire"} style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: 14 }}>
                     Get Started →
                   </a>
                 </div>
@@ -764,7 +764,7 @@ export default function Landing() {
           <Rise delay={0.1}>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
               {[
-                { label: "Email", value: "hello@zedping.com", sub: "We respond within 24 hours", icon: "📧" },
+                { label: "Email", value: "hello@zedping.app", sub: "We respond within 24 hours", icon: "📧" },
                 { label: "WhatsApp", value: "+260 [number coming soon]", sub: "Customer support & demos", icon: "📱" },
                 { label: "Phone", value: "+260 [number coming soon]", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️" },
                 { label: "Location", value: "Lusaka, Zambia", sub: "Central African Time (UTC+2)", icon: "📍" },
@@ -808,7 +808,7 @@ export default function Landing() {
                 { title: "Data protection", body: "ZedPing operates in compliance with Zambia's Data Protection Act No. 3 of 2021. We are registered as a Data Controller with the Data Protection Commission of Zambia. All data is stored securely using industry-standard encryption." },
                 { title: "WhatsApp & Meta compliance", body: "ZedPing uses the official Meta WhatsApp Business API. All messaging activity must comply with Meta's WhatsApp Business Policy. You are responsible for ensuring your contacts have opted in to receive messages from your business." },
                 { title: "Data retention", body: "Message logs are retained for 12 months. Account data is retained while your account is active. On account closure, data is deleted within 30 days unless legal obligations require longer retention." },
-                { title: "Contact", body: "For privacy-related queries, contact us at hello@zedping.com." },
+                { title: "Contact", body: "For privacy-related queries, contact us at hello@zedping.app." },
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
@@ -834,7 +834,7 @@ export default function Landing() {
                 { title: "7. Limitation of liability", body: "ZedPing is provided as-is. To the fullest extent permitted by Zambian law, Coreline Systems is not liable for indirect, incidental, or consequential damages arising from your use of the platform." },
                 { title: "8. Governing law", body: "These terms are governed by the laws of the Republic of Zambia. Any disputes shall be resolved through the courts of Zambia." },
                 { title: "9. Changes", body: "ZedPing may update these terms with 14 days notice by email. Continued use of the platform after changes take effect constitutes acceptance of the revised terms." },
-                { title: "10. Contact", body: "For queries about these terms, contact hello@zedping.com. ZedPing is a product of Coreline Systems, Lusaka, Zambia." },
+                { title: "10. Contact", body: "For queries about these terms, contact hello@zedping.app. ZedPing is a product of Coreline Systems, Lusaka, Zambia." },
               ].map((s,i) => (
                 <div key={i}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
@@ -842,7 +842,7 @@ export default function Landing() {
                 </div>
               ))}
             </div>
-            <p className="mono" style={{ fontSize: 16, color: "var(--text3)", marginTop: 32, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · A product of Coreline Systems · Lusaka, Zambia</p>
+            <p className="mono" style={{ fontSize: 16, color: "var(--text3)", marginTop: 32, letterSpacing: 1 }}>Last updated: June 2026 · ZedPing · hello@zedping.app · A product of Coreline Systems · Lusaka, Zambia</p>
           </Rise>
         </div>
       </section>
@@ -871,7 +871,7 @@ export default function Landing() {
             </p>
           </Rise>
           <Rise delay={0.3}>
-            <a className="btn-elite" href="https://zed-ping-dashboard.vercel.app?signup=true" style={{ fontSize: 16, padding: "16px 48px", background: "var(--inkbg)", color: "#FFFFFF" }}>
+            <a className="btn-elite" href="https://app.zedping.app?signup=true" style={{ fontSize: 16, padding: "16px 48px", background: "var(--inkbg)", color: "#FFFFFF" }}>
               Get Started Free →
             </a>
           </Rise>
