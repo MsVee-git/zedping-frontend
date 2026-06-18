@@ -765,10 +765,11 @@ export default function Landing() {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
               {[
                 { label: "Email", value: "hello@zedping.app", sub: "We respond within 24 hours", icon: "📧" },
-                { label: "WhatsApp", value: "+260 778 621 167", sub: "Customer support & demos", icon: "📱" },
-                { label: "Phone", value: "+260 778 621 167", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️" },
+                { label: "WhatsApp", value: "+260 778 621 167", sub: "Customer support & demos", icon: "📱", href: "https://wa.me/260778621167?text=" + encodeURIComponent("Hi ZedPing! I have an enquiry.") },
+                { label: "Phone", value: "+260 778 621 167", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️", href: "tel:+260778621167" },
                 { label: "Location", value: "Lusaka, Zambia", sub: "Central African Time (UTC+2)", icon: "📍" },
-                { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼" },
+                { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼", href: "https://www.linkedin.com/showcase/zedping/" },
+                { label: "Facebook", value: "ZedPing", sub: "Follow our Facebook page", icon: "📘", href: "https://www.facebook.com/share/1D71PE7FLV/" },
               ].map((c,i) => (
                 <div key={i} style={{ background: "var(--bg2)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16, border: "1px solid var(--line)", marginBottom: 1 }}>
                   <span style={{ fontSize: 16, flexShrink: 0 }}>{c.icon}</span>
