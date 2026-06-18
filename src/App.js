@@ -765,8 +765,8 @@ export default function Landing() {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 }}>
               {[
                 { label: "Email", value: "hello@zedping.app", sub: "We respond within 24 hours", icon: "📧" },
-                { label: "WhatsApp", value: "+260 [number coming soon]", sub: "Customer support & demos", icon: "📱" },
-                { label: "Phone", value: "+260 [number coming soon]", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️" },
+                { label: "WhatsApp", value: "+260 778 621 167", sub: "Customer support & demos", icon: "📱" },
+                { label: "Phone", value: "+260 778 621 167", sub: "Mon – Fri · 08:00 – 17:00 CAT", icon: "☎️" },
                 { label: "Location", value: "Lusaka, Zambia", sub: "Central African Time (UTC+2)", icon: "📍" },
                 { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼" },
               ].map((c,i) => (
