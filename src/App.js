@@ -771,14 +771,15 @@ export default function Landing() {
                 { label: "LinkedIn", value: "ZedPing", sub: "Follow us for updates and news", icon: "💼", href: "https://www.linkedin.com/showcase/zedping/" },
                 { label: "Facebook", value: "ZedPing", sub: "Follow our Facebook page", icon: "📘", href: "https://www.facebook.com/share/1D71PE7FLV/" },
               ].map((c,i) => (
-                <div key={i} style={{ background: "var(--bg2)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16, border: "1px solid var(--line)", marginBottom: 1 }}>
+                <a key={i} href={c.href||"#"} target={c.href&&!c.href.startsWith("tel")?"_blank":"_self"} rel="noopener noreferrer" style={{ background: "var(--bg2)", padding: "20px 24px", display: "flex", alignItems: "center", gap: 16, border: "1px solid var(--line)", marginBottom: 1, textDecoration: "none", cursor: c.href ? "pointer" : "default", transition: "background 0.2s" }} onMouseEnter={e=>{ if(c.href) e.currentTarget.style.background="var(--goldbg)" }} onMouseLeave={e=>e.currentTarget.style.background="var(--bg2)"}>
                   <span style={{ fontSize: 16, flexShrink: 0 }}>{c.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="mono" style={{ fontSize: 16, color: "var(--gold2)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{c.label}</div>
-                    <div style={{ fontSize: 16, color: "var(--text1)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
+                    <div style={{ fontSize: 16, color: c.href ? "var(--gold)" : "var(--text1)", fontWeight: 600, marginBottom: 2 }}>{c.value}</div>
                     <div style={{ fontSize: 16, color: "var(--text2)" }}>{c.sub}</div>
                   </div>
-                </div>
+                  {c.href && <span style={{ color: "var(--gold)", fontSize: 18, flexShrink: 0 }}>→</span>}
+                </a>
               ))}
             </div>
           </Rise>
