@@ -847,6 +847,57 @@ export default function Landing() {
         </div>
       </section>
 
+
+      {/* ── DATA DELETION ── */}
+      <section id="data-deletion" style={{ background: "var(--bg2)", padding: "clamp(64px,8vw,120px) 40px", borderTop: "1px solid var(--line)" }} className="m-pad">
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <Rise>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 28, height: 1, background: "var(--gold)", opacity: 0.8 }} />
+              <span className="mono" style={{ fontSize: 13, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase" }}>Data Deletion</span>
+            </div>
+            <h2 className="editorial" style={{ fontSize: "clamp(32px,5vw,56px)", color: "var(--text1)", letterSpacing: -1, marginBottom: 16, lineHeight: 0.95 }}>
+              Request Data Deletion.
+            </h2>
+            <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.85, marginBottom: 32 }}>
+              You have the right to request deletion of your personal data held by ZedPing at any time. This includes your account information, contact lists, message logs, and any other data associated with your account.
+            </p>
+          </Rise>
+          <Rise delay={0.1}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              {[
+                { step: "01", title: "Submit your request", body: "Send an email to hello@zedping.app with the subject line 'Data Deletion Request'. Include your registered email address and business name." },
+                { step: "02", title: "Verification", body: "We will verify your identity within 2 business days to confirm the request is coming from the account holder." },
+                { step: "03", title: "Deletion", body: "Once verified, all your personal data will be permanently deleted from our systems within 30 days. This includes your account, contacts, message logs, automations and templates." },
+                { step: "04", title: "Confirmation", body: "You will receive an email confirmation once deletion is complete. Please note that deletion is permanent and cannot be reversed." },
+              ].map((s, i) => (
+                <div key={i} style={{ background: "#FFFFFF", padding: "24px 28px", border: "1px solid var(--line)", marginBottom: 1, display: "flex", gap: 24, alignItems: "flex-start" }}>
+                  <div className="mono" style={{ fontSize: 13, color: "var(--gold)", fontWeight: 600, flexShrink: 0, marginTop: 2 }}>{s.step}</div>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text1)", marginBottom: 6 }}>{s.title}</div>
+                    <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.8, margin: 0 }}>{s.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Rise>
+          <Rise delay={0.2}>
+            <div style={{ marginTop: 32, background: "var(--goldbg)", border: "1px solid var(--line2)", padding: "20px 24px" }}>
+              <div className="mono" style={{ fontSize: 11, color: "var(--gold)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Immediate Deletion Request</div>
+              <p style={{ fontSize: 16, color: "var(--text2)", lineHeight: 1.8, marginBottom: 12 }}>
+                To request immediate deletion of your data, email us directly:
+              </p>
+              <a href="mailto:hello@zedping.app?subject=Data Deletion Request" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#111111", color: "#FFFFFF", padding: "12px 24px", fontFamily: "DM Mono, monospace", fontSize: 13, letterSpacing: 1, textDecoration: "none" }}>
+                📧 hello@zedping.app
+              </a>
+            </div>
+          </Rise>
+          <p className="mono" style={{ fontSize: 12, color: "var(--text3)", marginTop: 24, letterSpacing: 0.5 }}>
+            ZedPing complies with Zambia's Data Protection Act No. 3 of 2021. For questions about your data rights, contact hello@zedping.app.
+          </p>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section style={{ background: "var(--bg2)", padding: "clamp(80px,10vw,140px) 40px", position: "relative", overflow: "hidden" }} className="m-pad">
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
@@ -893,7 +944,7 @@ export default function Landing() {
                 <div key={title}>
                   <div className="mono" style={{ color: "var(--gold)", fontSize: 16, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 16 }}>{title}</div>
                   {links.map(l => {
-                  const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal"};
+                  const anchors = {"Features":"#features","Pricing":"#pricing","Industries":"#industries","FAQ":"#faq","About ZedPing":"#about","Contact Us":"#contact","Privacy Policy":"#legal","Terms of Service":"#legal","Data Deletion":"#data-deletion"};
                   return <div key={l} style={{ marginBottom: 10 }}><a href={anchors[l]||"#"} style={{ color: "var(--text2)", fontSize: 16 }}>{l}</a></div>;
                 })}
                 </div>
