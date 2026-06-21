@@ -314,9 +314,9 @@ const FEATURES = [
 ];
 
 const PLANS = [
-  { name:"Starter", price:"K650", annual:"K450", setup:"K850", msg:"500 msgs / month", features:["1 WhatsApp number","Unlimited broadcasts","2 keyword automations","Contact list management","Message log","CSV contact upload","Airtel / MTN / Zamtel billing"], featured:false },
-  { name:"Business", price:"K1,500", annual:"K1,000", setup:"K2,000", msg:"3,000 msgs / month", features:["Everything in Starter","Unlimited keyword automations","Full keyword chatbot","1 AI agent (GPT-4o)","Broadcast scheduler","Message delivery tracking","Priority support"], featured:true },
-  { name:"Pro", price:"K2,500", annual:"K2,000", setup:"K3,500", msg:"Unlimited messages", features:["Everything in Business","3 WhatsApp numbers","Multi-step chatbot flows","Multiple AI agents","Airtable integration","POS system integration","Dedicated account manager"], featured:false },
+  { name:"Starter", price:"K650", annual:"K450", setup:"K850", msg:"Up to 800 contacts per broadcast", features:["1 WhatsApp number","Unlimited broadcasts","800 contacts per broadcast","2 keyword automations","Contact list management","Message log","CSV contact upload","Airtel / MTN / Zamtel billing"], featured:false },
+  { name:"Business", price:"K1,500", annual:"K1,000", setup:"K2,000", msg:"Up to 5,000 contacts per broadcast", features:["Everything in Starter","5,000 contacts per broadcast","Unlimited keyword automations","Full keyword chatbot","1 AI agent (GPT-4o)","Broadcast scheduler","Message delivery tracking","Priority support"], featured:true },
+  { name:"Pro", price:"K2,500", annual:"K2,000", setup:"K3,500", msg:"Unlimited contacts · No caps", features:["Everything in Business","Unlimited contacts per broadcast","3 WhatsApp numbers","Multiple AI agents","Multi-step chatbot flows","Airtable & POS integration","Dedicated account manager"], featured:false },
 ];
 
 const INDUSTRIES = [
@@ -629,7 +629,7 @@ export default function Landing() {
           </div>
           <Rise delay={0.4}>
             <p className="mono" style={{ textAlign: "center", color: "var(--text1)", fontSize: 16, marginTop: 24, letterSpacing: 1.5, opacity: 0.5 }}>
-              Free to explore · Pay to activate · No USD billing · Cancel anytime
+              Free to explore · Pay to activate · No USD billing · Cancel anytime · Upgrade anytime as your list grows
             </p>
           </Rise>
         </div>
